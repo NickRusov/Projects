@@ -1,0 +1,6 @@
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\bin\Debug\Interfaces.exe.config
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\bin\Debug\Interfaces.exe
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\bin\Debug\Interfaces.pdb
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\obj\Debug\Interfaces.exe
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\Interfaces\obj\Debug\Interfaces.pdb

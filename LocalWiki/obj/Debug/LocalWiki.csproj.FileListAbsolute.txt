@@ -1,0 +1,6 @@
+c:\users\nrusov\documents\visual studio 2012\Projects\LocalWiki\LocalWiki\bin\Debug\LocalWiki.exe.config
+c:\users\nrusov\documents\visual studio 2012\Projects\LocalWiki\LocalWiki\bin\Debug\LocalWiki.exe
+c:\users\nrusov\documents\visual studio 2012\Projects\LocalWiki\LocalWiki\bin\Debug\LocalWiki.pdb
+c:\users\nrusov\documents\visual studio 2012\Projects\LocalWiki\LocalWiki\obj\Debug\LocalWiki.exe
+c:\users\nrusov\documents\visual studio 2012\Projects\LocalWiki\LocalWiki\obj\Debug\LocalWiki.pdb
+C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\LocalWiki\obj\Debug\LocalWiki.csprojResolveAssemblyReference.cache
