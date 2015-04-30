@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class ArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         private List<Article> m_articles;
 
-        virtual public List<Article> AllArticles 
+        public List<Article> AllArticles 
         { get { return m_articles; } }
 
         public void AddArticle(Article article)

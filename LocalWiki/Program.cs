@@ -61,13 +61,17 @@ namespace LocalWiki
             Console.WriteLine(rating1);
             Report.Show(art);*/
             //Console.Write(Facade.FindId(repo, 2));
-            Facade facade = new Facade(repo, authorRepo, adminRepo, userRepo);
+            IArticleRepository IarticlesRepository = repo;//new ArticleRepository();//=new ArticleRepository();
+            IAuthorRepository IauthorRepository = authorRepo;
+            IAdminRepository IadminRepository = adminRepo;
+            IUserRepository IuserRepository = userRepo;
+            Facade facade = new Facade(IarticlesRepository, authorRepo, adminRepo, userRepo);//, authorRepo, adminRepo, userRepo);
             //facade.IAdmins.Find(1);
-            IArticles iArticle = (IArticles)facade;
-            
+            //IArticles iArticle = (IArticles)facade;
+            Report.Show(facade.FindArticle(1));
 
             Report.Show(facade.GetArticleAverageRating(1));
-            Report.Show(iArticle.Find(1));
+            //Report.Show(facade)//.Find(1));
 
 
 

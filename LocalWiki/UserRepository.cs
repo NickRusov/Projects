@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private List<User> m_users;
 

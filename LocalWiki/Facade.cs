@@ -7,192 +7,68 @@ using System.Threading.Tasks;
 namespace LocalWiki
 {
 
-    public interface IArticles
+    public class Facade //: IArticles, IAuthors, IAdmins, IUsers
     {
-        Article Find(uint articleid);
-        Article Find(string title);
-    }
+        private IArticleRepository IArticleRepository;
+        private IAuthorRepository IAuthorRepository;
+        private IAdminRepository IAdminRepository;
+        private IUserRepository IUserRepository;
 
-    public interface IAuthors
-    {
-        Author Find(uint id);
-        Author Find(string lastname);
-    }
-
-    public interface IAdmins
-    {
-        Admin Find(uint id);
-        Admin Find(string lastname);
-    }
-
-    public interface IUsers
-    {
-        User Find(uint id);
-        User Find(string lastname);
-    }
-
-
-
-    public class Facade : IArticles, IAuthors, IAdmins, IUsers
-    {
-        /*public IArticles IArticles;
-        public IAuthors IAuthors;
-        public IAdmins IAdmins;
-        public IUsers IUsers;*/
-
-        private ArticleRepository m_articleRepository;
-        private AuthorRepository m_authorRepository;
-        private AdminRepository m_adminRepository;
-        private UserRepository m_userRepository;
-
-
-        Article IArticles.Find(uint articleId)
+        public Article FindArticle(uint articleId)
         {
-            return m_articleRepository.AllArticles.Find(article => article.Id == articleId);
+            return IArticleRepository.AllArticles.Find(article => article.Id == articleId);
         }
 
-        Article IArticles.Find(string title)
+        public Article FindArticle(string title)
         {
-            //StringBuilder result = new StringBuilder(repo.AllArticles.Find(delegate(Article article){ article.Id == id;}).Title);
-            foreach (var article in m_articleRepository.AllArticles)
-            {
-                if (article.Title == title)
-                    return article;
-            }
-            return null;
+            return IArticleRepository.AllArticles.Find(article => article.Title == title);
         }
 
 
-        Author IAuthors.Find(uint authorId)
+        public Author FindAuthor(uint authorId)
         {
-            //StringBuilder result = new StringBuilder(repo.AllAuthors.Find(delegate(Author article){ article.Id == id;}).Title);
-            foreach (var author in m_authorRepository.AllAuthors)
-            {
-                if (author.Id == authorId)
-                    return author;
-            }
-            return null;
+            return IAuthorRepository.AllAuthors.Find(author => author.Id == authorId);
         }
 
-        Author IAuthors.Find(string lastname)
+        public Author FindAuthor(string lastname)
         {
-            //StringBuilder result = new StringBuilder(repo.AllAuthors.Find(delegate(Author article){ article.Id == id;}).Title);
-            foreach (var author in m_authorRepository.AllAuthors)
-            {
-                if (author.LastName == lastname)
-                    return author;
-            }
-            return null;
+            return IAuthorRepository.AllAuthors.Find(author => author.LastName == lastname);
         }
 
 
-        Admin IAdmins.Find(uint adminId)
+        public Admin FindAdmin(uint adminId)
         {
-            //StringBuilder result = new StringBuilder(repo.AllAdmins.Find(delegate(Admin article){ article.Id == id;}).Title);
-            foreach (var admin in m_adminRepository.AllAdmins)
-            {
-                if (admin.Id == adminId)
-                    return admin;
-            }
-            return null;
+            return IAdminRepository.AllAdmins.Find(admin => admin.Id == adminId);
         }
 
-        Admin IAdmins.Find(string lastname)
+        public Admin FindAdmin(string lastname)
         {
-            //StringBuilder result = new StringBuilder(repo.AllAdmins.Find(delegate(Admin article){ article.Id == id;}).Title);
-            foreach (var admin in m_adminRepository.AllAdmins)
-            {
-                if (admin.LastName == lastname)
-                    return admin;
-            }
-            return null;
+            return IAdminRepository.AllAdmins.Find(admin => admin.LastName == lastname);
         }
 
 
-        User IUsers.Find(uint userId)
+        public User FindUser(uint userId)
         {
-            //StringBuilder result = new StringBuilder(repo.AllUsers.Find(delegate(User article){ article.Id == id;}).Title);
-            foreach (var user in m_userRepository.AllUsers)
-            {
-                if (user.Id == userId)
-                    return user;
-            }
-            return null;
+            return IUserRepository.AllUsers.Find(user => user.Id == userId);
         }
 
-        User IUsers.Find(string lastname)
+        public User FindUser(string lastname)
         {
-            //StringBuilder result = new StringBuilder(repo.AllUsers.Find(delegate(User article){ article.Id == id;}).Title);
-            foreach (var user in m_userRepository.AllUsers)
-            {
-                if (user.LastName == lastname)
-                    return user;
-            }
-            return null;
+            return IUserRepository.AllUsers.Find(user => user.LastName == lastname);
         }
 
-
-        public Facade(ArticleRepository articleRepository, AuthorRepository authorRepository,
-            AdminRepository adminRepository, UserRepository userRepository)
+        public Facade(IArticleRepository iArticle, IAuthorRepository iAuthor,
+            IAdminRepository iAdmin, IUserRepository iUser)
         {
-            m_articleRepository = articleRepository;
-            m_authorRepository = authorRepository;
-            m_adminRepository = adminRepository;
-            m_userRepository = userRepository;
+            this.IArticleRepository = iArticle;
+            this.IAuthorRepository = iAuthor;
+            this.IAdminRepository = iAdmin;
+            this.IUserRepository = iUser;
         }
-
-        /*public Facade(IArticles iArticle)/*, IAuthors iAuthor,
-            IAdmins iAdmin, IUsers iUser)#1#
-        {
-            this.IArticles = iArticle;
-            /*this.IAuthors = iAuthor;
-            this.IAdmins = iAdmin;
-            this.IUsers = iUser;#1#
-        }*/
-
-        /*public Article FindArticleById(uint articleId)
-        {
-            
-            //StringBuilder result = new StringBuilder(repo.AllArticles.Find(delegate(Article article){ article.Id == id;}).Title);
-            foreach (var article in m_articleRepository.AllArticles)
-            {
-                if (article.Id == articleId)
-                    return article;
-            }
-            return null; 
-        }
-
-        public Article FindArticleByTitle(string title)
-        {
-            //StringBuilder result = new StringBuilder(repo.AllArticles.Find(delegate(Article article){ article.Id == id;}).Title);
-            foreach (var article in m_articleRepository.AllArticles)
-            {
-                if (article.Title == title)
-                    return article;
-            }
-            return null;
-        }*/
 
         public double GetArticleAverageRating(uint articleId)
         {
-
-            return m_articleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(x=>x.Mark);
-            
-            /*foreach (var article in m_articleRepository.AllArticles)
-            {
-                if (article.Id == articleId && article.CountRatings > 0)
-                {
-                    uint sum=0;
-                    foreach (var rating in article.Ratings)             // ReSharper advices to use LINQ-expression instead of loop
-                    {
-                        sum += rating.Mark;
-                    }
-                    return sum/article.CountRatings;
-                }
-                
-            }*/
-            //return 0;
-
+            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(x=>x.Mark);
         }
     }
 

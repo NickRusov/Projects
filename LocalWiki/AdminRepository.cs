@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class AdminRepository
+    public class AdminRepository : IAdminRepository
     {
         private List<Admin> m_admins;
 
