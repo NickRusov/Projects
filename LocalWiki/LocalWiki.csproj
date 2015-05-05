@@ -52,6 +52,8 @@
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="IArticleRepository.cs" />
     <Compile Include="IAuthorRepository.cs" />
+    <Compile Include="IFacade.cs" />
+    <Compile Include="Initializer.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,20 +30,7 @@ namespace UnitTestArticles
             Admin ad2 = new Admin(author2, privelegies);
             adminRepo.AddAdmin(new Admin(user3, privelegies));
 
-            ArticleRepository articleRepo=new ArticleRepository();
-            Article art = new Article(new Author("Bay", "Michael", 45, "hello@example.com" ), "C# classes", "Reference type");
-            Article art2 = new Article(new Author(ad2,"mail@example.com"), "C# structures", "Value type");
-            Article art3 = new Article(new Author(ad2, "email@example.com"), "C# enumerations", "About enams");
-            articleRepo.AddArticle(art2);
-            articleRepo.AddArticle(art);
-            articleRepo.AddArticle(art3);
-            Comment comment1 = new Comment("Cool!", user3);
-            art.AddComment(new Comment("Not bad.", ad2));
-            Rating rating1 = new Rating(comment1, 8);
-            Rating rating2 = new Rating("Really cool!", ad, 10);    //
-            art.AddComment(comment1);
-            art.AddRating(rating1);
-            art.AddRating(rating2);
+            
             /*uint expectedArticleId1 = 1;
             var expectedArticleId2 = 3;
             var expectedEmail = "emAil@example.com";

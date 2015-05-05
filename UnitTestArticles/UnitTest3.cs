@@ -20,88 +20,27 @@ namespace UnitTestArticles
             _factory.ClearExpectations();
         }
 
-        /*[TestMethod]
-        public void FindArticleTest()
+        [TestMethod]
+        // [ExpectedException(typeof(NullReferenceException))]
+        public void PropertyTest()
         {
-            var mockArticleRepository = _factory.CreateMock<ArticleRepository>();//<IArticles>();
-            var mockAuthorRepository = _factory.CreateMock<AuthorRepository>();
-            var mockAdminRepository = _factory.CreateMock<AdminRepository>();
-            var mockUserRepository = _factory.CreateMock<UserRepository>();
-
-
-            List<Article> listArticle = new List<Article>();
-            listArticle.Add(new Article(new Author("a", "Rusov", 20, "mail adress"), "C# classes", "Some text about classes"));
-            listArticle.Add(new Article(new Author("b", "Rusov", 20, "mail adress"), "C# interfaces",
+            var mockIArticleRepository = _factory.CreateMock<IArticleRepository>();
+            var mockIAuthorRepository = _factory.CreateMock<IAuthorRepository>();
+            var mockIAdminRepository = _factory.CreateMock<IAdminRepository>();
+            var mockIUserRepository = _factory.CreateMock<IUserRepository>();
+            List<Article> listToReturn = new List<Article>(3);
+            listToReturn.Add(new Article(new Author("a", "Rusov", 20, "mail address"), "C# classes", "Some text about classes"));
+            listToReturn.Add(new Article(new Author("b", "Rusov", 20, "mail address"), "C# interfaces",
                 "Some text about interfaces"));
-            listArticle.Add(new Article(new Author("c", "Rusov", 20, "mail adress"), "C# structures",
+            listToReturn.Add(new Article(new Author("c", "Rusov", 20, "mail address"), "C# structures",
                 "Some text about structures"));
-            //listArticle
 
-            mockArticleRepository.Expects.One.GetProperty(_ => _.AllArticles).WillReturn(listArticle);//new List<Article>());//(new Article(new Author("", "", 24, ""), "Title", "text"));
-            //mockArticleRepository.Expects.One.MethodWith(_ => _.Count()).WillReturn(3);
-            /*mockArticleRepository.Expects.One.MethodWith(_ => _.AllArticles).WillReturn(new List<Article>());
-            mockArticleRepository.Expects.One.MethodWith(_ => _.AllArticles).WillReturn(new List<Article>());
-#1#
-            //var articleRepository = new ArticleRepository(mock.MockObject);
-            /*var facade = new Facade(mockArticleRepository.MockObject, mockAuthorRepository.MockObject, mockAdminRepository.MockObject,mockUserRepository.MockObject);
-            var iArt = (IArticles) facade;
-            Assert.AreEqual((uint)1, iArt.Find(1).Id);#1#
-        }*/
+            mockIArticleRepository.Expects.One.GetProperty(_ => _.AllArticles).WillReturn(listToReturn);
+            
 
-
-        /*public interface IArticles
-        {
-            //string Prop { get; set; }
-            Article FindArticle(uint id); //{ get; }
-            List<Article> AllArticles { get; }
-            //string Method(Version version);
-        }*/
-
-
-
-       /* public class ArticleRepository
-        {
-            //private List<Article> m_articles;
-            private IArticles _test;
-            public ArticleRepository(IArticles test)
-            {
-                _test = test;
-            }
-
-        public List<Article> AllArticles
-        {
-            get
-            {
-                /*List<Article> list = new List<Article>(3);
-                list.Add(new Article(new Author("", "Rusov", 20, "mail adress"), "C# classes", "Some text about classes"));
-                list.Add(new Article(new Author("", "Rusov", 20, "mail adress"), "C# interfaces",
-                    "Some text about interfaces"));
-                list.Add(new Article(new Author("", "Rusov", 20, "mail adress"), "C# structures",
-                    "Some text about structures"));#1#
-                return _test.AllArticles;
-            }
+            var facade = new Facade(mockIArticleRepository.MockObject,mockIAuthorRepository.MockObject,mockIAdminRepository.MockObject,mockIUserRepository.MockObject);
+            Assert.AreEqual("a", facade.FindArticle("C# classes").Author.FirstName);
         }
-
-            public Article FindArticle(uint id)
-            {
-                return _test.FindArticle(id);
-                //return new Article(new Author("","",25,"" ),"","");
-            }
-
-            /*public string PropActions(string arg1)
-            {
-                _test.Prop = arg1;
-                return _test.Prop + arg1;
-            }#1#
-            /*public Article Find(uint id)
-            {
-                return _test.Method(a, b, c, d);
-            }
-            public string GetVersion(Version version)
-            {
-                return _test.Method(version).ToString();
-            }#1#
-        }*/
 
         [TestMethod]
         public void FindArticleByIdTest()
@@ -116,16 +55,32 @@ namespace UnitTestArticles
             
 
             // act
-
+            uint foundId = facade.FindArticle("C# classes").Id;
             // assert
 
-            Assert.AreEqual((uint)1, facade.FindArticle("C# classes").Id);
-            // Generated by Fakes.
-            /*{
-                 // Define each method:
-                 // Name is original name + parameter types:
-                 GetSharePriceString = (company) => { return 1234; }
-             };*/
+            Assert.AreEqual((uint)4, foundId );
+            //Assert.AreEqual(, facade.FindArticle("C#").Id);
+        }
+
+        [TestMethod]
+        public void FindAuthorByLastnameTest()
+        {
+            // arrange
+            var mockIArticleRepository = _factory.CreateMock<IArticleRepository>();
+            var mockIAuthorRepository = _factory.CreateMock<IAuthorRepository>();
+            var mockIAdminRepository = _factory.CreateMock<IAdminRepository>();
+            var mockIUserRepository = _factory.CreateMock<IUserRepository>();
+            List<Author> listToReturn = new List<Author>(3);
+            listToReturn.Add(new Author("a", "Rusov", 20, "mail address"));
+            listToReturn.Add(new Author("b", "Dusov", 20, "mail address"));
+            listToReturn.Add(new Author("c", "Shrusov", 20, "mail address"));
+
+            // act
+            mockIAuthorRepository.Expects.One.GetProperty(_ => _.AllAuthors).WillReturn(listToReturn);
+            var facade = new Facade(mockIArticleRepository.MockObject, mockIAuthorRepository.MockObject, mockIAdminRepository.MockObject, mockIUserRepository.MockObject);
+            var foundFirstname = facade.FindAuthor("Rusov").FirstName;
+            // assert
+            Assert.AreEqual("a",foundFirstname );
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LocalWiki
 {
 
-    public class Facade //: IArticles, IAuthors, IAdmins, IUsers
+    public class Facade : IFacade //, IAuthors, IAdmins, IUsers
     {
         private IArticleRepository IArticleRepository;
         private IAuthorRepository IAuthorRepository;
@@ -68,7 +68,48 @@ namespace LocalWiki
 
         public double GetArticleAverageRating(uint articleId)
         {
-            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(x=>x.Mark);
+            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(article => article.Mark);
+        }
+
+        public double GetArticleAverageRating(string title)
+        {
+            return IArticleRepository.AllArticles.Find(article => article.Title == title).Ratings.Average(article => article.Mark);
+        }
+
+
+        public string ReadArticle(uint articleId)
+        {
+            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Text;
+        }
+
+        public string ReadArticle(string title)
+        {
+            return IArticleRepository.AllArticles.Find(article => article.Title == title).Text;
+        }
+
+        public string[] ReadComments(uint articleId)
+        {
+            var foundArticle = IArticleRepository.AllArticles.Find(article => article.Id == articleId);
+            string[] comments = new string[foundArticle.Comments.Count];
+
+            for (int i = 0; i < foundArticle.Comments.Count; i++)
+            {
+                comments[i] = foundArticle.Comments[i].ToString();
+            }
+            return comments;
+        }
+
+        public string[] ReadComments(string title)
+        {
+            var foundArticle = IArticleRepository.AllArticles.Find(article => article.Title == title);
+            string[] comments = new string[foundArticle.Comments.Count];
+
+            for (int i = 0; i < foundArticle.Comments.Count; i++)
+            {
+                comments[i] = foundArticle.Comments[i].ToString();
+            }
+            return comments;
+            
         }
     }
 

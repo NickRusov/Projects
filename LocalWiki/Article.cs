@@ -26,6 +26,10 @@ namespace LocalWiki
         { get { return m_title; } }
 
         private string m_text;                  // author and administrators can change the content
+
+        public string Text
+        { get { return m_text; } }
+
         public Article(Author author, string title, string text)
         {
             m_id = ++s_articleCounter;
