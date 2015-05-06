@@ -10,53 +10,47 @@ namespace LocalWiki
     {
         protected static uint s_commentCounter = 0;
 
-        /*public static uint ObjectCounter
-        { get { return objectCounter; } }*/
-
         protected readonly uint id;
 
         public uint Id
-        { get { return id; } }
+        {
+            get;
+            private set;
+        }
 
-        private readonly string m_text;     // text is always the same. If a reviewer has something to add, he must create a new comment.
-
-        public string Text
-        { get { return m_text; } }
-
-        private readonly User m_reviewer;   // reviewer is always the same
+       public string Text
+        {
+            get;
+            private set;
+        }
 
         public User Reviewer
-        { get { return m_reviewer; } }
+        {
+            get;
+            private set;
+        }
 
         public Comment(string text, User reviewer)
         {
-            this.id = ++s_commentCounter;
-            this.m_text = text;
-            this.m_reviewer = reviewer;
+            this.Id = ++s_commentCounter;
+            this.Text = text;
+            this.Reviewer = reviewer;
         }
-
-        /*protected Comment(string text, User reviewer, bool newCommentFlag)
-        {
-            this.m_text= text;
-            this.m_reviewer = reviewer;
-            if (newCommentFlag)
-                m_id = ++s_commentCounter;
-        }*/
 
         protected Comment(Comment comment)      // if user want to mark an existing comment
         {
-            this.id = comment.id;
-            this.m_text = comment.m_text;
-            this.m_reviewer = comment.m_reviewer;
+            this.Id = comment.Id;
+            this.Text = comment.Text;
+            this.Reviewer = comment.Reviewer;
         }
 
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder("Comment # " + id);
+            StringBuilder sb = new StringBuilder("Comment # " + Id);
             sb.AppendLine();
-            sb.Append(m_reviewer);
-            sb.AppendLine(m_text);
+            sb.Append(Reviewer);
+            sb.AppendLine(Text);
             return sb.ToString();
         }
     }

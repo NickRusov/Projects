@@ -43,9 +43,9 @@ namespace LocalWiki
             this.Age = age;
         }
 
-         protected User(User user)       // for Author and Admin
+         protected User(User user)  
         {
-            this.Id = user.Id;          // the same ID for Admin amd Author. Field uniquePersonCounter is also the same.
+            this.Id = user.Id;         
             this.FirstName = user.FirstName;
             this.LastName = user.LastName;
             this.Age = user.Age;
@@ -53,7 +53,7 @@ namespace LocalWiki
 
          public override string ToString()
          {
-             StringBuilder sb= new StringBuilder("User # "+Id);
+             StringBuilder sb= new StringBuilder("User # " + Id);
              sb.AppendLine();
              sb.AppendLine("first name: " + FirstName);
              sb.AppendLine("last name: " + LastName);

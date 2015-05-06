@@ -8,8 +8,6 @@ namespace LocalWiki
 {
     public class UserRepository : IUserRepository
     {
-        //private List<User> m_users;
-
         public List<User> AllUsers
         {
             get; private set;

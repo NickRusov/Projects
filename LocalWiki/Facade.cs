@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LocalWiki
 {
 
-    public class Facade : IFacade //, IAuthors, IAdmins, IUsers
+    public class Facade : IFacade
     {
         private IArticleRepository IArticleRepository;
         private IAuthorRepository IAuthorRepository;

@@ -15,41 +15,41 @@ namespace LocalWiki
             this.facade = facade;
         }
 
-        public void DisplayArticleById(uint id)
+        public void DisplayInfoAboutArticleById(uint id)
         {
             Console.WriteLine(facade.FindArticleById(id));
         }
 
-        public void DisplayArticleByTitle(string title)
+        public void DisplayInfoAboutArticleByTitle(string title)
         {
             Console.WriteLine(facade.FindArticleByTitle(title));
         }
 
         public void DisplayAuthorById(uint authorId)
         {
-            Console.WriteLine(facade.FindAuthorById(authorId));
+            Console.WriteLine(facade.FindAuthorById(authorId).ToString());
         }
 
         public void DisplayAuthorByLastname(string lastname)
         {
-            Console.WriteLine(facade.FindAuthorByLastname(lastname));
+            Console.WriteLine(facade.FindAuthorByLastname(lastname).ToString());
         }
 
         public void DisplayAdminById(uint adminId)
         {
-            Console.WriteLine(facade.FindAdminById(adminId));
+            Console.WriteLine(facade.FindAdminById(adminId).ToString());
         }
 
         public void DisplayAdminByLastname(string lastname)
         {
-            Console.WriteLine(facade.FindAdminByLastname(lastname));
+            Console.WriteLine(facade.FindAdminByLastname(lastname).ToString());
         }
 
-        public void FindUserById(uint userId)
+        public void DisplayUserById(uint userId)
         {
             Console.WriteLine(facade.FindUserById(userId));
         }
-        public void FindUserByLastname(string lastname)
+        public void DisplayUserByLastname(string lastname)
         {
             Console.WriteLine(facade.FindUserByLastname(lastname));
         }
@@ -80,14 +80,14 @@ namespace LocalWiki
             
         }
 
-/*        public void ReadArticle(uint id)
+        public void ReadArticleById(uint id)
         {
             Console.WriteLine(facade.ReadArticleById(id));
         }
 
-        public void ReadArticle(string title)
+        public void ReadArticleByTitle(string title)
         {
             Console.WriteLine(facade.ReadArticleByTitle(title));
-        }*/
+        }
     }
 }

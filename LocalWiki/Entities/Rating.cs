@@ -8,35 +8,28 @@ namespace LocalWiki
 {
     public class Rating : Comment
     {
-        
-
-        /*public static uint ObjectCounter
-        { get { return objectCounter; } }
-        public uint Id
-        { get { return id; } }
-        private uint id;*/
-
-        private readonly byte m_mark;
-
         public byte Mark
-        { get { return m_mark; } }
+        {
+            get;
+            private set;
+        }
 
         public Rating(string text, User reviewer, byte mark)
             : base(text, reviewer)
         {
-            this.m_mark = mark;
+            this.Mark = mark;
         }
 
-        public Rating(Comment comment, byte mark)  // to mark an existing comment
+        public Rating(Comment comment, byte mark) 
             : base(comment)
         { 
-            this.m_mark = mark;
+            this.Mark = mark;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(base.ToString());
-            sb.AppendLine("mark: "+m_mark);
+            sb.AppendLine("mark: "+ Mark);
             return sb.ToString();
         }
     }

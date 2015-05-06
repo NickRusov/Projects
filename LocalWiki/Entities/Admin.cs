@@ -25,7 +25,7 @@ namespace LocalWiki
             this.Privilege = new List<string> ( privilegies );
         }
 
-        public override string ToString()
+        public new string ToString()
         {
             StringBuilder sb = new StringBuilder(base.ToString());
             sb.AppendLine("privilegies:");

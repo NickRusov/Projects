@@ -10,69 +10,72 @@ namespace LocalWiki
     {
         private static uint s_articleCounter = 0;
 
-        private readonly uint m_id;
-
         public uint Id
-        { get { return m_id; } }
-
-        private readonly Author m_author;       // author is always the same
+        {
+            get; 
+            private set;
+        }
 
         public Author Author
-        { get { return m_author; } }
-
-        private readonly string m_title;        // title is always the same too
+        {
+            get;
+            private set;
+        }
 
         public string Title
-        { get { return m_title; } }
-
-        private string m_text;                  // author and administrators can change the content
+        {
+            get;
+            private set;
+        }
 
         public string Text
-        { get { return m_text; } }
+        {
+            get;
+            private set;
+        }
 
         public Article(Author author, string title, string text)
         {
-            m_id = ++s_articleCounter;
-            this.m_author = author;
-            this.m_title = title;
-            this.m_text = text;
-            m_comments = new List<Comment>();
-            m_ratings = new List<Rating>();
+            Id = ++s_articleCounter;
+            this.Author = author;
+            this.Title = title;
+            this.Text = text;
+            Comments = new List<Comment>();
+            Ratings = new List<Rating>();
         }
-        private List<Comment> m_comments;
 
         public List<Comment> Comments
-        { get { return m_comments; } }
+        {
+            get; 
+            private set;
+        }
 
         public void AddComment(Comment comment)
         {
-            m_comments.Add(comment);
-        }
-
-        private List<Rating> m_ratings;
-
-        public void AddRating(Rating rating)
-        {
-            m_ratings.Add(rating);
+            Comments.Add(comment);
         }
 
         public List<Rating> Ratings
-        { get { return m_ratings; } }
+        {
+            get;
+            private set;
+        }
+
+        public void AddRating(Rating rating)
+        {
+            Ratings.Add(rating);
+        }
 
         public int CountRatings
-        { get { return m_ratings.Count; } }
+        { get { return Ratings.Count; } }
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder("Article # " + m_id);
-            /*foreach (var rating in this.ratings)
-            {
-                ratings.
-            }*/
-            //ratings.Average()
+            StringBuilder sb = new StringBuilder("Article # " + Id);
+            //Ratings.Average(x => x.Mark);
             sb.AppendLine();
-            sb.Append(m_author.ToString());
-            sb.AppendLine("title: " + m_title);
+            sb.Append(Author.ToString());
+            sb.AppendLine("title: " + Title);
             return sb.ToString();
         }
     }

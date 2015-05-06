@@ -12,11 +12,19 @@ namespace LocalWiki
         {
             Facade facade = Initializer.GetIniatializedFacade();
             var report = new Report(facade);
-            //report.DisplayArticleById(1);
-            report.FindUserByLastname("Rusov");
-            report.GetArticleAverageRating("C# classes");
+            report.DisplayInfoAboutArticleById(2);
+            //report.DisplayUserByLastname("Rusov");
+            //report.GetArticleAverageRating("C# classes");
+            report.DisplayAuthorById(2);
+            Console.WriteLine("Next is Admin");
+            report.DisplayAdminById(3);
+            Console.WriteLine("Here comments");
             report.DisplayCommentsById(1);
-            report.FindUserById(3);
+            report.ReadArticleByTitle("C# interfaces");
+            /*string[] priv = {"delete","edit"};
+            var ad = new Admin("a","b", 30, priv);
+            Console.WriteLine(ad.ToString());*/
+            
             //report.DisplayArticleByTitle("C# structures");
             //report.ReadArticle("C# structure");
         }

@@ -8,29 +8,27 @@ namespace LocalWiki
 {
     public class Author : User
     {
-        /*public uint Id
-        { get { return id; } }*/
-
-        private readonly string m_email;
 
         public string Email
         {
-            get { return m_email; }
+            get;
+            private set;
         }
+
         public Author(string firstname, string lastname, byte age, string email)
             : base (firstname,lastname,age)
         {
-            this.m_email = email;
+            this.Email = email;
         }
         public Author(User user, string email)
             : base(user)
         {
-            this.m_email = email;
+            this.Email = email;
         }
-        public override string ToString()
+        public new string ToString()
         {
             StringBuilder sb = new StringBuilder(base.ToString());
-            sb.AppendLine("e-mail: "+this.m_email);
+            sb.AppendLine("e-mail: " + this.Email);
             return sb.ToString();
         }
     }

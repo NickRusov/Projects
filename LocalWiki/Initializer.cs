@@ -23,17 +23,22 @@ namespace LocalWiki
             Author secondAuthor = new Author(firstUser, "jamesdon@example.com");
             Author thirdAuthor = new Author(secondUser, "jamesdon@example.com");
             authorRepository.AddAuthor(new Author(thirdUser, "jamesdon@example.com"));
+            authorRepository.AddAuthor(secondAuthor);
+            authorRepository.AddAuthor(firstAuthor);
+            authorRepository.AddAuthor(thirdAuthor);
 
             AdminRepository adminRepository = new AdminRepository();
             string[] privelegies = { "Delete articles", "Delete comments" };
-            Admin firstAdmin = new Admin(firstAuthor, privelegies);
-            Admin secondAdmin = new Admin(thirdAuthor, privelegies);
+            Admin firstAdmin = new Admin((User)firstAuthor, privelegies);
+            Admin secondAdmin = new Admin((User)thirdAuthor, privelegies);
             adminRepository.AddAdmin(new Admin(thirdUser, privelegies));
+            adminRepository.AddAdmin(firstAdmin);
+            adminRepository.AddAdmin(secondAdmin);
 
 
-            Article article = new Article(secondAuthor, "C# classes", "Some text");
+            Article article = new Article(new Author(secondAdmin,"mail:soap"), "C# classes", "Some text");
 
-            Comment firstComment= new Comment("Cool!", thirdUser);
+            Comment firstComment= new Comment("Cool!", thirdAuthor);
             article.AddComment(new Comment("Not bad.", secondAdmin));
             Rating firstRating = new Rating(firstComment, 8);
             Rating secondRating = new Rating("Really cool!", firstAdmin, 10);
