@@ -8,24 +8,26 @@ namespace LocalWiki
 {
     public class UserRepository : IUserRepository
     {
-        private List<User> m_users;
+        //private List<User> m_users;
 
-        public List<User> AllUsers 
-        { get { return m_users; } }
+        public List<User> AllUsers
+        {
+            get; private set;
+        }
 
         public void AddUser(User user)
         {
-            m_users.Add(user);
+            AllUsers.Add(user);
         }
 
         public UserRepository()
         {
-            m_users=new List<User>();
+            AllUsers = new List<User>();
         }
 
         public int Count()
         {
-            return m_users.Count;
+            return AllUsers.Count;
         }
     }
 }

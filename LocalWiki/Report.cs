@@ -8,85 +8,86 @@ namespace LocalWiki
 {
     public class Report
     {
-        private IFacade Ifacade;
+        private IFacade facade;
 
-        public Report(IFacade Ifacade)
+        public Report(IFacade facade)
         {
-            this.Ifacade = Ifacade;
-        }
-
-        public void FindArticle(uint id)
-        {
-            Console.WriteLine(Ifacade.FindArticle(id));
+            this.facade = facade;
         }
 
-        public void FindArticle(string title)
+        public void DisplayArticleById(uint id)
         {
-            Console.WriteLine(Ifacade.FindArticle(title));
+            Console.WriteLine(facade.FindArticleById(id));
         }
 
-        public void FindAuthor(uint authorId)
+        public void DisplayArticleByTitle(string title)
         {
-            Console.WriteLine(Ifacade.FindAuthor(authorId));
-        }
-        public void FindAuthor(string lastname)
-        {
-            Console.WriteLine(Ifacade.FindAuthor(lastname));
+            Console.WriteLine(facade.FindArticleByTitle(title));
         }
 
-        public void FindAdmin(uint adminId)
+        public void DisplayAuthorById(uint authorId)
         {
-            Console.WriteLine(Ifacade.FindAdmin(adminId));
-        }
-        public void FindAdmin(string lastname)
-        {
-            Console.WriteLine(Ifacade.FindAdmin(lastname));
+            Console.WriteLine(facade.FindAuthorById(authorId));
         }
 
-        public void FindUser(uint userId)
+        public void DisplayAuthorByLastname(string lastname)
         {
-            Console.WriteLine(Ifacade.FindUser(userId));
+            Console.WriteLine(facade.FindAuthorByLastname(lastname));
         }
-        public void FindUser(string lastname)
+
+        public void DisplayAdminById(uint adminId)
         {
-            Console.WriteLine(Ifacade.FindUser(lastname));
+            Console.WriteLine(facade.FindAdminById(adminId));
+        }
+
+        public void DisplayAdminByLastname(string lastname)
+        {
+            Console.WriteLine(facade.FindAdminByLastname(lastname));
+        }
+
+        public void FindUserById(uint userId)
+        {
+            Console.WriteLine(facade.FindUserById(userId));
+        }
+        public void FindUserByLastname(string lastname)
+        {
+            Console.WriteLine(facade.FindUserByLastname(lastname));
         }
 
         public void GetArticleAverageRating(uint articleId)
         {
-            Console.WriteLine(Ifacade.GetArticleAverageRating(articleId));
+            Console.WriteLine(facade.GetArticleAverageRatingById(articleId));
         }
         public void GetArticleAverageRating(string title)
         {
-            Console.WriteLine(Ifacade.GetArticleAverageRating(title));
+            Console.WriteLine(facade.GetArticleAverageRatingByTitle(title));
         }
 
-        public void ReadComments(uint articleId)
+        public void DisplayCommentsById(uint articleId)
         {
-            foreach (var comment in Ifacade.ReadComments(articleId))
+            foreach (var comment in facade.ReadCommentsById(articleId))
+            {
+                Console.WriteLine(comment);
+            }
+            
+        }
+        public void DisplayCommentsByTitle(string title)
+        {
+            foreach (var comment in facade.ReadCommentsByTitle(title))
             {
                 Console.WriteLine(comment);
             }
             
         }
 
-        public void ReadComments(string title)
+/*        public void ReadArticle(uint id)
         {
-            foreach (var comment in Ifacade.ReadComments(title))
-            {
-                Console.WriteLine(comment);
-            }
-            
-        }
-
-        public void ReadArticle(uint id)
-        {
-            Console.WriteLine(Ifacade.ReadArticle(id));
+            Console.WriteLine(facade.ReadArticleById(id));
         }
 
         public void ReadArticle(string title)
         {
-            Console.WriteLine(Ifacade.ReadArticle(title));
-        }
+            Console.WriteLine(facade.ReadArticleByTitle(title));
+        }*/
     }
 }

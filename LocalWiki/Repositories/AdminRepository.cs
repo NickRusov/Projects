@@ -8,24 +8,24 @@ namespace LocalWiki
 {
     public class AdminRepository : IAdminRepository
     {
-        private List<Admin> m_admins;
-
-        public List<Admin> AllAdmins 
-        { get { return m_admins; } }
+        public List<Admin> AllAdmins
+        {
+            get ; private set;
+        }
 
         public void AddAdmin(Admin admin)
         {
-            m_admins.Add(admin);
+            AllAdmins.Add(admin);
         }
 
         public AdminRepository()
         {
-            m_admins=new List<Admin>();
+            AllAdmins=new List<Admin>();
         }
 
         public int Count()
         {
-            return m_admins.Count;
+            return AllAdmins.Count;
         }
     }
 }

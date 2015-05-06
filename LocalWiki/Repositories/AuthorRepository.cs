@@ -8,24 +8,26 @@ namespace LocalWiki
 {
     public class AuthorRepository : IAuthorRepository
     {
-        private List<Author> m_authors;
 
         public List<Author> AllAuthors 
-        { get { return m_authors; } }
+        { 
+            get ; 
+            private set; 
+        }
 
         public void AddAuthor(Author author)
         {
-            m_authors.Add(author);
+            AllAuthors.Add(author);
         }
 
         public AuthorRepository()
         {
-            m_authors=new List<Author>();
+            AllAuthors=new List<Author>();
         }
 
         public int Count()
         {
-            return m_authors.Count;
+            return AllAuthors.Count;
         }
     }
 }

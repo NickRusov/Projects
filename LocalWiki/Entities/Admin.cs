@@ -8,30 +8,28 @@ namespace LocalWiki
 {
     public class Admin : User
     {
-        /*public uint Id
-        { get { return id; } }*/
 
-        private List<string> privilegies;
         public List<string> Privilege
         {
-            get { return privilegies; }
+            get ; 
+            private set ; 
         }
-        public Admin(string firstname,string lastname,byte age,string[] privilegies)
-            : base (firstname,lastname,age)
+        public Admin(string firstname, string lastname, byte age, string[] privilegies)
+            : base (firstname ,lastname, age)
         {
-            this.privilegies = new List<string>(privilegies);
+            this.Privilege = new List<string> ( privilegies );
         }
         public Admin(User user, string[] privilegies)
-            : base(user)
+            : base ( user )
         {
-            this.privilegies = new List<string>(privilegies);
+            this.Privilege = new List<string> ( privilegies );
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(base.ToString());
             sb.AppendLine("privilegies:");
-            foreach (var privilege in this.privilegies)
+            foreach (var privilege in this.Privilege)
             {
                 sb.AppendLine(privilege);
             }

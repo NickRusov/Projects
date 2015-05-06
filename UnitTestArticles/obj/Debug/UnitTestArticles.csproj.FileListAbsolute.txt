@@ -1,9 +1,0 @@
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\obj\Debug\UnitTestArticles.csprojResolveAssemblyReference.cache
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\UnitTestArticles.dll
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\UnitTestArticles.pdb
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\LocalWiki.exe
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\LocalWiki.pdb
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\obj\Debug\UnitTestArticles.dll
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\obj\Debug\UnitTestArticles.pdb
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\NMock3.dll
-C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\UnitTestArticles\bin\Debug\NMock3.xml

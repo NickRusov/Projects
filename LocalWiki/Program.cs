@@ -11,13 +11,13 @@ namespace LocalWiki
         static void Main()
         {
             Facade facade = Initializer.GetIniatializedFacade();
-            Report report = new Report(facade);
-            report.FindArticle(1);
-            report.FindUser("Rusov");
+            var report = new Report(facade);
+            //report.DisplayArticleById(1);
+            report.FindUserByLastname("Rusov");
             report.GetArticleAverageRating("C# classes");
-            report.ReadComments(1);
-            report.FindUser(3);
-            report.FindArticle("C# structures");
+            report.DisplayCommentsById(1);
+            report.FindUserById(3);
+            //report.DisplayArticleByTitle("C# structures");
             //report.ReadArticle("C# structure");
         }
     }

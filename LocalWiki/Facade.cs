@@ -14,45 +14,45 @@ namespace LocalWiki
         private IAdminRepository IAdminRepository;
         private IUserRepository IUserRepository;
 
-        public Article FindArticle(uint articleId)
+        public Article FindArticleById(uint articleId)
         {
             return IArticleRepository.AllArticles.Find(article => article.Id == articleId);
         }
 
-        public Article FindArticle(string title)
+        public Article FindArticleByTitle(string title)
         {
             return IArticleRepository.AllArticles.Find(article => article.Title == title);
         }
 
 
-        public Author FindAuthor(uint authorId)
+        public Author FindAuthorById(uint authorId)
         {
             return IAuthorRepository.AllAuthors.Find(author => author.Id == authorId);
         }
 
-        public Author FindAuthor(string lastname)
+        public Author FindAuthorByLastname(string lastname)
         {
             return IAuthorRepository.AllAuthors.Find(author => author.LastName == lastname);
         }
 
 
-        public Admin FindAdmin(uint adminId)
+        public Admin FindAdminById(uint adminId)
         {
             return IAdminRepository.AllAdmins.Find(admin => admin.Id == adminId);
         }
 
-        public Admin FindAdmin(string lastname)
+        public Admin FindAdminByLastname(string lastname)
         {
             return IAdminRepository.AllAdmins.Find(admin => admin.LastName == lastname);
         }
 
 
-        public User FindUser(uint userId)
+        public User FindUserById(uint userId)
         {
             return IUserRepository.AllUsers.Find(user => user.Id == userId);
         }
 
-        public User FindUser(string lastname)
+        public User FindUserByLastname(string lastname)
         {
             return IUserRepository.AllUsers.Find(user => user.LastName == lastname);
         }
@@ -66,28 +66,28 @@ namespace LocalWiki
             this.IUserRepository = iUser;
         }
 
-        public double GetArticleAverageRating(uint articleId)
+        public double GetArticleAverageRatingById(uint articleId)
         {
             return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(article => article.Mark);
         }
 
-        public double GetArticleAverageRating(string title)
+        public double GetArticleAverageRatingByTitle(string title)
         {
             return IArticleRepository.AllArticles.Find(article => article.Title == title).Ratings.Average(article => article.Mark);
         }
 
 
-        public string ReadArticle(uint articleId)
+        public string ReadArticleById(uint articleId)
         {
             return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Text;
         }
 
-        public string ReadArticle(string title)
+        public string ReadArticleByTitle(string title)
         {
             return IArticleRepository.AllArticles.Find(article => article.Title == title).Text;
         }
 
-        public string[] ReadComments(uint articleId)
+        public string[] ReadCommentsById(uint articleId)
         {
             var foundArticle = IArticleRepository.AllArticles.Find(article => article.Id == articleId);
             string[] comments = new string[foundArticle.Comments.Count];
@@ -99,7 +99,7 @@ namespace LocalWiki
             return comments;
         }
 
-        public string[] ReadComments(string title)
+        public string[] ReadCommentsByTitle(string title)
         {
             var foundArticle = IArticleRepository.AllArticles.Find(article => article.Title == title);
             string[] comments = new string[foundArticle.Comments.Count];

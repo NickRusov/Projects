@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalWiki", "LocalWiki\Loca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestArticles", "UnitTestArticles\UnitTestArticles.csproj", "{CFF7EA71-B91A-4995-884C-76656AADFDA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{5CA99562-7DBA-4B75-9E72-899DF12594FD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +19,6 @@ Global
 		{CFF7EA71-B91A-4995-884C-76656AADFDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF7EA71-B91A-4995-884C-76656AADFDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF7EA71-B91A-4995-884C-76656AADFDA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CA99562-7DBA-4B75-9E72-899DF12594FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CA99562-7DBA-4B75-9E72-899DF12594FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CA99562-7DBA-4B75-9E72-899DF12594FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CA99562-7DBA-4B75-9E72-899DF12594FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
