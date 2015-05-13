@@ -6,19 +6,6 @@ namespace LocalWiki
 {
     public static class Initializer
     {
-        public static uint GetId(Type type)
-        {
-            switch (type.ToString() as string)
-            {
-                case "User":
-                    return 1;
-                    break;
-            }
-            if (type == typeof (User))
-                return 1;
-            return 0;
-        }
-
         public static IFacade GetIniatializedFacade()
         {
             var container = new Container(x =>
