@@ -10,7 +10,7 @@ namespace LocalWiki
     {
         static void Main()
         {
-            Facade facade = Initializer.GetIniatializedFacade();
+            var facade = Initializer.GetIniatializedFacade();
             var report = new Report(facade);
             report.DisplayInfoAboutArticleById(2);
             //report.DisplayUserByLastname("Rusov");

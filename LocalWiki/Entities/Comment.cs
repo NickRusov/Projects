@@ -6,17 +6,9 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class Comment
+    public class Comment : ProEntity
     {
         protected static uint s_commentCounter = 0;
-
-        protected readonly uint id;
-
-        public uint Id
-        {
-            get;
-            private set;
-        }
 
        public string Text
         {
@@ -37,7 +29,7 @@ namespace LocalWiki
             this.Reviewer = reviewer;
         }
 
-        protected Comment(Comment comment)      // if user want to mark an existing comment
+        protected Comment(Comment comment) 
         {
             this.Id = comment.Id;
             this.Text = comment.Text;

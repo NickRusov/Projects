@@ -32,6 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=3.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,17 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Admin.cs" />
+    <Compile Include="Entities\ProEntity.cs" />
+    <Compile Include="Interfaces\IFacade.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Repositories\AuthorRepository.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Facade.cs" />
-    <Compile Include="Repositories\FakeArticleRepoistiry.cs" />
     <Compile Include="Interfaces\IAdminRepository.cs" />
     <Compile Include="Interfaces\IArticleRepository.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
-    <Compile Include="Interfaces\IFacade.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Program.cs" />
@@ -67,6 +74,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

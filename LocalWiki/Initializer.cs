@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StructureMap;
+
 
 namespace LocalWiki
 {
     public static class Initializer
     {
-        public static Facade GetIniatializedFacade()
+        public static IFacade GetIniatializedFacade()
         {
-            var userRepository = new UserRepository();
+            var container = new Container(x =>
+            {
+                x.For<IArticleRepository>().Use<ArticleRepository>();
+                x.For<IAdminRepository>().Use<AdminRepository>();
+                x.For<IAuthorRepository>().Use<AuthorRepository>();
+                x.For<IUserRepository>().Use<UserRepository>();
+                x.For<IFacade>().Use<Facade>();
+            });
+
+            var userRepository = container.GetInstance<IUserRepository>();
             var firstUser = new User("Nick", "Rusov", 20);
             var secondUser = new User("Nickola", "Dusov", 24);
             var thirdUser = new User("Nickola", "Shrusov", 22);
@@ -18,7 +25,8 @@ namespace LocalWiki
             userRepository.AddUser(secondUser);
             userRepository.AddUser(thirdUser);
 
-            var authorRepository = new AuthorRepository();
+
+            var authorRepository = container.GetInstance<IAuthorRepository>();
             var firstAuthor = new Author("Nickolay", "Pusov", 28, "johndoe@example.com");
             var secondAuthor = new Author(firstUser, "jamesdon@example.com");
             var thirdAuthor = new Author(secondUser, "jamesdon@example.com");
@@ -27,10 +35,10 @@ namespace LocalWiki
             authorRepository.AddAuthor(firstAuthor);
             authorRepository.AddAuthor(thirdAuthor);
 
-            var adminRepository = new AdminRepository();
+            var adminRepository = container.GetInstance<IAdminRepository>();
             string[] privelegies = { "Delete articles", "Delete comments" };
-            var firstAdmin = new Admin((User)firstAuthor, privelegies);
-            var secondAdmin = new Admin((User)thirdAuthor, privelegies);
+            var firstAdmin = new Admin(firstAuthor, privelegies);
+            var secondAdmin = new Admin(thirdAuthor, privelegies);
             adminRepository.AddAdmin(new Admin(thirdUser, privelegies));
             adminRepository.AddAdmin(firstAdmin);
             adminRepository.AddAdmin(secondAdmin);
@@ -46,19 +54,20 @@ namespace LocalWiki
             article.AddRating(firstRating);
             article.AddRating(secondRating);
 
-            var articleRepository = new ArticleRepository();
+
+            var articleRepository = container.GetInstance<IArticleRepository>();
             articleRepository.AddArticle(article);
             articleRepository.AddArticle(new Article(new Author("b", "Rusov", 20, "mail address"), "C# interfaces",
                 "Some text about interfaces"));
             articleRepository.AddArticle(new Article(new Author("c", "Rusov", 20, "mail address"), "C# structures",
                 "Some text about structures"));
-            var all = articleRepository.AllArticles;
 
-            IArticleRepository IarticlesRepository = articleRepository;
-            IAuthorRepository IauthorRepository = authorRepository;
-            IAdminRepository IadminRepository = adminRepository;
-            IUserRepository IuserRepository = userRepository;
-            return new Facade(IarticlesRepository, authorRepository, adminRepository, userRepository);
+            return container.
+                With(articleRepository).
+                With(authorRepository).
+                With(adminRepository).
+                With(userRepository).
+                GetInstance<IFacade>(); 
         }
     }
 }

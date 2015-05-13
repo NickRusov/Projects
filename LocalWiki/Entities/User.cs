@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class User
+    public class User : ProEntity
     {
         private static uint s_uniquePersonCounter = 0;
-
-        public uint Id
-        { 
-            get ; 
-            private set ; 
-        }
-
 
         public  string FirstName
         {

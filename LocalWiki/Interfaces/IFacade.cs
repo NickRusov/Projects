@@ -1,33 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using System;
 
 namespace LocalWiki
 {
-     public interface IFacade
+    public interface IFacade
     {
-            Article FindArticleById (uint id);
-            Article FindArticleByTitle(string title);
+        //void Facade(IArticleRepository iArticle, IAuthorRepository iAuthor,
+        //    IAdminRepository iAdmin, IUserRepository iUser);
+        Article FindArticleById(uint articleId);
 
-            Author FindAuthorById (uint authorId);
-            Author FindAuthorByLastname (string lastname);
-       
-            Admin FindAdminById (uint adminId);
-            Admin FindAdminByLastname (string lastname);
-       
-            User FindUserById (uint userId);
-            User FindUserByLastname (string lastname);
+        Article FindArticleByTitle(string title);
 
-            double GetArticleAverageRatingById(uint articleId);
-            double GetArticleAverageRatingByTitle(string title);
 
-            string ReadArticleById(uint articleId);
-            string ReadArticleByTitle(string title);
+        Author FindAuthorById(uint authorId);
 
-            string[] ReadCommentsById(uint articleId);
-            string[] ReadCommentsByTitle(string title);
+        Author FindAuthorByLastname(string lastname);
 
+
+        Admin FindAdminById(uint adminId);
+
+        Admin FindAdminByLastname(string lastname);
+
+
+        User FindUserById(uint userId);
+
+        User FindUserByLastname(string lastname);
+
+        double? GetArticleAverageRatingById(uint articleId);
+
+        double? GetArticleAverageRatingByTitle(string title);
+
+        string ReadArticleById(uint articleId);
+
+        string ReadArticleByTitle(string title);
+
+        string[] ReadCommentsById(uint articleId);
+
+        string[] ReadCommentsByTitle(string title);
     }
 }

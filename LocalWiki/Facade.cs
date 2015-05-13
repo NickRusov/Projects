@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StructureMap;
+
 
 namespace LocalWiki
 {
@@ -66,30 +65,44 @@ namespace LocalWiki
             this.IUserRepository = iUser;
         }
 
-        public double GetArticleAverageRatingById(uint articleId)
+        public double? GetArticleAverageRatingById(uint articleId)
         {
-            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Ratings.Average(article => article.Mark);
+            var foundArticle = FindArticleById(articleId);
+            if (foundArticle != null)
+                return foundArticle.Ratings.Average(article => article.Mark);
+            return null;
         }
 
-        public double GetArticleAverageRatingByTitle(string title)
+        public double? GetArticleAverageRatingByTitle(string title)
         {
-            return IArticleRepository.AllArticles.Find(article => article.Title == title).Ratings.Average(article => article.Mark);
+            var foundArticle = FindArticleByTitle(title);
+            if (foundArticle!=null)
+                return foundArticle.Ratings.Average(article => article.Mark);
+            return null;
         }
 
 
         public string ReadArticleById(uint articleId)
         {
-            return IArticleRepository.AllArticles.Find(article => article.Id == articleId).Text;
+            var foundArticle = FindArticleById(articleId);
+            if (foundArticle != null)
+                return foundArticle.Text;
+            return null;
         }
 
         public string ReadArticleByTitle(string title)
         {
-            return IArticleRepository.AllArticles.Find(article => article.Title == title).Text;
+            var foundArticle = FindArticleByTitle(title);
+            if (foundArticle != null)
+                return foundArticle.Text;
+            return null;
         }
 
         public string[] ReadCommentsById(uint articleId)
         {
             var foundArticle = IArticleRepository.AllArticles.Find(article => article.Id == articleId);
+            if (foundArticle == null)
+                return null;
             string[] comments = new string[foundArticle.Comments.Count];
 
             for (int i = 0; i < foundArticle.Comments.Count; i++)
@@ -102,6 +115,8 @@ namespace LocalWiki
         public string[] ReadCommentsByTitle(string title)
         {
             var foundArticle = IArticleRepository.AllArticles.Find(article => article.Title == title);
+            if (foundArticle == null)
+                return null;
             string[] comments = new string[foundArticle.Comments.Count];
 
             for (int i = 0; i < foundArticle.Comments.Count; i++)

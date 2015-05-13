@@ -53,8 +53,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FakeRepositories\FakeUserRepository.cs" />
+    <Compile Include="FakeRepositories\FakeAdminRepository.cs" />
+    <Compile Include="FakeRepositories\FakeArticleRepoistiry.cs" />
+    <Compile Include="FakeRepositories\FakeAuthorRepository.cs" />
+    <Compile Include="GetAverageRatingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest3.cs" />
+    <Compile Include="FacadeFindTests.cs" />
+    <Compile Include="ReadArticleTests.cs" />
+    <Compile Include="ReadCommentsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LocalWiki\LocalWiki.csproj">

@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace LocalWiki
 {
-    public class Article
+    public class Article : ProEntity
     {
         private static uint s_articleCounter = 0;
-
-        public uint Id
-        {
-            get; 
-            private set;
-        }
 
         public Author Author
         {
@@ -72,7 +66,6 @@ namespace LocalWiki
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder("Article # " + Id);
-            //Ratings.Average(x => x.Mark);
             sb.AppendLine();
             sb.Append(Author.ToString());
             sb.AppendLine("title: " + Title);
