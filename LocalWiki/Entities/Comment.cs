@@ -22,9 +22,9 @@ namespace LocalWiki
             private set;
         }
 
-        public Comment(string text, User reviewer)
+        public Comment(string text, User reviewer, uint id)
         {
-            this.Id = ++s_commentCounter;
+            this.Id = id;
             this.Text = text;
             this.Reviewer = reviewer;
         }

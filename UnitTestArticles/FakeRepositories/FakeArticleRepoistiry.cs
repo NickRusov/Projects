@@ -15,21 +15,21 @@ namespace LocalWiki
             {
                 var listToReturn = new List<Article>
                 {
-                    new Article(new Author("a", "Rusov", 20, "mail adress"),
+                    new Article(new Author("a", "Rusov", 20,1,  "mail adress"),
                         "C# classes",
-                        "Some text about classes"),
-                    new Article(new Author("b","Rusov",21,"mail adress"),
+                        "Some text about classes", 1),
+                    new Article(new Author("b","Rusov",21, 2, "mail adress"),
                         "C# interfaces",
-                        "Some text about interfaces"),
-                    new Article(new Author("c","Rusov",22,"mail adress"),
+                        "Some text about interfaces", 2),
+                    new Article(new Author("c","Rusov",22, 3, "mail adress"),
                         "C# structures",
-                        "Some text about structures")
+                        "Some text about structures", 3)
                 };
-                listToReturn[0].AddComment(new Comment("Not bad.", listToReturn[2].Author));
-                listToReturn[0].AddComment(new Comment("Cool!", listToReturn[1].Author));
+                listToReturn[0].AddComment(new Comment("Not bad.", listToReturn[2].Author, 1));
+                listToReturn[0].AddComment(new Comment("Cool!", listToReturn[1].Author, 2));
                 
-                listToReturn[0].AddRating(new Rating("firstComment", listToReturn[2].Author, 8));
-                listToReturn[0].AddRating(new Rating("secondComment", listToReturn[1].Author, 9));
+                listToReturn[0].AddRating(new Rating("firstComment", listToReturn[2].Author, 8, 3));
+                listToReturn[0].AddRating(new Rating("secondComment", listToReturn[1].Author, 9, 4));
                 return listToReturn;
             }
         }

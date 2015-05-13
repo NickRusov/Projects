@@ -15,8 +15,8 @@ namespace LocalWiki
             private set;
         }
 
-        public Author(string firstname, string lastname, byte age, string email)
-            : base (firstname,lastname,age)
+        public Author(string firstname, string lastname, byte age, uint id, string email)
+            : base ( firstname, lastname, age, id)
         {
             this.Email = email;
         }

@@ -15,7 +15,7 @@ namespace UnitTestArticles
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var text = facade.ReadArticleById(19);
+            var text = facade.ReadArticleById(1);
 
             // assert
             Assert.AreEqual("Some text about classes", text);

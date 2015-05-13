@@ -11,9 +11,9 @@ namespace LocalWiki
                 const string mail = "e-mail@example.com";
                 var listToReturn = new List<Author>
                 {
-                    new Author("a", "Rusov", 20, mail),
-                    new Author("b", "Rusov", 21, mail),
-                    new Author("c", "Rusov", 22, mail)
+                    new Author("a", "Rusov", 20, 1, mail),
+                    new Author("b", "Rusov", 21, 2, mail),
+                    new Author("c", "Rusov", 22, 3, mail)
                 };
                 return listToReturn;
             }

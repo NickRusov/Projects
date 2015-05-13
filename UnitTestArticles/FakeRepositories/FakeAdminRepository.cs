@@ -14,9 +14,9 @@ namespace LocalWiki
                 string[] privilegies = { "delete", "edit" };
                 var listToReturn = new List<Admin>
                 {
-                    new Admin("a", "Rusov", 20, privilegies),
-                    new Admin("b", "Rusov", 20, privilegies),
-                    new Admin("c", "Rusov", 20, privilegies)
+                    new Admin("a", "Rusov", 1, 20, privilegies),
+                    new Admin("b", "Rusov", 2, 20, privilegies),
+                    new Admin("c", "Rusov", 3, 20, privilegies)
                 };
                 return listToReturn;
             }

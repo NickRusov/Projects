@@ -87,7 +87,7 @@ Cool!
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var comments = facade.ReadCommentsById(2);
+            var comments = facade.ReadCommentsById(4);
 
             // assert
             Assert.AreEqual(null, comments);

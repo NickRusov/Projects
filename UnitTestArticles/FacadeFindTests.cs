@@ -30,7 +30,7 @@ namespace UnitTestArticles
             var foundId = facade.FindArticleByTitle("C# classes").Id;
 
             // assert
-            Assert.AreEqual((uint)13, foundId);
+            Assert.AreEqual((uint)1, foundId);
             //Assert.AreEqual(, facade.FindArticle("C#").Id);
         }
 
@@ -40,11 +40,11 @@ namespace UnitTestArticles
         {
             var mockIArticleRepository = _factory.CreateMock<IArticleRepository>();
             List<Article> listToReturn = new List<Article>(3);
-            listToReturn.Add(new Article(new Author("a", "Rusov", 20, "mail address"), "C# classes", "Some text about classes"));
-            listToReturn.Add(new Article(new Author("b", "Rusov", 20, "mail address"), "C# interfaces",
-                "Some text about interfaces"));
-            listToReturn.Add(new Article(new Author("c", "Rusov", 20, "mail address"), "C# structures",
-                "Some text about structures"));
+            listToReturn.Add(new Article(new Author("a", "Rusov", 20, 1, "mail address"), "C# classes", "Some text about classes", 1));
+            listToReturn.Add(new Article(new Author("b", "Rusov", 20, 2, "mail address"), "C# interfaces",
+                "Some text about interfaces", 2));
+            listToReturn.Add(new Article(new Author("c", "Rusov", 20, 3, "mail address"), "C# structures",
+                "Some text about structures", 3));
 
             mockIArticleRepository.Expects.One.GetProperty(_ => _.AllArticles).WillReturn(listToReturn);
             
@@ -61,9 +61,9 @@ namespace UnitTestArticles
             // arrange
             var mockIAuthorRepository = _factory.CreateMock<IAuthorRepository>();
             var listToReturn = new List<Author>(3);
-            listToReturn.Add(new Author("a", "Rusov", 20, "mail address"));
-            listToReturn.Add(new Author("b", "Dusov", 20, "mail address"));
-            listToReturn.Add(new Author("c", "Shrusov", 20, "mail address"));
+            listToReturn.Add(new Author("a", "Rusov", 20, 1,  "mail address"));
+            listToReturn.Add(new Author("b", "Dusov", 20, 2,  "mail address"));
+            listToReturn.Add(new Author("c", "Shrusov", 20, 3, "mail address"));
 
             // act
             mockIAuthorRepository.Expects.One.GetProperty(_ => _.AllAuthors).WillReturn(listToReturn);

@@ -14,8 +14,8 @@ namespace LocalWiki
             get ; 
             private set ; 
         }
-        public Admin(string firstname, string lastname, byte age, string[] privilegies)
-            : base (firstname ,lastname, age)
+        public Admin(string firstname, string lastname, byte age, uint id, string[] privilegies)
+            : base (firstname ,lastname, age, id)
         {
             this.Privilege = new List<string> ( privilegies );
         }

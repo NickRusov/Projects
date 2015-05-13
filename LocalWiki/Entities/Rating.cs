@@ -14,8 +14,8 @@ namespace LocalWiki
             private set;
         }
 
-        public Rating(string text, User reviewer, byte mark)
-            : base(text, reviewer)
+        public Rating(string text, User reviewer, byte mark, uint id)
+            : base(text, reviewer, id)
         {
             this.Mark = mark;
         }

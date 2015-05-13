@@ -28,9 +28,9 @@ namespace LocalWiki
             private set;
         }
 
-        public Article(Author author, string title, string text)
+        public Article(Author author, string title, string text, uint id)
         {
-            Id = ++s_articleCounter;
+            Id = id;
             this.Author = author;
             this.Title = title;
             this.Text = text;

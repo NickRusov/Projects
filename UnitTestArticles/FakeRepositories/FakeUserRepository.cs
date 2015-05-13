@@ -13,9 +13,9 @@ namespace LocalWiki
             {
                 var listToReturn = new List<User>
                 {
-                new User("a", "Rusov", 20),
-                new User("b", "Rusov", 21),
-                new User("c", "Rusov", 22)
+                new User("a", "Rusov", 1,20),
+                new User("b", "Rusov", 2, 21),
+                new User("c", "Rusov", 3, 22)
                 };
 
                 return listToReturn;

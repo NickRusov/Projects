@@ -28,9 +28,9 @@ namespace LocalWiki
             private set;
         }
 
-        public User(string firstname, string lastname, uint age)
+        public User(string firstname, string lastname, uint age, uint id)
         {
-            Id = ++s_uniquePersonCounter;
+            Id = id;
             this.FirstName = firstname;
             this.LastName = lastname;
             this.Age = age;
