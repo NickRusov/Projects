@@ -1,0 +1,37 @@
+﻿@using FLS.LocalWiki.Models.Entities
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Local Wiki</title>
+</head>
+<body>
+    <div>
+        <h3>Статьи</h3>
+        <table>
+            <tr><td><p>Название</p></td>
+                <td>
+                    <p>Автор</p></td>
+                <td><p>E-mail</p></td>
+                @*<td><p>Кое-что ещё</p></td>*@<td></td>
+            </tr>
+            @foreach (var article in ViewBag.Articles)
+            {
+            <tr>
+                <td><p>@article.Title</p></td>
+                <td>
+                    <p>@article.Author.FirstName @article.Author.LastName</p></td>
+                    <td><p>@article.Author.Email</p></td>
+                 <!-- <td><p>@article.</p></td> -->
+                <td><p><a href="/Home/ReadArticle/@article.Id">Читать полный текст</a></p></td>
+            </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

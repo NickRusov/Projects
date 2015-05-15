@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace LocalWiki
+namespace FLS.LocalWiki.Models.Entities
 {
     public class Comment : ProEntity
     {
-        protected static uint s_commentCounter = 0;
 
        public string Text
         {

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace LocalWiki
+namespace FLS.LocalWiki.Models.Entities
 {
     public class User : ProEntity
     {
-        private static uint s_uniquePersonCounter = 0;
 
         public  string FirstName
         {

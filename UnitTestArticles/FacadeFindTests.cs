@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LocalWiki;
 using NMock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FLS.LocalWiki.Models.Interfaces;
+using FLS.LocalWiki.Models;
+using FLS.LocalWiki.Models.Entities;
 
 namespace UnitTestArticles
 {
     [TestClass]
     public class FacadeFindTests
-    {
-
+    { 
         private MockFactory _factory = new MockFactory();
 
         [TestCleanup]

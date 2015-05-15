@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using FLS.LocalWiki.Models.Entities;
 
 namespace LocalWiki
 {
-    public class FakeAuthorRepoistory : IAuthorRepository
+    public class FakeAuthorRepoistory : FLS.LocalWiki.Models.Interfaces.IAuthorRepository
     {
         public List<Author> AllAuthors
         {

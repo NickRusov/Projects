@@ -1,4 +1,5 @@
 ﻿using System;
+using FLS.LocalWiki.Models.Interfaces;
 
 namespace LocalWiki
 {

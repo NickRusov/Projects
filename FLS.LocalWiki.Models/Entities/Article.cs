@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace LocalWiki
+namespace FLS.LocalWiki.Models.Entities
 {
     public class Article : ProEntity
     {
-        private static uint s_articleCounter = 0;
 
         public Author Author
         {

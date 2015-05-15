@@ -1,4 +1,6 @@
 ﻿using System;
+using FLS.LocalWiki.Models;
+using FLS.LocalWiki.Models.Interfaces;
 using LocalWiki;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

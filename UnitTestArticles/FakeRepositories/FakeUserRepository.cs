@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using FLS.LocalWiki.Models.Entities;
+using FLS.LocalWiki.Models.Interfaces;
 
 
 namespace LocalWiki
