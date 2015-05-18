@@ -97,7 +97,7 @@ namespace FLS
                 public double? GetArticleAverageRatingById(uint articleId)
                 {
                     var foundArticle = FindArticleById(articleId);
-                    if (foundArticle != null)
+                    if (foundArticle != null && foundArticle.Ratings != null && foundArticle.Ratings.Count > 0)
                         return foundArticle.Ratings.Average(article => article.Mark);
                     return null;
                 }
@@ -105,7 +105,7 @@ namespace FLS
                 public double? GetArticleAverageRatingByTitle(string title)
                 {
                     var foundArticle = FindArticleByTitle(title);
-                    if (foundArticle != null)
+                    if (foundArticle != null && foundArticle.Ratings != null)
                         return foundArticle.Ratings.Average(article => article.Mark);
                     return null;
                 }

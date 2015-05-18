@@ -45,9 +45,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="FLS.LocalWiki">
-      <HintPath>..\FLS.LocalWiki.Models\bin\Debug\FLS.LocalWiki.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.dll</HintPath>
@@ -154,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\ReadArticle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.Models.csproj">
+      <Project>{557b403b-3500-4140-97b7-641696b88123}</Project>
+      <Name>FLS.LocalWiki.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

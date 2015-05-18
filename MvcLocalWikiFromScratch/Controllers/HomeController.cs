@@ -30,7 +30,15 @@ namespace MvcLocalWikiFromScratch.Controllers
             ViewBag.Author = article.Author;
             ViewBag.Text = article.Text;
             ViewBag.Comments = m_facade.ReadCommentsById(id);
-            ViewBag.AverageRating = m_facade.GetArticleAverageRatingById(id);
+            var rating = m_facade.GetArticleAverageRatingById(id);
+            if (rating != null)
+            {
+                ViewBag.AverageRating = rating;
+            }
+            else
+            {
+                ViewBag.AverageRating = "the article is not rated yet.";
+            }
             return View();
         }
     }
