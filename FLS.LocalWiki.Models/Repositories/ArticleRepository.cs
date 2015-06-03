@@ -6,27 +6,25 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class ArticleRepository : IArticleRepository
     {
-
-        public List<Article> AllArticles
+        private List<Article> m_allArticles;
+        public List<Article> GetAllArticles ()
         {
-            get; 
-            private set; 
-            
+            return m_allArticles;
         }
 
         public void AddArticle(Article article)
         {
-            AllArticles.Add(article);
+            m_allArticles.Add(article);
         }
 
         public ArticleRepository()
         {
-            AllArticles = new List<Article>();
+            m_allArticles = new List<Article>();
         }
 
         public int Count()
         {
-            return AllArticles.Count;
+            return m_allArticles.Count;
         }
 
     }

@@ -5,10 +5,8 @@ namespace LocalWiki
 {
     public class FakeAuthorRepoistory : FLS.LocalWiki.Models.Interfaces.IAuthorRepository
     {
-        public List<Author> AllAuthors
+        public List<Author> GetAllAuthors()
         {
-            get
-            {
                 const string mail = "e-mail@example.com";
                 var listToReturn = new List<Author>
                 {
@@ -17,7 +15,6 @@ namespace LocalWiki
                     new Author("c", "Rusov", 22, 3, mail)
                 };
                 return listToReturn;
-            }
         }
 
         public void AddAuthor(Author author)

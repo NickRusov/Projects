@@ -17,27 +17,14 @@ namespace UnitTestArticles
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var averageRating = facade.GetArticleAverageRatingById(1);
+            var foundArticle = facade.FindArticleById(1);
 
             // assert
-            Assert.AreEqual(8.5d, averageRating);
+            Assert.AreEqual(8.5d, foundArticle.AverageRating);
         }
 
         [TestMethod]
-        public void GetAverageRatingOfExistingArticleByTitle()
-        {
-            // arrange
-            IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new Facade(articleRepository, null, null, null);
-
-            // act
-            var averageRating = facade.GetArticleAverageRatingByTitle("C# classes");
-
-            // assert
-            Assert.AreEqual(8.5d, averageRating);
-        }
-
-        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void GetAverageRatingOfNonExistingArticleById()
         {
             // arrange
@@ -45,25 +32,12 @@ namespace UnitTestArticles
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var averageRating = facade.GetArticleAverageRatingById(100);
+            var foundArticle = facade.FindArticleById(100);
 
             // assert
-            Assert.AreEqual(null, averageRating);
+            Assert.AreEqual(null, foundArticle.AverageRating);
         }
 
-        [TestMethod]
-        public void GetAverageRatingOfNonExistingArticleByTitle()
-        {
-            // arrange
-            IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new Facade(articleRepository, null, null, null);
-
-            // act
-            var averageRating = facade.GetArticleAverageRatingByTitle("C#");
-
-            // assert
-            Assert.AreEqual(null, averageRating);
-        }
     }
 }
 

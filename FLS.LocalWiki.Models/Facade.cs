@@ -3,28 +3,6 @@ using System.Linq;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 
-namespace FLS
-{
-    namespace FLS.LocalWiki
-    {
-        namespace FLS.LocalWiki.Models
-        {
-            namespace FLS.LocalWiki.Models.Entities
-            {
-            }
-
-            namespace FLS.LocalWiki.Models.Interfaces
-            {
-            }
-
-            namespace FLS.LocalWiki.Models.Repositories
-            {
-            }
-        }
-    }
-}
-
-
     namespace FLS.LocalWiki.Models
         {
 
@@ -38,51 +16,51 @@ namespace FLS
                 public IEnumerable<Article> AllArticles {
                     get
                     {
-                        return m_IArticleRepository.AllArticles;
+                        return m_IArticleRepository.GetAllArticles();
                     }
                 }
 
                 public Article FindArticleById(uint articleId)
                 {
-                    return m_IArticleRepository.AllArticles.Find(article => article.Id == articleId);
+                    return m_IArticleRepository.GetAllArticles().Find(article => article.Id == articleId);
                 }
 
-                public Article FindArticleByTitle(string title)
+                public List<Article> FindArticlesByTitle(string title)
                 {
-                    return m_IArticleRepository.AllArticles.Find(article => article.Title == title);
+                    return m_IArticleRepository.GetAllArticles().FindAll(article => article.Title == title);
                 }
 
 
                 public Author FindAuthorById(uint authorId)
                 {
-                    return m_IAuthorRepository.AllAuthors.Find(author => author.Id == authorId);
+                    return m_IAuthorRepository.GetAllAuthors().Find(author => author.Id == authorId);
                 }
 
-                public Author FindAuthorByLastname(string lastname)
+                public List<Author> FindAuthorsByLastname(string lastname)
                 {
-                    return m_IAuthorRepository.AllAuthors.Find(author => author.LastName == lastname);
+                    return m_IAuthorRepository.GetAllAuthors().FindAll(author => author.LastName == lastname);
                 }
 
 
                 public Admin FindAdminById(uint adminId)
                 {
-                    return m_IAdminRepository.AllAdmins.Find(admin => admin.Id == adminId);
+                    return m_IAdminRepository.GetAllAdmins().Find(admin => admin.Id == adminId);
                 }
 
-                public Admin FindAdminByLastname(string lastname)
+                public List<Admin> FindAdminsByLastname(string lastname)
                 {
-                    return m_IAdminRepository.AllAdmins.Find(admin => admin.LastName == lastname);
+                    return m_IAdminRepository.GetAllAdmins().FindAll(admin => admin.LastName == lastname);
                 }
-
+                
 
                 public User FindUserById(uint userId)
                 {
-                    return m_IUserRepository.AllUsers.Find(user => user.Id == userId);
+                    return m_IUserRepository.GetAllUsers().Find(user => user.Id == userId);
                 }
 
-                public User FindUserByLastname(string lastname)
+                public List<User> FindUsersByLastname(string lastname)
                 {
-                    return m_IUserRepository.AllUsers.Find(user => user.LastName == lastname);
+                    return m_IUserRepository.GetAllUsers().FindAll(user => user.LastName == lastname);
                 }
 
                 public Facade(IArticleRepository iArticle, IAuthorRepository iAuthor,
@@ -93,68 +71,7 @@ namespace FLS
                     this.m_IAdminRepository = iAdmin;
                     this.m_IUserRepository = iUser;
                 }
-
-                public double? GetArticleAverageRatingById(uint articleId)
-                {
-                    var foundArticle = FindArticleById(articleId);
-                    if (foundArticle != null && foundArticle.Ratings != null && foundArticle.Ratings.Count > 0)
-                        return foundArticle.Ratings.Average(article => article.Mark);
-                    return null;
-                }
-
-                public double? GetArticleAverageRatingByTitle(string title)
-                {
-                    var foundArticle = FindArticleByTitle(title);
-                    if (foundArticle != null && foundArticle.Ratings != null)
-                        return foundArticle.Ratings.Average(article => article.Mark);
-                    return null;
-                }
-
-
-                public string ReadArticleById(uint articleId)
-                {
-                    var foundArticle = FindArticleById(articleId);
-                    if (foundArticle != null)
-                        return foundArticle.Text;
-                    return null;
-                }
-
-                public string ReadArticleByTitle(string title)
-                {
-                    var foundArticle = FindArticleByTitle(title);
-                    if (foundArticle != null)
-                        return foundArticle.Text;
-                    return null;
-                }
-
-                public string[] ReadCommentsById(uint articleId)
-                {
-                    var foundArticle = m_IArticleRepository.AllArticles.Find(article => article.Id == articleId);
-                    if (foundArticle == null)
-                        return null;
-                    string[] comments = new string[foundArticle.Comments.Count];
-
-                    for (int i = 0; i < foundArticle.Comments.Count; i++)
-                    {
-                        comments[i] = foundArticle.Comments[i].ToString();
-                    }
-                    return comments;
-                }
-
-                public string[] ReadCommentsByTitle(string title)
-                {
-                    var foundArticle = m_IArticleRepository.AllArticles.Find(article => article.Title == title);
-                    if (foundArticle == null)
-                        return null;
-                    string[] comments = new string[foundArticle.Comments.Count];
-
-                    for (int i = 0; i < foundArticle.Comments.Count; i++)
-                    {
-                        comments[i] = foundArticle.Comments[i].ToString();
-                    }
-                    return comments;
-
-                }
+                
             }
 
         }

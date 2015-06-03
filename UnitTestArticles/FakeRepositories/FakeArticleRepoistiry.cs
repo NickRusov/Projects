@@ -11,10 +11,8 @@ namespace LocalWiki
     public class FakeArticleRepoistiry : IArticleRepository
     {
 
-        public List<Article> AllArticles
+        public List<Article> GetAllArticles()
         {
-            get
-            {
                 var listToReturn = new List<Article>
                 {
                     new Article(new Author("a", "Rusov", 20,1,  "mail adress"),
@@ -33,7 +31,7 @@ namespace LocalWiki
                 listToReturn[0].AddRating(new Rating("firstComment", listToReturn[2].Author, 8, 3));
                 listToReturn[0].AddRating(new Rating("secondComment", listToReturn[1].Author, 9, 4));
                 return listToReturn;
-            }
+            
         }
 
         public void AddArticle(Article article)

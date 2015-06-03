@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FLS.LocalWiki.Models.Entities
+@model Article
+@{
     Layout = null;
 }
 
@@ -7,22 +9,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Чтение статей</title>
+    <title>Reading Articles</title>
 </head>
 <body>
 <div>
-    <p>@ViewBag.Title</p>
-    <p>@ViewBag.Author</p>
-    <p>@ViewBag.Text</p>
-    <table> @foreach (var comment in ViewBag.Comments)
+    <p>@Model.Title</p>
+    <p>@Model.Author</p>
+    <p>@Model.Text</p>
+    <p>Average rating: @Model.AverageRating</p>
+    <table> @foreach (var comment in Model.Comments)
             {
                 <tr>
                     <td>
                         <p>@comment</p></td>
                 </tr>
             }
-        <p>Average rating: @ViewBag.AverageRating</p>
-    </table>
+        </table>
 </div>
 </body>
 </html>

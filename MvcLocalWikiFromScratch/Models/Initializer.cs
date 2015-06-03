@@ -8,22 +8,23 @@ using FLS.LocalWiki.Models.Interfaces;
 using FLS.LocalWiki.Models.Repositories;
 using StructureMap;
 
-namespace MvcLocalWikiFromScratch.Models
+namespace FLS.LocalWiki.WebApplication.Models
 {
     public static class Initializer
     {
-        public static IFacade GetInitializedFacade()
-        {
-            var container = new Container(x =>
+        private readonly static Container container = new Container(x =>
             {
                 x.For<IArticleRepository>().Use<ArticleRepository>();
                 x.For<IAdminRepository>().Use<AdminRepository>();
                 x.For<IAuthorRepository>().Use<AuthorRepository>();
                 x.For<IUserRepository>().Use<UserRepository>();
-                x.For<IFacade>().Use<Facade>();
+                x.For<IFacade>().Use<Facade>();               
             });
 
+        public static IFacade GetInitializedFacade()
+        {                      
             var userRepository = container.GetInstance<IUserRepository>();
+            var f = container.With<IUserRepository>(userRepository).GetInstance<IFacade>();
             var firstUser = new User("Nick", "Rusov", 20, 1);
             var secondUser = new User("Nickola", "Dusov", 24, 2);
             var thirdUser = new User("Nickola", "Shrusov", 22, 3);
@@ -63,16 +64,16 @@ namespace MvcLocalWikiFromScratch.Models
 
             var articleRepository = container.GetInstance<IArticleRepository>();
             articleRepository.AddArticle(article);
-            articleRepository.AddArticle(new Article(new Author("Micael", "Rusov", 20, 5, "mail #2"), "C# interfaces",
+            articleRepository.AddArticle(new Article(new Author("Michael", "Rusov", 20, 5, "mail #2"), "C# interfaces",
                 "Some text about interfaces", 2));
             articleRepository.AddArticle(new Article(new Author("Vasiliy", "Rusov", 20, 6, "mail #3"), "C# structures",
                 "Some text about structures", 3));
 
             return container.
-                With(articleRepository).
-                With(authorRepository).
-                With(adminRepository).
-                With(userRepository).
+                With<IArticleRepository>(articleRepository).
+                With<IAuthorRepository>(authorRepository).
+                With<IAdminRepository>(adminRepository).
+                With<IUserRepository>(userRepository).
                 GetInstance<IFacade>();
         }
     }

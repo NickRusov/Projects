@@ -9,10 +9,8 @@ namespace LocalWiki
     public class FakeUserRepoistory : IUserRepository
     {
 
-        public List<User> AllUsers
+        public List<User> GetAllUsers()
         {
-            get
-            {
                 var listToReturn = new List<User>
                 {
                 new User("a", "Rusov", 1,20),
@@ -22,7 +20,6 @@ namespace LocalWiki
 
                 return listToReturn;
             }
-        }
 
         public void AddUser(User user)
         {

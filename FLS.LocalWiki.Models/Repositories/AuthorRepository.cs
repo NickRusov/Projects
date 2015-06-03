@@ -6,26 +6,25 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {
-
-        public List<Author> AllAuthors 
-        { 
-            get ; 
-            private set; 
+        private List<Author> m_allAuthors;
+        public List<Author> GetAllAuthors()
+        {
+            return m_allAuthors; 
         }
 
         public void AddAuthor(Author author)
         {
-            AllAuthors.Add(author);
+            m_allAuthors.Add(author);
         }
 
         public AuthorRepository()
         {
-            AllAuthors=new List<Author>();
+            m_allAuthors = new List<Author>();
         }
 
         public int Count()
         {
-            return AllAuthors.Count;
+            return m_allAuthors.Count;
         }
     }
 }

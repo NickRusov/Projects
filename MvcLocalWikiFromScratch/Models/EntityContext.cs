@@ -2,7 +2,7 @@
 
 using FLS.LocalWiki.Models.Entities;
 
-namespace MvcLocalWikiFromScratch.Models
+namespace FLS.LocalWiki.WebApplication.Models
 {
     public class EntityContext : DbContext
     {

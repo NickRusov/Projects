@@ -6,24 +6,25 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public List<User> AllUsers
+        private List<User> m_allUsers;
+        public List<User> GetAllUsers()
         {
-            get; private set;
+            return m_allUsers;
         }
 
         public void AddUser(User user)
         {
-            AllUsers.Add(user);
+            m_allUsers.Add(user);
         }
 
         public UserRepository()
         {
-            AllUsers = new List<User>();
+            m_allUsers = new List<User>();
         }
 
         public int Count()
         {
-            return AllUsers.Count;
+            return m_allUsers.Count;
         }
     }
 }

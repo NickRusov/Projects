@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using FLS.LocalWiki.Models.Entities;
 
-namespace MvcLocalWikiFromScratch.Models
+namespace FLS.LocalWiki.WebApplication.Models
 {
     public class LocalWikiDbInitializer : DropCreateDatabaseAlways<EntityContext>
     {

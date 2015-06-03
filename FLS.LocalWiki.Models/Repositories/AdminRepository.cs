@@ -7,24 +7,26 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class AdminRepository : IAdminRepository
     {
-        public List<Admin> AllAdmins
+        private List<Admin> m_allAdmins;
+
+        public List<Admin> GetAllAdmins()
         {
-            get ; private set;
+            return m_allAdmins;
         }
 
         public void AddAdmin(Admin admin)
         {
-            AllAdmins.Add(admin);
+            m_allAdmins.Add(admin);
         }
 
         public AdminRepository()
         {
-            AllAdmins=new List<Admin>();
+            m_allAdmins = new List<Admin>();
         }
 
         public int Count()
         {
-            return AllAdmins.Count;
+            return m_allAdmins.Count;
         }
     }
 }

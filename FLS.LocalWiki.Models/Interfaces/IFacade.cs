@@ -1,38 +1,29 @@
-﻿using FLS.LocalWiki.Models.Entities;
+﻿using System.Collections.Generic;
+using FLS.LocalWiki.Models.Entities;
 
 namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IFacade
     {
+        IEnumerable<Article> AllArticles
+        { get; }
         Article FindArticleById(uint articleId);
 
-        Article FindArticleByTitle(string title);
+        List<Article> FindArticlesByTitle(string title);
 
 
         Author FindAuthorById(uint authorId);
 
-        Author FindAuthorByLastname(string lastname);
+        List<Author> FindAuthorsByLastname(string lastname);
 
 
         Admin FindAdminById(uint adminId);
 
-        Admin FindAdminByLastname(string lastname);
+        List<Admin> FindAdminsByLastname(string lastname);
 
 
         User FindUserById(uint userId);
 
-        User FindUserByLastname(string lastname);
-
-        double? GetArticleAverageRatingById(uint articleId);
-
-        double? GetArticleAverageRatingByTitle(string title);
-
-        string ReadArticleById(uint articleId);
-
-        string ReadArticleByTitle(string title);
-
-        string[] ReadCommentsById(uint articleId);
-
-        string[] ReadCommentsByTitle(string title);
+        List<User> FindUsersByLastname(string lastname);
     }
 }

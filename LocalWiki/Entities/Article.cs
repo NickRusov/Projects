@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FLS.LocalWiki.Models.Entities
+namespace LocalWiki
 {
     public class Article : ProEntity
     {
@@ -57,15 +59,8 @@ namespace FLS.LocalWiki.Models.Entities
             Ratings.Add(rating);
         }
 
-        public double? AverageRating
-        { 
-            get 
-            {
-                if (Ratings.Count > 0)
-                    return Ratings.Average(rating => rating.Mark);
-                return null;
-            } 
-        }
+        public int CountRatings
+        { get { return Ratings.Count; } }
 
         public override string ToString()
         {

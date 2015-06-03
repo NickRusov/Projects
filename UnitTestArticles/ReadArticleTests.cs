@@ -17,7 +17,7 @@ namespace UnitTestArticles
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var text = facade.ReadArticleById(1);
+            var text = facade.FindArticleById(1).Text;
 
             // assert
             Assert.AreEqual("Some text about classes", text);
@@ -31,39 +31,13 @@ namespace UnitTestArticles
             var facade = new Facade(articleRepository, null, null, null);
 
             // act
-            var text = facade.ReadArticleByTitle("C# structures");
+            var text = facade.FindArticlesByTitle("C# structures")[0].Text;
 
             // assert
             Assert.AreEqual("Some text about structures", text);
         }
 
-        [TestMethod]
-        public void ReadNonExistingArticleById()
-        {
-            // arrange
-            IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new Facade(articleRepository, null, null, null);
 
-            // act
-            var text = facade.ReadArticleById(0);
-
-            // assert
-            Assert.AreEqual(null, text);
-        }
-
-        [TestMethod]
-        public void ReadNonExistingArticleByTitle()
-        {
-            // arrange
-            IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new Facade(articleRepository, null, null, null);
-
-            // act
-            var text = facade.ReadArticleByTitle("C#");
-
-            // assert
-            Assert.AreEqual(null, text);
-        }
     }
 
 

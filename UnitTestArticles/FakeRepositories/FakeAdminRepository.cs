@@ -9,10 +9,8 @@ namespace LocalWiki
     public class FakeAdminRepoistory : IAdminRepository
     {
 
-        public List<Admin> AllAdmins
+        public List<Admin> GetAllAdmins()
         {
-            get
-            {
                 string[] privilegies = { "delete", "edit" };
                 var listToReturn = new List<Admin>
                 {
@@ -21,7 +19,6 @@ namespace LocalWiki
                     new Admin("c", "Rusov", 3, 20, privilegies)
                 };
                 return listToReturn;
-            }
         }
 
         public void AddAdmin(Admin admin)

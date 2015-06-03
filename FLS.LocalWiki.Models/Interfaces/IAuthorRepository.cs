@@ -6,7 +6,7 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IAuthorRepository
     {
-        List<Author> AllAuthors { get; }
+        List<Author> GetAllAuthors();
 
         void AddAuthor(Author author);
 

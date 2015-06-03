@@ -1,4 +1,5 @@
 ﻿@using FLS.LocalWiki.Models.Entities
+@model IEnumerable<Article>
 @{
     Layout = null;
 }
@@ -10,17 +11,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>Local Wiki</title>
 </head>
-<body>
+<body> 
     <div>
-        <h3>Статьи</h3>
+        <h3>Articles</h3>
         <table>
-            <tr><td><p>Название</p></td>
+            <tr><td><p>Title</p></td>
                 <td>
-                    <p>Автор</p></td>
+                    <p>Author</p></td>
                 <td><p>E-mail</p></td>
-                @*<td><p>Кое-что ещё</p></td>*@<td></td>
+                <td></td>
             </tr>
-            @foreach (var article in ViewBag.Articles)
+            @foreach (var article in Model)
             {
             <tr>
                 <td><p>@article.Title</p></td>
@@ -28,7 +29,7 @@
                     <p>@article.Author.FirstName @article.Author.LastName</p></td>
                     <td><p>@article.Author.Email</p></td>
                  <!-- <td><p>@article.</p></td> -->
-                <td><p><a href="/Home/ReadArticle/@article.Id">Читать полный текст</a></p></td>
+                <td><p><a href="/Home/ReadArticle/@article.Id">Read the full text</a></p></td>
             </tr>
             }
         </table>

@@ -5,7 +5,7 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IArticleRepository
     {
-        List<Article> AllArticles { get; }
+        List<Article> GetAllArticles(); 
 
         void AddArticle(Article article);
 

@@ -5,9 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Interfaces;
-using MvcLocalWikiFromScratch.Models;
+using FLS.LocalWiki.WebApplication.Models;
+using FLS.LocalWiki.Initializing;
 
-namespace MvcLocalWikiFromScratch.Controllers
+namespace FLS.LocalWiki.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,31 +16,16 @@ namespace MvcLocalWikiFromScratch.Controllers
         // GET: /Home/
 
         //EntityContext db = new EntityContext();
-        private readonly Facade m_facade = (Facade)Initializer.GetInitializedFacade();
+        private readonly IFacade m_facade = SingleContainer.Instance.GetInitializedFacade();
         public ActionResult Index()
         {
-            ViewBag.Articles = m_facade.AllArticles;//users;
-            return View();
+            return View(m_facade.AllArticles);
         }
 
         [HttpGet]
         public ActionResult ReadArticle(uint id)
         {
-            var article = m_facade.FindArticleById(id);
-            ViewBag.Title = article.Title;
-            ViewBag.Author = article.Author;
-            ViewBag.Text = article.Text;
-            ViewBag.Comments = m_facade.ReadCommentsById(id);
-            var rating = m_facade.GetArticleAverageRatingById(id);
-            if (rating != null)
-            {
-                ViewBag.AverageRating = rating;
-            }
-            else
-            {
-                ViewBag.AverageRating = "the article is not rated yet.";
-            }
-            return View();
+            return View(m_facade.FindArticleById(id));
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace MvcLocalWikiFromScratch
+namespace FLS.LocalWiki.WebApplication
 {
     public class FilterConfig
     {

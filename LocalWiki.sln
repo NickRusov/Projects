@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalWiki", "LocalWiki\LocalWiki.csproj", "{CDF4BC41-89A6-426A-B535-034A69E0BECC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.ConsoleApplication", "LocalWiki\FLS.LocalWiki.ConsoleApplication.csproj", "{CDF4BC41-89A6-426A-B535-034A69E0BECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestArticles", "UnitTestArticles\UnitTestArticles.csproj", "{CFF7EA71-B91A-4995-884C-76656AADFDA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.Models.UnitTests", "UnitTestArticles\FLS.LocalWiki.Models.UnitTests.csproj", "{CFF7EA71-B91A-4995-884C-76656AADFDA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.Models", "FLS.LocalWiki.Models\FLS.LocalWiki.Models.csproj", "{557B403B-3500-4140-97B7-641696B88123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcLocalWikiFromScratch", "MvcLocalWikiFromScratch\MvcLocalWikiFromScratch.csproj", "{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.WebApplication", "MvcLocalWikiFromScratch\FLS.LocalWiki.WebApplication.csproj", "{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.Initializing", "Initializer\FLS.LocalWiki.Initializing.csproj", "{41994FE1-68C5-46E1-9DD9-919FC3CD186E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41994FE1-68C5-46E1-9DD9-919FC3CD186E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41994FE1-68C5-46E1-9DD9-919FC3CD186E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41994FE1-68C5-46E1-9DD9-919FC3CD186E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41994FE1-68C5-46E1-9DD9-919FC3CD186E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
