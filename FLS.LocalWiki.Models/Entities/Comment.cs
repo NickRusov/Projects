@@ -17,7 +17,7 @@ namespace FLS.LocalWiki.Models.Entities
             private set;
         }
 
-        public Comment(string text, User reviewer, uint id)
+        public Comment(string text, User reviewer, int id)
         {
             this.Id = id;
             this.Text = text;

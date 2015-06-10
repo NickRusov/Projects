@@ -17,13 +17,13 @@ namespace FLS.LocalWiki.Models.Entities
             private set;
         }
 
-        public uint Age
+        public System.Int16 Age
         {
             get;
             private set;
         }
 
-        public User(string firstname, string lastname, uint age, uint id)
+        public User(string firstname, string lastname, System.Int16 age, int id)
         {
             Id = id;
             this.FirstName = firstname;

@@ -11,7 +11,7 @@ namespace FLS.LocalWiki.Models.Entities
             private set;
         }
 
-        public Author(string firstname, string lastname, byte age, uint id, string email)
+        public Author(string firstname, string lastname, byte age, int id, string email)
             : base ( firstname, lastname, age, id)
         {
             this.Email = email;

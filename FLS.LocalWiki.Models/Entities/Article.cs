@@ -25,7 +25,7 @@ namespace FLS.LocalWiki.Models.Entities
             private set;
         }
 
-        public Article(Author author, string title, string text, uint id)
+        public Article(Author author, string title, string text, int id)
         {
             Id = id;
             this.Author = author;

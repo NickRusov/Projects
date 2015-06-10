@@ -2,7 +2,7 @@
 {
     abstract public class ProEntity
     {
-        public uint Id
+        public int Id
         {
             get; 
             protected set; 

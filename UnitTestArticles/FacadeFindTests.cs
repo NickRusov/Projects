@@ -31,7 +31,7 @@ namespace UnitTestArticles
             var foundId = facade.FindArticlesByTitle("C# classes")[0].Id;
 
             // assert
-            Assert.AreEqual((uint)1, foundId);
+            Assert.AreEqual((int)1, foundId);
             //Assert.AreEqual(, facade.FindArticle("C#").Id);
         }
 

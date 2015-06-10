@@ -10,7 +10,7 @@ using FLS.LocalWiki.Models.Entities;
 
             public List<string> Privilege { get; private set; }
 
-            public Admin(string firstname, string lastname, byte age, uint id, string[] privilegies)
+            public Admin(string firstname, string lastname, byte age, int id, string[] privilegies)
                 : base(firstname, lastname, age, id)
             {
                 this.Privilege = new List<string>(privilegies);

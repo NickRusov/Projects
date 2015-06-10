@@ -7,22 +7,22 @@ namespace FLS.LocalWiki.Models.Interfaces
     {
         IEnumerable<Article> AllArticles
         { get; }
-        Article FindArticleById(uint articleId);
+        Article FindArticleById(int articleId);
 
         List<Article> FindArticlesByTitle(string title);
 
 
-        Author FindAuthorById(uint authorId);
+        Author FindAuthorById(int authorId);
 
         List<Author> FindAuthorsByLastname(string lastname);
 
 
-        Admin FindAdminById(uint adminId);
+        Admin FindAdminById(int adminId);
 
         List<Admin> FindAdminsByLastname(string lastname);
 
 
-        User FindUserById(uint userId);
+        User FindUserById(int userId);
 
         List<User> FindUsersByLastname(string lastname);
     }

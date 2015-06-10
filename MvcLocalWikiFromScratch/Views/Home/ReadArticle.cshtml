@@ -14,7 +14,7 @@
 <body>
 <div>
     <p>@Model.Title</p>
-    <p>@Model.Author</p>
+    <p>@Model.Author.FirstName @Model.Author.LastName</p>
     <p>@Model.Text</p>
     <p>Average rating: @Model.AverageRating</p>
     <table> @foreach (var comment in Model.Comments)
@@ -22,6 +22,14 @@
                 <tr>
                     <td>
                         <p>@comment</p></td>
+                </tr>
+            }
+        </table>
+    <table> @foreach (var rating in Model.Ratings)
+            {
+                <tr>
+                    <td>
+                        <p>@rating</p></td>
                 </tr>
             }
         </table>

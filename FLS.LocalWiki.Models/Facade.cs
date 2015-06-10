@@ -20,7 +20,7 @@ using FLS.LocalWiki.Models.Interfaces;
                     }
                 }
 
-                public Article FindArticleById(uint articleId)
+                public Article FindArticleById(int articleId)
                 {
                     return m_IArticleRepository.GetAllArticles().Find(article => article.Id == articleId);
                 }
@@ -31,7 +31,7 @@ using FLS.LocalWiki.Models.Interfaces;
                 }
 
 
-                public Author FindAuthorById(uint authorId)
+                public Author FindAuthorById(int authorId)
                 {
                     return m_IAuthorRepository.GetAllAuthors().Find(author => author.Id == authorId);
                 }
@@ -42,7 +42,7 @@ using FLS.LocalWiki.Models.Interfaces;
                 }
 
 
-                public Admin FindAdminById(uint adminId)
+                public Admin FindAdminById(int adminId)
                 {
                     return m_IAdminRepository.GetAllAdmins().Find(admin => admin.Id == adminId);
                 }
@@ -53,7 +53,7 @@ using FLS.LocalWiki.Models.Interfaces;
                 }
                 
 
-                public User FindUserById(uint userId)
+                public User FindUserById(int userId)
                 {
                     return m_IUserRepository.GetAllUsers().Find(user => user.Id == userId);
                 }

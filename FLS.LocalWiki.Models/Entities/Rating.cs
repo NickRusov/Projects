@@ -10,7 +10,7 @@ namespace FLS.LocalWiki.Models.Entities
             private set;
         }
 
-        public Rating(string text, User reviewer, byte mark, uint id)
+        public Rating(string text, User reviewer, byte mark, int id)
             : base(text, reviewer, id)
         {
             this.Mark = mark;

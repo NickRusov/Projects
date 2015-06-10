@@ -12,7 +12,7 @@ namespace FLS.LocalWiki.ConsoleApplicaion
             this.m_facade = facade;
         }
 
-        public void DisplayInfoAboutArticle(uint articleId)
+        public void DisplayInfoAboutArticle(int articleId)
         {
             var foundArticle = m_facade.FindArticleById(articleId);
             if (foundArticle != null)
@@ -21,7 +21,7 @@ namespace FLS.LocalWiki.ConsoleApplicaion
                 Console.WriteLine("Article with id = {0} does not exist", articleId);
         }
 
-        public void ReadArticle(uint articleId)
+        public void ReadArticle(int articleId)
         {
             var foundArticle = m_facade.FindArticleById(articleId);
             if (foundArticle != null)
@@ -41,7 +41,7 @@ namespace FLS.LocalWiki.ConsoleApplicaion
         }
 
 
-        public void DisplayAuthor(uint authorId)
+        public void DisplayAuthor(int authorId)
         {
             var foundAuthor = m_facade.FindAuthorById(authorId);
             if (foundAuthor != null)
@@ -61,7 +61,7 @@ namespace FLS.LocalWiki.ConsoleApplicaion
         }
 
         
-        public void DisplayAdmin(uint adminId)
+        public void DisplayAdmin(int adminId)
         {
             var foundAdmin = m_facade.FindAdminById(adminId);
             if (foundAdmin != null)
@@ -82,7 +82,7 @@ namespace FLS.LocalWiki.ConsoleApplicaion
 
 
         
-        public void DisplayUser(uint userId)
+        public void DisplayUser(int userId)
         {
             var foundUser = m_facade.FindUserById(userId);
             if (foundUser != null)

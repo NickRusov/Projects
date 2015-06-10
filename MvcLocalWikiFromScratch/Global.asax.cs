@@ -1,6 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
-using System.Data.Entity;
+//using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -20,6 +21,9 @@ namespace FLS.LocalWiki.WebApplication
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var baseProjectPath = AppDomain.CurrentDomain.BaseDirectory;
+            var appDataPath = Path.Combine(baseProjectPath, ".\\App_Data");
+            AppDomain.CurrentDomain.SetData("DataDirectory", Path.GetFullPath(appDataPath));
             //Database.SetInitializer(new LocalWikiDbInitializer());
         }
     }
