@@ -54,42 +54,41 @@ namespace FLS.LocalWiki.Initializing
               With<IAdminRepository>(adminRepository).
               With<IUserRepository>(userRepository).
               GetInstance<IFacade>();
-           //WebConfigurationManager.AppSettings["connectionStrings"]);
-           //var connectionstring = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalWiki.mdf;Integrated Security=True;Connect Timeout=30;";//@"Data Source=NRUSOV\SQLEXPRESS;Initial Catalog=LocalWiki;Integrated Security=True;Pooling=False";//@"Data Source=MICROSOF-1EA29E\SQLEXPRESS; AttachDbFilename="+@"C:\Users\NRUSOV\Documents\Visual Studio 2012\Projects\LocalWiki\MvcLocalWikiFromScratch\App_Data\LocalWiki.mdf"+";Integrated Security=True;Connect Timeout=30";
-           SqlDataAdapter adp = new SqlDataAdapter("SELECT * FROM users;", connectionString);// connectionstring WebConfigurationManager.AppSettings["connectionStrings"]);
-           DataSet ds = new DataSet();
-           adp.TableMappings.Add("Table", "users");
-           adp.TableMappings.Add("Table1", "authors");
-           adp.TableMappings.Add("Table2", "admins");
-           adp.TableMappings.Add("Table3", "comments");
-           adp.TableMappings.Add("Table4", "ratings");
-           adp.TableMappings.Add("Table5", "articles");
-
-           adp.Fill(ds, "users");
-
-           adp.SelectCommand.CommandText = "SELECT * FROM authors";
-           adp.Fill(ds, "authors");
-
-           adp.SelectCommand.CommandText = "SELECT * FROM admins";
-           adp.Fill(ds, "admins");
-
-           adp.SelectCommand.CommandText = "SELECT * FROM comments";
-           adp.Fill(ds, "comments");
-
-           adp.SelectCommand.CommandText = "SELECT * FROM ratings";
-           adp.Fill(ds, "ratings");
-
-           adp.SelectCommand.CommandText = "SELECT * FROM articles";
-           adp.Fill(ds, "articles");
-
-           ds.Relations.Add("UserAuthor", ds.Tables["users"].Columns["Id"], ds.Tables["authors"].Columns["userId"]);
-           ds.Relations.Add("UserAdmin", ds.Tables["users"].Columns["Id"], ds.Tables["admins"].Columns["userId"]);
-
-           ds.Relations.Add("CommentRating", ds.Tables["comments"].Columns["commentId"], ds.Tables["ratings"].Columns["commentId"]);
-
-           ds.Relations.Add("ArticleComment", ds.Tables["articles"].Columns["articleId"], ds.Tables["comments"].Columns["articleId"]);
            
-           foreach (DataRow row in ds.Tables["users"].Rows)
+           SqlDataAdapter sqlAdapter = new SqlDataAdapter("SELECT * FROM users;", connectionString);
+           DataSet dataset = new DataSet();
+           sqlAdapter.TableMappings.Add("Table", "users");
+           sqlAdapter.TableMappings.Add("Table1", "authors");
+           sqlAdapter.TableMappings.Add("Table2", "admins");
+           sqlAdapter.TableMappings.Add("Table3", "comments");
+           sqlAdapter.TableMappings.Add("Table4", "ratings");
+           sqlAdapter.TableMappings.Add("Table5", "articles");
+
+           sqlAdapter.Fill(dataset, "users");
+
+           sqlAdapter.SelectCommand.CommandText = "SELECT * FROM authors";
+           sqlAdapter.Fill(dataset, "authors");
+
+           sqlAdapter.SelectCommand.CommandText = "SELECT * FROM admins";
+           sqlAdapter.Fill(dataset, "admins");
+
+           sqlAdapter.SelectCommand.CommandText = "SELECT * FROM comments";
+           sqlAdapter.Fill(dataset, "comments");
+
+           sqlAdapter.SelectCommand.CommandText = "SELECT * FROM ratings";
+           sqlAdapter.Fill(dataset, "ratings");
+
+           sqlAdapter.SelectCommand.CommandText = "SELECT * FROM articles";
+           sqlAdapter.Fill(dataset, "articles");
+
+           dataset.Relations.Add("UserAuthor", dataset.Tables["users"].Columns["Id"], dataset.Tables["authors"].Columns["userId"]);
+           dataset.Relations.Add("UserAdmin", dataset.Tables["users"].Columns["Id"], dataset.Tables["admins"].Columns["userId"]);
+
+           dataset.Relations.Add("CommentRating", dataset.Tables["comments"].Columns["commentId"], dataset.Tables["ratings"].Columns["commentId"]);
+
+           dataset.Relations.Add("ArticleComment", dataset.Tables["articles"].Columns["articleId"], dataset.Tables["comments"].Columns["articleId"]);
+           
+           foreach (DataRow row in dataset.Tables["users"].Rows)
            {
                var user = new User((string)(row["firstname"]), (string)(row["lastname"]), (System.Int16)(row["age"]), (int)(row["Id"]));
                userRepository.AddUser(user);
@@ -106,7 +105,7 @@ namespace FLS.LocalWiki.Initializing
 
            }
 
-           foreach (DataRow row in ds.Tables["articles"].Rows)
+           foreach (DataRow row in dataset.Tables["articles"].Rows)
            {
                var author = facade.FindAuthorById((int)(row["authorId"]));
                if (author == null)
