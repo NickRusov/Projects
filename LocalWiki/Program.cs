@@ -4,7 +4,7 @@ using System.Configuration;
 using System.IO;
 using FLS.LocalWiki.Initializing;
 using FLS.LocalWiki.Models.Interfaces;
-using StructureMap;
+
 namespace FLS.LocalWiki.ConsoleApplicaion
 {
     class Program
