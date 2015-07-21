@@ -39,10 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbRepositories\AdminRepository.cs" />
-    <Compile Include="DbRepositories\ArticleRepository.cs" />
-    <Compile Include="DbRepositories\AuthorRepository.cs" />
-    <Compile Include="DbRepositories\UserRepository.cs" />
+    <Compile Include="DbRepositories\DbAdminRepository.cs" />
+    <Compile Include="DbRepositories\DbArticleRepository.cs" />
+    <Compile Include="DbRepositories\DbAuthorRepository.cs" />
+    <Compile Include="DbRepositories\DbUserRepository.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Author.cs" />
