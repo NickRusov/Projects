@@ -4,8 +4,18 @@ namespace FLS.LocalWiki.Models.Entities
 {
     public class Comment : ProEntity
     {
+       public Comment(string text, User reviewer, int id)
+        {
+            this.Id = id;
+            this.Text = text;
+            this.Reviewer = reviewer;
+        }
 
-       public string Text
+        protected Comment(Comment comment) : this(comment.Text, comment.Reviewer, comment.Id)
+        {
+        }
+
+        public string Text
         {
             get;
             private set;
@@ -16,21 +26,6 @@ namespace FLS.LocalWiki.Models.Entities
             get;
             private set;
         }
-
-        public Comment(string text, User reviewer, int id)
-        {
-            this.Id = id;
-            this.Text = text;
-            this.Reviewer = reviewer;
-        }
-
-        protected Comment(Comment comment) 
-        {
-            this.Id = comment.Id;
-            this.Text = comment.Text;
-            this.Reviewer = comment.Reviewer;
-        }
-
 
         public override string ToString()
         {

@@ -4,12 +4,6 @@ namespace FLS.LocalWiki.Models.Entities
 {
     public class Rating : Comment
     {
-        public byte Mark
-        {
-            get;
-            private set;
-        }
-
         public Rating(string text, User reviewer, byte mark, int id)
             : base(text, reviewer, id)
         {
@@ -22,10 +16,16 @@ namespace FLS.LocalWiki.Models.Entities
             this.Mark = mark;
         }
 
+        public byte Mark
+        {
+            get;
+            private set;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(base.ToString());
-            sb.AppendLine("mark: "+ Mark);
+            sb.AppendLine("mark: " + Mark);
             return sb.ToString();
         }
     }

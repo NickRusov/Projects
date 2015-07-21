@@ -1,11 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 
 namespace FLS.LocalWiki.Models.Entities
 {
     public class Article : ProEntity
     {
+        public Article(Author author, string title, string text, int id)
+        {
+            Id = id;
+            this.Author = author;
+            this.Title = title;
+            this.Text = text;
+            Comments = new List<Comment>();
+            Ratings = new List<Rating>();
+        }
 
         public Author Author
         {
@@ -23,22 +32,31 @@ namespace FLS.LocalWiki.Models.Entities
         {
             get;
             private set;
-        }
-
-        public Article(Author author, string title, string text, int id)
-        {
-            Id = id;
-            this.Author = author;
-            this.Title = title;
-            this.Text = text;
-            Comments = new List<Comment>();
-            Ratings = new List<Rating>();
-        }
+        }        
 
         public List<Comment> Comments
         {
             get; 
             private set;
+        }
+        
+        public List<Rating> Ratings
+        {
+            get;
+            private set;
+        }        
+
+        public double? AverageRating
+        { 
+            get 
+            {
+                if (Ratings.Count > 0)
+                {
+                    return Ratings.Average(rating => rating.Mark);
+                }
+
+                return null;
+            } 
         }
 
         public void AddComment(Comment comment)
@@ -46,25 +64,9 @@ namespace FLS.LocalWiki.Models.Entities
             Comments.Add(comment);
         }
 
-        public List<Rating> Ratings
-        {
-            get;
-            private set;
-        }
-
         public void AddRating(Rating rating)
         {
             Ratings.Add(rating);
-        }
-
-        public double? AverageRating
-        { 
-            get 
-            {
-                if (Ratings.Count > 0)
-                    return Ratings.Average(rating => rating.Mark);
-                return null;
-            } 
         }
 
         public override string ToString()

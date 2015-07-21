@@ -1,6 +1,5 @@
-﻿using FLS.LocalWiki.Models.Entities;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using FLS.LocalWiki.Models.Entities;
 
 namespace FLS.LocalWiki.Models.Interfaces
 {

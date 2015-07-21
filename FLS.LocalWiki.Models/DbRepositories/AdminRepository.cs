@@ -4,11 +4,11 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class AdminRepository : IAdminRepository
+    public class DbAdminRepository : IAdminRepository
     {
         private List<Admin> m_allAdmins;
 
-        public AdminRepository()
+        public DbAdminRepository()
         {
             m_allAdmins = new List<Admin>();
         }

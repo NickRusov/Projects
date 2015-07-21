@@ -4,11 +4,11 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class DbArticleRepository : IArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         private List<Article> m_allArticles;
 
-        public DbArticleRepository()
+        public ArticleRepository()
         {
             m_allArticles = new List<Article>();
         }

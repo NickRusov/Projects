@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Configuration;
 using System.IO;
 using FLS.LocalWiki.Initializing;
@@ -10,8 +11,16 @@ namespace FLS.LocalWiki.ConsoleApplicaion
     {
         static void Main()
         {
-            var facade = SingleContainer.Instance.GetInitializedFacade();
+            var assemlyPath = AppDomain.CurrentDomain.BaseDirectory;
+            var appDataPath = Path.Combine(assemlyPath.Substring(0, assemlyPath.LastIndexOf('L')), ".\\MvcLocalWikiFromScratch\\App_Data");
+            AppDomain.CurrentDomain.SetData("DataDirectory", (Path.GetFullPath(appDataPath)));//
+
+            var facade = SingleContainer.Instance.GetInitializedFacade(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             var report = new Report(facade);
+            foreach (var article in facade.AllArticles)
+            {
+                Console.WriteLine(article);
+            }
             report.DisplayInfoAboutArticle(1);
             report.DisplayAuthor(52);
             Console.WriteLine("Next is Admin");

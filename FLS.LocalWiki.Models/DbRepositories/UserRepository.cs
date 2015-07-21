@@ -4,11 +4,11 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class DbUserRepository : IUserRepository
     {
         private List<User> m_allUsers;
 
-        public UserRepository()
+        public DbUserRepository()
         {
             m_allUsers = new List<User>();
         }

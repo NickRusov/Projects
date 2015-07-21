@@ -1,38 +1,62 @@
-﻿@using FLS.LocalWiki.Models.Entities
-@model Article
+﻿
+@using FLS.LocalWiki.Models.Entities
+@using FLS.LocalWiki.WebApplication.Models
+@model NewCommentModel
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html @*xmlns="http://www.w3.org/1999/xhtml"*@ >
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Reading Articles</title>
+    @*<script language="C#" runat="server">
+
+      void SubmitBtn_Click(Object sender, EventArgs e) 
+      {
+         Message.Text="Hello World!!";
+      }
+
+   </script>*@
 </head>
+
 <body>
-<div>
-    <p>@Model.Title</p>
-    <p>@Model.Author.FirstName @Model.Author.LastName</p>
-    <p>@Model.Text</p>
-    <p>Average rating: @Model.AverageRating</p>
-    <table> @foreach (var comment in Model.Comments)
+    @using (Html.BeginForm("AddComment", "Home", FormMethod.Post, Model.Article)) {
+
+    <p>@Model.Article.Title</p>
+    <p>@Model.Article.Author.FirstName @Model.Article.Author.LastName</p>
+    <p>@Model.Article.Text</p>
+    <p>Average rating: @Model.Article.AverageRating</p>
+    <table> @foreach (var comment in Model.Article.Comments)
             {
                 <tr>
                     <td>
-                        <p>@comment</p></td>
+                        <p>@comment</p>
+                    </td>
                 </tr>
             }
         </table>
-    <table> @foreach (var rating in Model.Ratings)
+    <table> @foreach (var rating in Model.Article.Ratings)
             {
                 <tr>
                     <td>
-                        <p>@rating</p></td>
+                        <p>@rating</p>
+                    </td>
                 </tr>
             }
         </table>
-</div>
+            
+    <p>@Html.LabelFor(m => m.Comment)</p>
+    @Html.TextAreaFor(m => m.Comment)
+        //<input id="article" name="article" type="hidden" value="@Model.Article.Id"> @Html.(m => m.Article)
+    <p><input id="AddingComment" type="submit" value="Add comment"  /></p>
+        
+    //@Html.ActionLink("Форма RSVP", "AddComment", "NewCommentController")
+    }
 </body>
 </html>

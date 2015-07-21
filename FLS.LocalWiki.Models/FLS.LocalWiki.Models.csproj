@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbRepositories\AdminRepository.cs" />
+    <Compile Include="DbRepositories\ArticleRepository.cs" />
+    <Compile Include="DbRepositories\AuthorRepository.cs" />
+    <Compile Include="DbRepositories\UserRepository.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Author.cs" />
