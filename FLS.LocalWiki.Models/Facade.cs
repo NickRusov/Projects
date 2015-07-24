@@ -7,23 +7,57 @@ namespace FLS.LocalWiki.Models
     {
         public class Facade : IFacade
         {
+            private int currentPage = 1;
             private readonly IArticleRepository m_articleRepository;
             private readonly IAuthorRepository m_authorRepository;
             private readonly IAdminRepository m_adminRepository;
             private readonly IUserRepository m_userRepository;
 
             public Facade(
-                IArticleRepository iArticle, 
-                IAuthorRepository iAuthor,
-                IAdminRepository iAdmin, 
-                IUserRepository iUser)
+                IArticleRepository articleRepository,
+                IAuthorRepository authorRepository,
+                IAdminRepository adminRepository,
+                IUserRepository userRepository)
             {
-                this.m_articleRepository = iArticle;
-                this.m_authorRepository = iAuthor;
-                this.m_adminRepository = iAdmin;
-                this.m_userRepository = iUser;
+                this.m_articleRepository = articleRepository;
+                this.m_authorRepository = authorRepository;
+                this.m_adminRepository = adminRepository;
+                this.m_userRepository = userRepository;
             }
 
+            public int CurrentPage
+            {
+                get
+                {
+                    return currentPage;
+                }
+                set
+                {
+                    if (value < 1)
+                    {
+                        currentPage = 1;
+                    }
+                    else
+                    {
+                        currentPage = value;
+                    }
+                }
+            }
+
+            public int PageBy
+            {
+                get;
+                set;
+            }
+
+
+            public int TotalPages
+            { 
+                get
+                {
+                    return m_articleRepository.Count();
+                }
+            }
             public IEnumerable<Article> AllArticles
             {
                 get
@@ -32,8 +66,15 @@ namespace FLS.LocalWiki.Models
                 }
             }
 
+            public void FillPage()
+            {
+                m_articleRepository.LoadPage(CurrentPage, PageBy);
+                return;
+            }
+
             public Article FindArticleById(int articleId)
             {
+
                 return m_articleRepository.GetAllArticles().Find(article => article.Id == articleId);
             }
 

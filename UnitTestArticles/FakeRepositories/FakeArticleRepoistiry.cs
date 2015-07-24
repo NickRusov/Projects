@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using FLS.LocalWiki.Models.Entities;
+using FLS.LocalWiki.Models.Repositories;
 using FLS.LocalWiki.Models.Interfaces;
 
 namespace LocalWiki
 {
     public class FakeArticleRepoistiry : IArticleRepository
     {
-
+        public List<Article> articles;
         public List<Article> GetAllArticles()
         {
                 var listToReturn = new List<Article>
@@ -34,8 +35,26 @@ namespace LocalWiki
             
         }
 
+        public Article GetArticle(int articleId)
+        {
+            return new Article(new Author("a", "Rusov", 20, 1, "mail adress"),
+                        "C# classes",
+                        "Some text about classes", 1);
+        }
+        public void LoadPage(int currentPage, int pageBy)
+        {
+            //DataRowCollection rows = DbHelper.GetArticlesFromDb(currentPage, pageBy).Rows;
+            //foreach (DataRow row in rows)
+            //{
+            //    this.AddArticle(new Article(new Author("firstname", "lastname", 20, 1, "email"), (string)(row["title"]), (string)(row["text"]), (int)(row["articleId"])));
+            //}
+            return;
+        }
+
         public void AddArticle(Article article)
-        {}
+        {
+            articles.Add(article);
+        }
 
         public int Count()
         {

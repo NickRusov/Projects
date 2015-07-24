@@ -1,5 +1,5 @@
 ﻿@using FLS.LocalWiki.Models.Entities
-@model IEnumerable<Article>
+@model  FLS.LocalWiki.Models.DbFacade 
 @{
     Layout = null;
 }
@@ -13,7 +13,7 @@
 </head>
 <body> 
     <div>
-        <h3>Articles</h3>
+        <h3>Page #@Model.CurrentPage of @Model.TotalPages, paged by @Model.PageBy</h3>
         <table>
             <tr><td><p>Title</p></td>
                 <td>
@@ -21,18 +21,18 @@
                 <td><p>E-mail</p></td>
                 <td></td>
             </tr>
-            @foreach (var article in Model)
+            @foreach (Article article in Model.AllArticles)
             {
             <tr>
                 <td><p>@article.Title</p></td>
                 <td>
                     <p>@article.Author.FirstName @article.Author.LastName</p></td>
                     <td><p>@article.Author.Email</p></td>
-                 <!-- <td><p>@article.</p></td> -->
                 <td><p><a href="/Home/ReadArticle/@article.Id">Read the full text</a></p></td>
             </tr>
             }
-        </table>
-    </div>
+        </table>        
+        <p> <a href="/Home/Previous/?cur=@Model.CurrentPage&by=2"> <-previous page</a>      <a href="/Home/Next/?cur=@Model.CurrentPage&by=2">next page-></a></p>
+       </div>
 </body>
 </html>

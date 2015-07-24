@@ -18,11 +18,11 @@ namespace FLS.LocalWiki.Initializing
         private static readonly SingleContainer instance = new SingleContainer();
         private static readonly Container container = new Container(x =>
                     {
-                    x.For<IArticleRepository>().Use<ArticleRepository>();
-                    x.For<IAdminRepository>().Use<AdminRepository>();
-                    x.For<IAuthorRepository>().Use<AuthorRepository>();
-                    x.For<IUserRepository>().Use<UserRepository>();
-                    x.For<IFacade>().Use<Facade>();
+                    x.For<IArticleRepository>().Use<DbArticleRepository>();
+                    x.For<IAdminRepository>().Use<DbAdminRepository>();
+                    x.For<IAuthorRepository>().Use<DbAuthorRepository>();
+                    x.For<IUserRepository>().Use<DbUserRepository>();
+                    x.For<IFacade>().Use<DbFacade>();
                     });
         private SingleContainer() { }
 
@@ -40,6 +40,21 @@ namespace FLS.LocalWiki.Initializing
             {
                 return container;
             }
+        }
+
+        public IFacade GetFacade()
+        {
+            var userRepository = Instance.Container.GetInstance<IUserRepository>();
+            var authorRepository = Instance.Container.GetInstance<IAuthorRepository>();
+            var adminRepository = Instance.Container.GetInstance<IAdminRepository>();
+            var articleRepository = Instance.Container.GetInstance<IArticleRepository>();
+            var facade = Instance.Container.
+               With<IArticleRepository>(articleRepository).
+               With<IAuthorRepository>(authorRepository).
+               With<IAdminRepository>(adminRepository).
+               With<IUserRepository>(userRepository).
+               GetInstance<IFacade>();
+            return facade;
         }
 
         public IFacade GetInitializedFacade(string connectionString)

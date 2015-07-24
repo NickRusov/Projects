@@ -4,11 +4,30 @@ using FLS.LocalWiki.Models.Entities;
 namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IFacade
-    {
+    {        
         IEnumerable<Article> AllArticles
         { 
             get; 
         }
+
+        int CurrentPage
+        {
+            get;
+            set;
+        }
+
+        int PageBy
+        {
+            get;
+            set;
+        }
+
+        int TotalPages
+        {
+            get;
+        }
+
+        void FillPage();
 
         Article FindArticleById(int articleId);
 

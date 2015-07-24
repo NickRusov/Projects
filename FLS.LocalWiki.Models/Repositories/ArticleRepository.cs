@@ -4,11 +4,11 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class DbArticleRepository : IArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         private List<Article> m_allArticles;
 
-        public DbArticleRepository()
+        public ArticleRepository()
         {
             m_allArticles = new List<Article>();
         }
@@ -18,10 +18,20 @@ namespace FLS.LocalWiki.Models.Repositories
             return m_allArticles;
         }
 
+        public Article GetArticle(int articleId)
+        {
+            return m_allArticles.FindLast(x => x.Id == articleId);
+        }
+
         public void AddArticle(Article article)
         {
             m_allArticles.Add(article);
-        }        
+        }
+
+        public void LoadPage(int currentPage, int pageBy)
+        {
+            return;
+        }
 
         public int Count()
         {

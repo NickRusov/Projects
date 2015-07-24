@@ -5,7 +5,11 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IArticleRepository
     {
-        List<Article> GetAllArticles(); 
+        List<Article> GetAllArticles();
+
+        Article GetArticle(int id);
+
+        void LoadPage(int currentPage, int pageBy);
 
         void AddArticle(Article article);
 
