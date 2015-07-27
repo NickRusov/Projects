@@ -9,7 +9,7 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         Article GetArticle(int id);
 
-        void LoadPage(int currentPage, int pageBy);
+        int LoadPage(int currentPage, int pageBy);
 
         void AddArticle(Article article);
 

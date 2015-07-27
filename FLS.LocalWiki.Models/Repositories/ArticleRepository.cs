@@ -28,9 +28,9 @@ namespace FLS.LocalWiki.Models.Repositories
             m_allArticles.Add(article);
         }
 
-        public void LoadPage(int currentPage, int pageBy)
+        public int LoadPage(int currentPage, int pageBy)
         {
-            return;
+            return 4;
         }
 
         public int Count()

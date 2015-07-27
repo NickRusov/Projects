@@ -41,14 +41,14 @@ namespace LocalWiki
                         "C# classes",
                         "Some text about classes", 1);
         }
-        public void LoadPage(int currentPage, int pageBy)
+        public int LoadPage(int currentPage, int pageBy)
         {
             //DataRowCollection rows = DbHelper.GetArticlesFromDb(currentPage, pageBy).Rows;
             //foreach (DataRow row in rows)
             //{
             //    this.AddArticle(new Article(new Author("firstname", "lastname", 20, 1, "email"), (string)(row["title"]), (string)(row["text"]), (int)(row["articleId"])));
             //}
-            return;
+            return 4;
         }
 
         public void AddArticle(Article article)

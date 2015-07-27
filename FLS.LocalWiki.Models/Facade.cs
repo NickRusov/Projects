@@ -52,11 +52,9 @@ namespace FLS.LocalWiki.Models
 
 
             public int TotalPages
-            { 
-                get
-                {
-                    return m_articleRepository.Count();
-                }
+            {
+                get;
+                set;
             }
             public IEnumerable<Article> AllArticles
             {
@@ -66,10 +64,9 @@ namespace FLS.LocalWiki.Models
                 }
             }
 
-            public void FillPage()
+            public int FillPage()
             {
-                m_articleRepository.LoadPage(CurrentPage, PageBy);
-                return;
+                return m_articleRepository.LoadPage(CurrentPage, PageBy);                
             }
 
             public Article FindArticleById(int articleId)

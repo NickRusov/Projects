@@ -9,7 +9,7 @@ namespace FLS.LocalWiki.Models
     public class DbFacade : IFacade
     {
         public ushort currentPage = 1;
-        //private int totalPages;
+        private static int totalPages;
         private readonly IArticleRepository m_articleRepository;
         private readonly IAuthorRepository m_authorRepository;
         private readonly IAdminRepository m_adminRepository;
@@ -41,9 +41,13 @@ namespace FLS.LocalWiki.Models
 
         public int TotalPages
         {
-            get
+            get 
             {
-                return (int)Math.Ceiling(DbHelper.GetTotalInTable(Table.articles) / Convert.ToDouble(PageBy));
+                return totalPages;
+            }
+            set
+            {
+                totalPages = value;
             }
         }
 
@@ -55,10 +59,9 @@ namespace FLS.LocalWiki.Models
             }
         }
 
-        public void FillPage()
+        public int FillPage()
         {
-            m_articleRepository.LoadPage(CurrentPage, PageBy);
-            return;
+            return m_articleRepository.LoadPage(CurrentPage, PageBy);            
         }
 
         public Article FindArticleById(int articleId)

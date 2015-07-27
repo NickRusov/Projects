@@ -23,7 +23,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
             DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             m_facade.CurrentPage = 1;
             m_facade.PageBy = 2;
-            m_facade.FillPage();            
+            m_facade.TotalPages = m_facade.FillPage();
             return View(m_facade);
         }
 
@@ -49,7 +49,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         public ActionResult Next(int cur, int by)
         {
             DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            if (cur < 2)//m_facade.TotalPages)
+            if (cur < m_facade.TotalPages)
             {
                 m_facade.CurrentPage = cur + 1;
             }
@@ -58,7 +58,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
                 m_facade.CurrentPage = cur;
             }
             m_facade.PageBy = by;
-            m_facade.FillPage();
+            m_facade.TotalPages = m_facade.FillPage();
             return View("Index", m_facade);
         }
 

@@ -13,7 +13,28 @@
 </head>
 <body> 
     <div>
-        <h3>Page #@Model.CurrentPage of @Model.TotalPages, paged by @Model.PageBy</h3>
+            @{
+   List<SelectListItem> listItems= new List<SelectListItem>(3);
+   listItems.Add(new SelectListItem
+        {
+          Text = "1",
+          Value = "1"
+        });
+   listItems.Add(new SelectListItem
+        {
+            Text = "2",
+            Value = "2",
+            Selected = true
+        });
+   listItems.Add(new SelectListItem
+        {
+            Text = "3",
+            Value = "3"
+        });
+}
+
+
+        <h3>Page #@Model.CurrentPage of @Model.TotalPages, paged by @Html.DropDownListFor(model => model.PageBy, listItems) </h3>
         <table>
             <tr><td><p>Title</p></td>
                 <td>
@@ -32,7 +53,7 @@
             </tr>
             }
         </table>        
-        <p> <a href="/Home/Previous/?cur=@Model.CurrentPage&by=2"> <-previous page</a>      <a href="/Home/Next/?cur=@Model.CurrentPage&by=2">next page-></a></p>
+        <p> <a href="/Home/Previous/?cur=@Model.CurrentPage&by=@Model.PageBy"> <-previous page</a>      <a href="/Home/Next/?cur=@Model.CurrentPage&by=@Model.PageBy">next page-></a></p>
        </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 
@@ -58,14 +59,14 @@ namespace FLS.LocalWiki.Models.Repositories
             return article;
         }
 
-        public void LoadPage(int currentPage, int pageBy) 
+        public int LoadPage(int currentPage, int pageBy) 
         {
             var table = DbHelper.GetArticlesFromDb(currentPage, pageBy).Rows;
             foreach (DataRow row in table)
             {
                 this.AddArticle(new Article(new Author((string)row["firstname"], (string)row["lastname"], 0, 0, (string)row["email"]), (string)(row["title"]), null, (int)(row["articleId"])));
             }
-            return;
+            return (int)Math.Ceiling(DbHelper.GetTotalInTable(Table.articles) / Convert.ToDouble(pageBy));
         }
 
         public void AddArticle(Article article)

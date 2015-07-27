@@ -25,9 +25,10 @@ namespace FLS.LocalWiki.Models.Interfaces
         int TotalPages
         {
             get;
+            set;
         }
 
-        void FillPage();
+        int FillPage();
 
         Article FindArticleById(int articleId);
 
