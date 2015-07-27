@@ -22,7 +22,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         {
             DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             m_facade.CurrentPage = 1;
-            m_facade.PageBy = 2;
+            m_facade.PageBy = 1;
             m_facade.TotalPages = m_facade.FillPage();
             return View(m_facade);
         }
