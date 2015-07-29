@@ -1,0 +1,34 @@
+﻿@model FLS.LocalWiki.WebApplication.Models.PartialComment
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddProduct</title>    
+</head>
+<body>
+    <div>      
+        <label>Id:</label>
+        @Html.TextBox("Id", Model.Id)
+        <label>Name:</label>
+        @Html.TextBox("Name", Model.Id)
+        <label>Description:</label>
+        @Html.TextBox("Description", Model.Description)
+        <label>Quantity:</label>
+        @Html.TextBox("Quantity", Model.Quantity)
+    </div>
+    @using (Html.BeginForm("AddComment", "ArticleController", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Form to add a comment</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.Comment)
+                    @Html.TextBoxFor(m => m.Comment)
+                </li>
+            </ol>
+            <input type="submit" value="Add comment" />
+        </fieldset>
+    }
+</body>
+</html>

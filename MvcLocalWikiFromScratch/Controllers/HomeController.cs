@@ -18,11 +18,11 @@ namespace FLS.LocalWiki.WebApplication.Controllers
 
         private IFacade m_facade = SingleContainer.Instance.GetFacade();
 
-        public ActionResult Index()
+        public ActionResult Index(int pageBy = 1)
         {
             DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             m_facade.CurrentPage = 1;
-            m_facade.PageBy = 1;
+            m_facade.PageBy = pageBy;
             m_facade.TotalPages = m_facade.FillPage();
             return View(m_facade);
         }
@@ -32,9 +32,8 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         [HttpGet]
         public ActionResult ReadArticle(int id)
         {
-            var model = new NewCommentModel();
-            model.Article = m_facade.FindArticleById(id);
-            return View(model);
+            var article = m_facade.FindArticleById(id);
+            return View(article);
         }
 
         [HttpGet]
@@ -57,6 +56,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
             {
                 m_facade.CurrentPage = cur;
             }
+
             m_facade.PageBy = by;
             m_facade.TotalPages = m_facade.FillPage();
             return View("Index", m_facade);
@@ -76,15 +76,15 @@ namespace FLS.LocalWiki.WebApplication.Controllers
             {
                 m_facade.CurrentPage = 1;
             }
+
             m_facade.FillPage();
             return View("Index", m_facade);
         }
 
-
         [HttpPost]
-        public ActionResult AddComment(NewCommentModel cm)
+        public ActionResult AddComment(PartialComment cm)
         {
-            cm.Article.AddComment(new Comment(cm.Comment, new User("", "", 1, 45), cm.Article.Comments.Count + 1));
+            //cm.Article.AddComment(new Comment(cm.Comment, new User("", "", 1, 45), cm.Article.Comments.Count + 1));
             return View(cm);
         }
     }

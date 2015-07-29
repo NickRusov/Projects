@@ -4,23 +4,27 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
+using System.Web.Mvc;
 using System.Web.Security;
 using FLS.LocalWiki.Models.Entities;
 
 namespace FLS.LocalWiki.WebApplication.Models
 {
-    public class NewCommentModel
+    public class PartialComment
     {
-        //public NewCommentModel(Article article)
-        //{
-        //    this.Article = article;
-        //}
+        public List<Comment> Comments
+        {
+            get; 
+            set; 
+        }
+
         [Required]
-        public Article Article;
-        //{
-        //    get;
-        //    set;
-        //}
+        [HiddenInput]
+        public int ArticleId
+        {
+            get;
+            set;
+        }
 
         [Required]
         [DataType(DataType.MultilineText)]

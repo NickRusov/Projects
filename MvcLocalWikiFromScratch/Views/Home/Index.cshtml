@@ -1,5 +1,5 @@
 ﻿@using FLS.LocalWiki.Models.Entities
-@model  FLS.LocalWiki.Models.DbFacade 
+@model  FLS.LocalWiki.Models.Interfaces.IFacade
 @{
     Layout = null;
 }
@@ -24,27 +24,35 @@
     </p>
     <div>
             @{
-   List<SelectListItem> listItems= new List<SelectListItem>(3);
-   listItems.Add(new SelectListItem
-        {
-          Text = "1",
-          Value = "1"
-        });
-   listItems.Add(new SelectListItem
-        {
-            Text = "2",
-            Value = "2",
-            Selected = true
-        });
-   listItems.Add(new SelectListItem
-        {
-            Text = "3",
-            Value = "3"
-        });
+                var listItems = new List<SelectListItem>(3)
+                    {
+                        new SelectListItem
+                        {
+                            Text = "1",
+                            Value = "1"
+                        },
+                        new SelectListItem
+                        {
+                            Text = "2",
+                            Value = "2"
+                        },
+                        new SelectListItem
+                        {
+                            Text = "3",
+                            Value = "3"
+                        }
+                    };
 }
 
+        <h3>Page:<br>
+        #@Model.CurrentPage of @Model.TotalPages<br>
+        Page size:
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            @Html.DropDownList("pageBy", listItems, new { onchange = "this.form.submit();" })  
+        }
+        </h3>
 
-        <h3>Page #@Model.CurrentPage of @Model.TotalPages, paged by @Html.DropDownListFor(model => model.PageBy, listItems) </h3>
         <table>
             <tr><td><p>Title</p></td>
                 <td>
@@ -62,7 +70,7 @@
                 <td><p><a href="/Home/ReadArticle/@article.Id">Read the full text</a></p></td>
             </tr>
             }
-        </table>     
+        </table>
        </div>
 </body>
 </html>

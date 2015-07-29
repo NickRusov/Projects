@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 using FLS.LocalWiki.Models.Repositories;
@@ -8,8 +9,7 @@ namespace FLS.LocalWiki.Models
 {
     public class DbFacade : IFacade
     {
-        public ushort currentPage = 1;
-        private static int totalPages;
+        private static int s_totalPages;
         private readonly IArticleRepository m_articleRepository;
         private readonly IAuthorRepository m_authorRepository;
         private readonly IAdminRepository m_adminRepository;
@@ -43,14 +43,14 @@ namespace FLS.LocalWiki.Models
         {
             get 
             {
-                return totalPages;
+                return s_totalPages;
             }
             set
             {
-                totalPages = value;
+                s_totalPages = value;
             }
         }
-
+        
         public IEnumerable<Article> AllArticles
         {
             get

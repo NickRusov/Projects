@@ -38,7 +38,7 @@ namespace FLS.LocalWiki.Models.Repositories
         public static DataSet GetArticle(int articleId)
         {
             var dataset = new DataSet();
-            using (SqlDataAdapter adapter =
+            using (var adapter =
                     new SqlDataAdapter(
                         @"SELECT article.title, article.text,article.authorId, u.firstname, u.lastname, u.age, author.email 
 	                    FROM dbo.articles article
