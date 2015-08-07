@@ -32,7 +32,7 @@ namespace FLS.LocalWiki.Models.Repositories
                     (string)articleRow["title"], (string)articleRow["text"], id);
             foreach (DataRow row in dataset.Tables[1].Rows)
             {
-                if (row["mark"] == System.DBNull.Value)
+                if (row["mark"] == DBNull.Value)
                 {
                     article.AddComment(new Comment(
                         (string)row["text"],
@@ -58,6 +58,58 @@ namespace FLS.LocalWiki.Models.Repositories
             }
             return article;
         }
+
+        public bool AddComment(NewComment newComment)
+        {
+            const string insertQueryString = 
+                @"INSERT INTO dbo.comments (userId, articleId, text)
+                    VALUES (@userId, @articleId, @text);";
+            var insertCommand = new System.Data.SqlClient.SqlCommand(insertQueryString);
+            insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
+            insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
+            insertCommand.Parameters.AddWithValue("@text", newComment.Comment);
+            return DbHelper.Insert(insertCommand);
+
+        }
+
+        //public  GetArticleComments(int articleId)
+        //{
+        //    var dataset = DbHelper.GetArticle(articleId);
+        //    var articleRow = dataset.Tables[0].Rows[0];
+        //    var article = new Article(new Author((string)articleRow["firstname"],
+        //                    (string)articleRow["lastname"],
+        //                    (short)articleRow["age"],
+        //                    (int)articleRow["authorId"],
+        //                    (string)articleRow["email"]),
+        //            (string)articleRow["title"], (string)articleRow["text"], id);
+        //    foreach (DataRow row in dataset.Tables[1].Rows)
+        //    {
+        //        if (row["mark"] == DBNull.Value)
+        //        {
+        //            article.AddComment(new Comment(
+        //                (string)row["text"],
+        //                new User(
+        //                    (string)row["firstname"],
+        //                    (string)row["lastname"],
+        //                    (short)row["age"],
+        //                    (int)row["userId"]),
+        //                (int)row["commentId"]));
+        //        }
+        //        else
+        //        {
+        //            article.AddRating(new Rating(
+        //                (string)row["text"],
+        //                new User(
+        //                    (string)row["firstname"],
+        //                    (string)row["lastname"],
+        //                    (short)row["age"],
+        //                    (int)row["userId"]),
+        //                (byte)row["mark"],
+        //                (int)row["commentId"]));
+        //        }
+        //    }
+        //    return article;
+        //}
 
         public int LoadPage(int currentPage, int pageBy) 
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace FLS.LocalWiki.WebApplication
@@ -20,15 +16,14 @@ namespace FLS.LocalWiki.WebApplication
 
             //routes.MapRoute(
             //    name: "Paging",
-            //    url: "{controller}/{action}/{currentPage}/{pageBy}/{next}",
-            //    defaults: new { controller = "Home", action = "Index", currentPage = UrlParameter.Optional, pageBy = UrlParameter.Optional, next = UrlParameter.Optional });
+            //    url: "{controller}/{action}/{currentPage}/{pageBy}",
+            //    defaults: new {controller = "Home", action = "Index"});// currentPage = UrlParameter.Optional, pageBy = UrlParameter.Optional, next = UrlParameter.Optional });
 
-            //routes.MapRoute(
-            //  name: "Paging",
-            //  url: "{controller}/{action}/{currentPage}&{pageBy}", //  /{pageBy} , pageBy = UrlParameter.Optional
-            //  defaults: new { controller = "Home", action = "Next", currentPage = UrlParameter.Optional }
-            //  );
-        
+            routes.MapRoute(
+              name: "NewComment",
+              url: "{controller}/{action}/{articleId}/{comment}", //  /{pageBy} , pageBy = UrlParameter.Optional
+              defaults: new { controller = "Home", action = "AddComment", articleId = UrlParameter.Optional, comment = UrlParameter.Optional }
+              );
         }
     }
 }

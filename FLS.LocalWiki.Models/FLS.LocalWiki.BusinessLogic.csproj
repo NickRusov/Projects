@@ -31,7 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,9 +52,6 @@
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Comment.cs" />
-    <Compile Include="Facade.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Interfaces\IAdminRepository.cs" />
     <Compile Include="Interfaces\IArticleRepository.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
@@ -60,19 +59,8 @@
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Entities\ProEntity.cs" />
     <Compile Include="Entities\Rating.cs" />
-    <Compile Include="Repositories\AdminRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Repositories\ArticleRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Repositories\AuthorRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="NewComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\UserRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Entities\User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

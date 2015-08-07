@@ -23,20 +23,6 @@ namespace FLS.LocalWiki.ConsoleApplicaion
             foreach (DataRow row in r.Rows)
                 Console.WriteLine((string)(row["title"]));
             Console.WriteLine(DbHelper.GetTotalInTable(Table.articles));
-            //var facade = SingleContainer.Instance.GetInitializedFacade(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            //var report = new Report(facade);
-            //foreach (var article in facade.AllArticles)
-            //{
-            //    Console.WriteLine(article);
-            //}
-            //report.DisplayInfoAboutArticle(1);
-            //report.DisplayAuthor(52);
-            //Console.WriteLine("Next is Admin");
-            //report.DisplayAdmin(3);
-            //Console.WriteLine("Here text");
-            //report.ReadArticle(3);
-            //report.FindArticles("C# classes");
-            //report.FindUsers("");
         }
     }
 }

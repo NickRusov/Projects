@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FLS.LocalWiki.Models.Entities;
-using FLS.LocalWiki.WebApplication.Models;
+using FLS.LocalWiki.Models;
 
 namespace FLS.LocalWiki.WebApplication.Controllers
 {
@@ -14,14 +14,13 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         //public ActionResult AddComment()
         //{
         //    //cm.Article.AddComment(new Comment(cm.Comment, null, cm.Article.Comments.Count + 1));
-        //    return View();
+        //    return PartialView("Comments");
         //}
 
         [HttpPost]
-        public ActionResult AddComment(PartialComment comment)
+        public PartialViewResult AddComment(int userId, int articleId, string comment)
         {
-            //cm.Article.AddComment(new Comment(cm.Comment, null, cm.Article.Comments.Count + 1));
-            return View("PartialComment", comment);
+            return PartialView("Comments", new NewComment(userId, articleId, comment));
         }
     }
 }

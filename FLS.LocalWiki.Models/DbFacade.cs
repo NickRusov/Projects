@@ -66,8 +66,13 @@ namespace FLS.LocalWiki.Models
 
         public Article FindArticleById(int articleId)
         {
-
             return m_articleRepository.GetArticle(articleId);
+        }
+
+        public bool AddComment(NewComment newComment)
+        {
+            return m_articleRepository.AddComment(newComment);
+
         }
 
         public List<Article> FindArticlesByTitle(string title)

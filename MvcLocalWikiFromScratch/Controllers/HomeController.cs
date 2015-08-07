@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using FLS.LocalWiki.WebApplication.Models;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using FLS.LocalWiki.Initializing;
+using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 using FLS.LocalWiki.Models.Repositories;
-using FLS.LocalWiki.WebApplication.Models;
 
 namespace FLS.LocalWiki.WebApplication.Controllers
 {
@@ -18,7 +18,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
 
         private IFacade m_facade = SingleContainer.Instance.GetFacade();
 
-        public ActionResult Index(int pageBy = 1)
+        public ActionResult Index(int pageBy = 2)
         {
             DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             m_facade.CurrentPage = 1;
@@ -32,15 +32,9 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         [HttpGet]
         public ActionResult ReadArticle(int id)
         {
-            var article = m_facade.FindArticleById(id);
-            return View(article);
-        }
-
-        [HttpGet]
-        public ActionResult AddComment()
-        {
-            //cm.Article.AddComment(new Comment(cm.Comment, null, cm.Article.Comments.Count + 1));
-            return View();
+            var articleViewModel = new ArticleViewModel();
+            articleViewModel.Article = m_facade.FindArticleById(id);
+            return View("~/Views/Article/ReadArticle.cshtml", articleViewModel);
         }
 
         // GET: /Home/Next/
@@ -82,10 +76,12 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddComment(PartialComment cm)
+        public ActionResult AddComment(/*int userId,*/ int articleId, string comment) //NewComment newComment)
         {
-            //cm.Article.AddComment(new Comment(cm.Comment, new User("", "", 1, 45), cm.Article.Comments.Count + 1));
-            return View(cm);
+            m_facade.AddComment(new NewComment(1, articleId, comment));
+            return ReadArticle(articleId);
+            //m_facade.AddComment(new NewComment(1, newComment.ArticleId, newComment.Comment));
+            //return ReadArticle(newComment.ArticleId);
         }
     }
 }

@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
+
 
 namespace FLS.LocalWiki.Models.Repositories
 {
     public static class DbHelper
     {
-        private static string m_connectionString;
+        private static /*readonly*/ string m_connectionString;
 
         public static void SetConnectionString(string connectionString)
         {
@@ -19,7 +17,7 @@ namespace FLS.LocalWiki.Models.Repositories
         public static DataTable GetArticlesFromDb(int currentPage, int pageBy)
         {
             var dataTable = new DataTable();            
-            using (SqlDataAdapter adapter =
+            using (var adapter =
                     new SqlDataAdapter(@"SELECT article.articleId, article.title, u.firstname, u.lastname, author.email 
 	                    FROM dbo.articles article
 	                    JOIN dbo.users u
@@ -28,8 +26,8 @@ namespace FLS.LocalWiki.Models.Repositories
                         ON u.Id = author.userId
                         ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY", m_connectionString))
             {
-                adapter.SelectCommand.Parameters.AddWithValue("rows", (int)((currentPage - 1) * pageBy));
-                adapter.SelectCommand.Parameters.AddWithValue("pageBy", (int)pageBy);
+                adapter.SelectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
+                adapter.SelectCommand.Parameters.AddWithValue("pageBy", pageBy);
                 adapter.Fill(dataTable);                
             }
             return dataTable;
@@ -37,6 +35,7 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public static DataSet GetArticle(int articleId)
         {
+            var d = new SqlDataAdapter(null, m_connectionString);
             var dataset = new DataSet();
             using (var adapter =
                     new SqlDataAdapter(
@@ -75,6 +74,29 @@ namespace FLS.LocalWiki.Models.Repositories
                 total = (int)dataTable.Rows[0][0];
             }
             return total;
+        }
+
+        public static bool Insert(SqlCommand insertCommand)
+        {
+            bool inserted;
+            using (var connection = new SqlConnection(m_connectionString))
+            {
+                //var insertCommand = new SqlCommand(insertQueryString);
+                //insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
+                //insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
+                //insertCommand.Parameters.AddWithValue("@text", newComment.Comment);
+                insertCommand.Connection = connection;
+                try
+                {
+                    connection.Open();
+                    inserted = insertCommand.ExecuteNonQuery() > 0;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return inserted;
         }
     }
 }

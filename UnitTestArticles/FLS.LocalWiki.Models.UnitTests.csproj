@@ -66,9 +66,9 @@
     <Compile Include="ReadCommentsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.Models.csproj">
+    <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.BusinessLogic.csproj">
       <Project>{557b403b-3500-4140-97b7-641696b88123}</Project>
-      <Name>FLS.LocalWiki.Models</Name>
+      <Name>FLS.LocalWiki.BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

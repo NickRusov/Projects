@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.ConsoleApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.Models.UnitTests", "UnitTestArticles\FLS.LocalWiki.Models.UnitTests.csproj", "{CFF7EA71-B91A-4995-884C-76656AADFDA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.Models", "FLS.LocalWiki.Models\FLS.LocalWiki.Models.csproj", "{557B403B-3500-4140-97B7-641696B88123}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.BusinessLogic", "FLS.LocalWiki.Models\FLS.LocalWiki.BusinessLogic.csproj", "{557B403B-3500-4140-97B7-641696B88123}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLS.LocalWiki.WebApplication", "MvcLocalWikiFromScratch\FLS.LocalWiki.WebApplication.csproj", "{565DB427-01E2-4DB0-AEBD-28EC1D3BDEC6}"
 EndProject

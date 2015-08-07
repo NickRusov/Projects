@@ -32,6 +32,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         Article FindArticleById(int articleId);
 
+        bool AddComment(NewComment newComment);
+
         List<Article> FindArticlesByTitle(string title);
 
         Author FindAuthorById(int authorId);

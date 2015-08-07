@@ -15,11 +15,11 @@
     <p> 
     @if(Model.CurrentPage > 1)
     {
-        <a href="/Home/Previous/?cur=@Model.CurrentPage&by=@Model.PageBy"><-previous page </a>  
+        @Html.ActionLink("<-previous page", "Previous", "Home", new { cur = @Model.CurrentPage, by = @Model.PageBy}, null)  
     }
     @if (Model.CurrentPage < Model.TotalPages) 
     {
-        <a href="/Home/Next/?cur=@Model.CurrentPage&by=@Model.PageBy">next page-></a> 
+        @Html.ActionLink("next page->", "Next", "Home", new { cur = @Model.CurrentPage, by = @Model.PageBy}, null)
     }
     </p>
     <div>
@@ -66,8 +66,8 @@
                 <td><p>@article.Title</p></td>
                 <td>
                     <p>@article.Author.FirstName @article.Author.LastName</p></td>
-                    <td><p>@article.Author.Email</p></td>
-                <td><p><a href="/Home/ReadArticle/@article.Id">Read the full text</a></p></td>
+                <td><p>@article.Author.Email</p></td>
+                <td>@Html.ActionLink("Read the full text", "ReadArticle", "Home", new { id = @article.Id }, null)</td>
             </tr>
             }
         </table>

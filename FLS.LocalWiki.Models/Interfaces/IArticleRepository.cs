@@ -9,6 +9,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         Article GetArticle(int id);
 
+        bool AddComment(NewComment newComment);
+
         int LoadPage(int currentPage, int pageBy);
 
         void AddArticle(Article article);

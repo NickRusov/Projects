@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Threading.Tasks;
+using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Repositories;
 using FLS.LocalWiki.Models.Interfaces;
@@ -12,8 +13,13 @@ namespace LocalWiki
     public class FakeArticleRepoistiry : IArticleRepository
     {
         public List<Article> articles;
-        public List<Article> GetAllArticles()
+        
+        public bool AddComment(NewComment newComment)
         {
+            return false;
+        }
+        public List<Article> GetAllArticles()
+    {
                 var listToReturn = new List<Article>
                 {
                     new Article(new Author("a", "Rusov", 20,1,  "mail adress"),
