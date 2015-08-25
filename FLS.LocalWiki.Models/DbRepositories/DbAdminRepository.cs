@@ -6,10 +6,18 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class DbAdminRepository : IAdminRepository
     {
+        private const string m_adminsTableName = "admins";
         private List<Admin> m_allAdmins;
 
-        public DbAdminRepository()
+        private readonly string m_connectionString;
+
+        public string ConnectionString {
+            get { return m_connectionString; }
+        }
+
+        public DbAdminRepository(string connectionString)
         {
+            m_connectionString = connectionString;
             m_allAdmins = new List<Admin>();
         }
         

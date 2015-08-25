@@ -5,6 +5,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IUserRepository
     {
+        string ConnectionString { get; }
+
         List<User> GetAllUsers();
 
         void AddUser(User user);

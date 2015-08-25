@@ -1,10 +1,10 @@
 ﻿using System;
 using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Interfaces;
-using LocalWiki;
+using FLS.LocalWiki.UnitTestsforModels.FakeRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTestArticles
+namespace FLS.LocalWiki.UnitTestsforModels
 {
     [TestClass]
     public class GetAverageRatingTests

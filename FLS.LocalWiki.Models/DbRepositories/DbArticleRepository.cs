@@ -8,10 +8,21 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class DbArticleRepository : IArticleRepository
     {
-        private List<Article> m_allArticles;
+        private const string m_articleTableName = "articles";
+        private const string m_commentsTableName = "comments";
+        private const string m_ratingsTableName = "ratings";
 
-        public DbArticleRepository()
+        private readonly string m_connectionString;
+        private List<Article> m_allArticles;
+        
+
+        public string ConnectionString {
+            get { return m_connectionString; }
+        }
+
+        public DbArticleRepository(string connectionString)
         {
+            m_connectionString = connectionString;
             m_allArticles = new List<Article>();
         }
 
@@ -22,7 +33,7 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public Article GetArticle(int id)
         {
-            var dataset = DbHelper.GetArticle(id);
+            var dataset = DbHelper.GetArticle(id, ConnectionString);
             var articleRow = dataset.Tables[0].Rows[0];
             var article = new Article(new Author((string)articleRow["firstname"],
                             (string)articleRow["lastname"],
@@ -68,7 +79,7 @@ namespace FLS.LocalWiki.Models.Repositories
             insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
             insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
             insertCommand.Parameters.AddWithValue("@text", newComment.Comment);
-            return DbHelper.Insert(insertCommand);
+            return DbHelper.ExecuteCommand(insertCommand, ConnectionString) > 0;
 
         }
 
@@ -113,12 +124,12 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public int LoadPage(int currentPage, int pageBy) 
         {
-            var table = DbHelper.GetArticlesFromDb(currentPage, pageBy).Rows;
+            var table = DbHelper.GetArticlesFromDb(currentPage, pageBy, ConnectionString).Rows;
             foreach (DataRow row in table)
             {
                 this.AddArticle(new Article(new Author((string)row["firstname"], (string)row["lastname"], 0, 0, (string)row["email"]), (string)(row["title"]), null, (int)(row["articleId"])));
             }
-            return (int)Math.Ceiling(DbHelper.GetTotalInTable(Table.articles) / Convert.ToDouble(pageBy));
+            return (int)Math.Ceiling(DbHelper.GetTotalInTable(m_articleTableName, ConnectionString) / Convert.ToDouble(pageBy));
         }
 
         public void AddArticle(Article article)
@@ -128,7 +139,7 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public int Count()
         {
-            return DbHelper.GetTotalInTable(Table.articles);
+            return DbHelper.GetTotalInTable(m_articleTableName, ConnectionString);
         }
     }
 }

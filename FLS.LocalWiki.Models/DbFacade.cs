@@ -59,6 +59,26 @@ namespace FLS.LocalWiki.Models
             }
         }
 
+        public string AdminConnectionString
+        {
+            get { return m_adminRepository.ConnectionString; }
+        }
+
+        public string ArticleConnectionString
+        {
+            get { return m_articleRepository.ConnectionString; }
+        }
+
+        public string AuthorConnectionString
+        {
+            get { return m_authorRepository.ConnectionString; }
+        }
+
+        public string UserConnectionString
+        {
+            get { return m_userRepository.ConnectionString; }
+        }
+
         public int FillPage()
         {
             return m_articleRepository.LoadPage(CurrentPage, PageBy);            

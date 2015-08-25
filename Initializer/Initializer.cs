@@ -37,12 +37,12 @@ namespace FLS.LocalWiki.Initializing
             }
         }
 
-        public IFacade GetFacade()
+        public IFacade GetFacade(string connectionString)
         {
-            var userRepository = Instance.Container.GetInstance<IUserRepository>();
-            var authorRepository = Instance.Container.GetInstance<IAuthorRepository>();
-            var adminRepository = Instance.Container.GetInstance<IAdminRepository>();
-            var articleRepository = Instance.Container.GetInstance<IArticleRepository>();
+            var userRepository = Instance.Container.With<string>(connectionString).GetInstance<IUserRepository>();
+            var authorRepository = Instance.Container.With<string>(connectionString).GetInstance<IAuthorRepository>();
+            var adminRepository = Instance.Container.With<string>(connectionString).GetInstance<IAdminRepository>();
+            var articleRepository = Instance.Container.With<string>(connectionString).GetInstance<IArticleRepository>();
             var facade = Instance.Container.
                With<IArticleRepository>(articleRepository).
                With<IAuthorRepository>(authorRepository).

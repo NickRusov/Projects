@@ -5,6 +5,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IArticleRepository
     {
+        string ConnectionString { get; }
+
         List<Article> GetAllArticles();
 
         Article GetArticle(int id);

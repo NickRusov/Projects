@@ -28,6 +28,14 @@ namespace FLS.LocalWiki.Models.Interfaces
             set;
         }
 
+        string AdminConnectionString { get; }
+
+        string ArticleConnectionString { get; }
+
+        string AuthorConnectionString { get; }
+
+        string UserConnectionString { get; }
+
         int FillPage();
 
         Article FindArticleById(int articleId);

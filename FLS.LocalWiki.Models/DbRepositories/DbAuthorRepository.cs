@@ -6,10 +6,18 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public class DbAuthorRepository : IAuthorRepository
     {
+        private const string m_authorsTableName = "authors";
         private List<Author> m_allAuthors;
 
-        public DbAuthorRepository()
+        private readonly string m_connectionString;
+
+        public string ConnectionString {
+            get { return m_connectionString; }
+        }
+
+        public DbAuthorRepository(string connectionString)
         {
+            m_connectionString = connectionString;
             m_allAuthors = new List<Author>();
         }
 

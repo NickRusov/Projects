@@ -5,6 +5,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 {
     public interface IAdminRepository
     {
+        string ConnectionString { get; }
+
         List<Admin> GetAllAdmins();
 
         void AddAdmin(Admin admin);

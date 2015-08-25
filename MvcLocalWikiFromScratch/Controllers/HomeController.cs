@@ -16,11 +16,11 @@ namespace FLS.LocalWiki.WebApplication.Controllers
     {
         // GET: /Home/
 
-        private IFacade m_facade = SingleContainer.Instance.GetFacade();
+        private IFacade m_facade = SingleContainer.Instance.GetFacade(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         public ActionResult Index(int pageBy = 2)
         {
-            DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             m_facade.CurrentPage = 1;
             m_facade.PageBy = pageBy;
             m_facade.TotalPages = m_facade.FillPage();
@@ -41,7 +41,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         [HttpGet]
         public ActionResult Next(int cur, int by)
         {
-            DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             if (cur < m_facade.TotalPages)
             {
                 m_facade.CurrentPage = cur + 1;
@@ -61,7 +61,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         public ActionResult Previous(int cur, int by)
         {
             m_facade.PageBy = by;
-            DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             if (cur > 2)
             {
                 m_facade.CurrentPage = cur - 1;                

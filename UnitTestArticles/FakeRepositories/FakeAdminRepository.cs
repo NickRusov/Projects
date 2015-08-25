@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 
 
-namespace LocalWiki
+namespace FLS.LocalWiki.UnitTestsforModels.FakeRepositories
 {
     public class FakeAdminRepoistory : IAdminRepository
     {
+        public string ConnectionString {
+            get { return ""; }
+        }
 
         public List<Admin> GetAllAdmins()
         {

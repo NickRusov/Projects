@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
 using FLS.LocalWiki.Models.Entities;
 
-namespace LocalWiki
+namespace FLS.LocalWiki.UnitTestsforModels.FakeRepositories
 {
     public class FakeAuthorRepoistory : FLS.LocalWiki.Models.Interfaces.IAuthorRepository
     {
+        public string ConnectionString
+        {
+            get { return ""; }
+        }
+
         public List<Author> GetAllAuthors()
         {
                 const string mail = "e-mail@example.com";

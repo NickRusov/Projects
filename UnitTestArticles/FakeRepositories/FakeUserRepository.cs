@@ -4,10 +4,14 @@ using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 
 
-namespace LocalWiki
+namespace FLS.LocalWiki.UnitTestsforModels.FakeRepositories
 {
     public class FakeUserRepoistory : IUserRepository
     {
+        public string ConnectionString
+        {
+            get { return ""; }
+        }
 
         public List<User> GetAllUsers()
         {

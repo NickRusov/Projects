@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using LocalWiki;
 using NMock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FLS.LocalWiki.Models.Interfaces;
 using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Entities;
+using FLS.LocalWiki.UnitTestsforModels.FakeRepositories;
 
-namespace UnitTestArticles
+namespace FLS.LocalWiki.UnitTestsforModels
 {
     [TestClass]
     public class FacadeFindTests

@@ -8,12 +8,17 @@ using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Repositories;
 using FLS.LocalWiki.Models.Interfaces;
 
-namespace LocalWiki
+namespace FLS.LocalWiki.UnitTestsforModels.FakeRepositories
 {
     public class FakeArticleRepoistiry : IArticleRepository
     {
         public List<Article> articles;
-        
+
+        public string ConnectionString
+        {
+            get { return ""; }
+        }
+
         public bool AddComment(NewComment newComment)
         {
             return false;

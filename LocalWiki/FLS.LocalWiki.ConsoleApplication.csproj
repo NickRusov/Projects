@@ -56,11 +56,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.BusinessLogic.csproj">
       <Project>{557b403b-3500-4140-97b7-641696b88123}</Project>

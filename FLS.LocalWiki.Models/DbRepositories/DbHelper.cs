@@ -7,14 +7,7 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public static class DbHelper
     {
-        private static /*readonly*/ string m_connectionString;
-
-        public static void SetConnectionString(string connectionString)
-        {
-            m_connectionString = connectionString;
-        }
-
-        public static DataTable GetArticlesFromDb(int currentPage, int pageBy)
+        public static DataTable GetArticlesFromDb(int currentPage, int pageBy, string connectionString)
         {
             var dataTable = new DataTable();            
             using (var adapter =
@@ -24,7 +17,7 @@ namespace FLS.LocalWiki.Models.Repositories
                         ON u.Id = article.authorId
                         JOIN dbo.authors author
                         ON u.Id = author.userId
-                        ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY", m_connectionString))
+                        ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY", connectionString))
             {
                 adapter.SelectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
                 adapter.SelectCommand.Parameters.AddWithValue("pageBy", pageBy);
@@ -33,9 +26,8 @@ namespace FLS.LocalWiki.Models.Repositories
             return dataTable;
         }
 
-        public static DataSet GetArticle(int articleId)
+        public static DataSet GetArticle(int articleId, string connectionString)
         {
-            var d = new SqlDataAdapter(null, m_connectionString);
             var dataset = new DataSet();
             using (var adapter =
                     new SqlDataAdapter(
@@ -45,7 +37,7 @@ namespace FLS.LocalWiki.Models.Repositories
                         ON u.Id = article.authorId
                         JOIN dbo.authors author
                         ON u.Id = author.userId
-                        WHERE articleId = @articleId", m_connectionString))
+                        WHERE articleId = @articleId", connectionString))
             {                
                 adapter.SelectCommand.Parameters.AddWithValue("articleId", articleId);
                 adapter.Fill(dataset);
@@ -62,12 +54,12 @@ namespace FLS.LocalWiki.Models.Repositories
             return dataset;
         }
 
-        public static int GetTotalInTable(Table table)
+        public static int GetTotalInTable(string tableName, string connectionString)
         {
             int total;
-            using (var adapter = 
-                new SqlDataAdapter(String.Format("SELECT Count(*) FROM dbo.[{0}]", table.ToString()),
-                    m_connectionString))
+            using (var adapter =
+                new SqlDataAdapter(String.Format("SELECT Count(*) FROM dbo.[{0}]", tableName),
+                    connectionString))
             {
                 var dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -76,27 +68,16 @@ namespace FLS.LocalWiki.Models.Repositories
             return total;
         }
 
-        public static bool Insert(SqlCommand insertCommand)
+        public static int ExecuteCommand(SqlCommand command, string connectionString)
         {
-            bool inserted;
-            using (var connection = new SqlConnection(m_connectionString))
+            int affected;
+            using (var connection = new SqlConnection(connectionString))
             {
-                //var insertCommand = new SqlCommand(insertQueryString);
-                //insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
-                //insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
-                //insertCommand.Parameters.AddWithValue("@text", newComment.Comment);
-                insertCommand.Connection = connection;
-                try
-                {
-                    connection.Open();
-                    inserted = insertCommand.ExecuteNonQuery() > 0;
-                }
-                catch
-                {
-                    return false;
-                }
+                command.Connection = connection;
+                command.Connection.Open();
+                affected = command.ExecuteNonQuery();
             }
-            return inserted;
+            return affected;
         }
     }
 }
