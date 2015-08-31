@@ -36,7 +36,7 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         string UserConnectionString { get; }
 
-        int FillPage();
+        int FillPage(int currentPage, int pageBy);
 
         Article FindArticleById(int articleId);
 

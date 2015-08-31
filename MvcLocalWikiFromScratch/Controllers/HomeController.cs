@@ -1,7 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Security.Policy;
 using FLS.LocalWiki.WebApplication.Models;
-using System.Linq;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using FLS.LocalWiki.Initializing;
@@ -16,15 +15,42 @@ namespace FLS.LocalWiki.WebApplication.Controllers
     {
         // GET: /Home/
 
-        private IFacade m_facade = SingleContainer.Instance.GetFacade(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        private readonly IFacade m_facade = SingleContainer.Instance.GetFacade(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        private HomeViewModel m_homeViewModel;
 
-        public ActionResult Index(int pageBy = 2)
+        public ActionResult Index(int pageBy = 2, int currentPage = 1) //, string sortBy = null
         {
-            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            m_facade.CurrentPage = 1;
-            m_facade.PageBy = pageBy;
-            m_facade.TotalPages = m_facade.FillPage();
-            return View(m_facade);
+            m_homeViewModel = new HomeViewModel
+            {
+                PageInfo = new PagingInfo
+                {
+                    CurrentPage = currentPage,
+                    PageBy = pageBy,
+                    TotalPages = m_facade.FillPage(currentPage, pageBy)
+                },
+                ItemsforPagingBy = new List<SelectListItem>(3)
+                {
+                    new SelectListItem
+                    {
+                        Text = "1",
+                        Value = "1"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "2",
+                        Value = "2"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "3",
+                        Value = "3"
+                    }
+                },
+                Facade = m_facade
+            };
+
+            m_homeViewModel.ItemsforPagingBy.Find(item => (item.Value == pageBy.ToString())).Selected = true;
+            return View(m_homeViewModel);
         }
 
         // GET: /Home/ReadArticle/@article.Id
@@ -32,56 +58,11 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         [HttpGet]
         public ActionResult ReadArticle(int id)
         {
-            var articleViewModel = new ArticleViewModel();
-            articleViewModel.Article = m_facade.FindArticleById(id);
+            var articleViewModel = new ArticleViewModel
+            {
+                Article = m_facade.FindArticleById(id)
+            };
             return View("~/Views/Article/ReadArticle.cshtml", articleViewModel);
-        }
-
-        // GET: /Home/Next/
-        [HttpGet]
-        public ActionResult Next(int cur, int by)
-        {
-            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            if (cur < m_facade.TotalPages)
-            {
-                m_facade.CurrentPage = cur + 1;
-            }
-            else
-            {
-                m_facade.CurrentPage = cur;
-            }
-
-            m_facade.PageBy = by;
-            m_facade.TotalPages = m_facade.FillPage();
-            return View("Index", m_facade);
-        }
-
-        // GET: /Home/Previous/
-        [HttpGet]
-        public ActionResult Previous(int cur, int by)
-        {
-            m_facade.PageBy = by;
-            //DbHelper.SetConnectionString(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            if (cur > 2)
-            {
-                m_facade.CurrentPage = cur - 1;                
-            }
-            else
-            {
-                m_facade.CurrentPage = 1;
-            }
-
-            m_facade.FillPage();
-            return View("Index", m_facade);
-        }
-
-        [HttpPost]
-        public ActionResult AddComment(/*int userId,*/ int articleId, string comment) //NewComment newComment)
-        {
-            m_facade.AddComment(new NewComment(1, articleId, comment));
-            return ReadArticle(articleId);
-            //m_facade.AddComment(new NewComment(1, newComment.ArticleId, newComment.Comment));
-            //return ReadArticle(newComment.ArticleId);
         }
     }
 }

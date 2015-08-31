@@ -9,15 +9,19 @@ namespace FLS.LocalWiki.WebApplication
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
-
             //routes.MapRoute(
             //    name: "Paging",
-            //    url: "{controller}/{action}/{currentPage}/{pageBy}",
-            //    defaults: new {controller = "Home", action = "Index"});// currentPage = UrlParameter.Optional, pageBy = UrlParameter.Optional, next = UrlParameter.Optional });
+            //    url: "{controller}/{action}/pageBy_{pageBy}#{currentPage}",
+            //    defaults: new { controller = "Home", action = "Index" });
+            //routes.MapRoute(
+            //    name: "PageBy",
+            //    url: "{controller}/{action}/pageBy={pageBy}",
+            //    defaults: new { controller = "Home", action = "Index" });
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" });
 
             routes.MapRoute(
               name: "NewComment",

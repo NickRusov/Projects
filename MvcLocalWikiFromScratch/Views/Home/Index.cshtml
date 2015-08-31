@@ -1,9 +1,14 @@
-﻿@using FLS.LocalWiki.Models.Entities
-@model  FLS.LocalWiki.Models.Interfaces.IFacade
+﻿@using System.Web.UI.WebControls
+@using FLS.LocalWiki.Models.Entities;
+@using PagedList;
+@using PagedList.Mvc;
+@model  FLS.LocalWiki.WebApplication.Models.HomeViewModel
 @{
     Layout = null;
 }
+<link href="@Url.Content("/Content/PagedList.css")" rel="stylesheet"
 
+          type="text/css" />
 <!DOCTYPE html>
 
 <html>
@@ -12,65 +17,61 @@
     <title>Local Wiki</title>
 </head>
 <body> 
-    <p> 
-    @if(Model.CurrentPage > 1)
-    {
-        @Html.ActionLink("<-previous page", "Previous", "Home", new { cur = @Model.CurrentPage, by = @Model.PageBy}, null)  
-    }
-    @if (Model.CurrentPage < Model.TotalPages) 
-    {
-        @Html.ActionLink("next page->", "Next", "Home", new { cur = @Model.CurrentPage, by = @Model.PageBy}, null)
+    <p>
+    @{
+        
     }
     </p>
-    <div>
-            @{
-                var listItems = new List<SelectListItem>(3)
-                    {
-                        new SelectListItem
-                        {
-                            Text = "1",
-                            Value = "1"
-                        },
-                        new SelectListItem
-                        {
-                            Text = "2",
-                            Value = "2"
-                        },
-                        new SelectListItem
-                        {
-                            Text = "3",
-                            Value = "3"
-                        }
-                    };
-}
+<div>
 
-        <h3>Page:<br>
-        #@Model.CurrentPage of @Model.TotalPages<br>
-        Page size:
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    Page size:
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        @Html.DropDownList("pageBy", Model.ItemsforPagingBy, new {onchange = "this.form.submit();"})
+    }
+
+
+    <div style="text-align: left;">
+
+        @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
         {
-            @Html.DropDownList("pageBy", listItems, new { onchange = "this.form.submit();" })  
+            @*<a href="/Home/Index/pageBy_@Model.PageInfo.PageBy#@i"> @i  page| </a>*@
+            @Html.ActionLink(i + " page| ", "Index", "Home", new {pageBy = Model.PageInfo.PageBy, currentPage = i}, null);
         }
-        </h3>
 
-        <table>
-            <tr><td><p>Title</p></td>
-                <td>
-                    <p>Author</p></td>
-                <td><p>E-mail</p></td>
-                <td></td>
-            </tr>
-            @foreach (Article article in Model.AllArticles)
+
+    </div>
+
+    <h3>Page:<br>
+        #@Model.PageInfo.CurrentPage of @Model.PageInfo.TotalPages<br>
+
+
+    </h3>
+
+    <table>
+        <tr><td>
+                <p>Title</p></td>
+            <td>
+                <p>Author</p></td>
+            <td>
+                <p>E-mail</p></td>
+            <td></td>
+        </tr>
+        @foreach (Article article in Model.Facade.AllArticles)
             {
-            <tr>
-                <td><p>@article.Title</p></td>
-                <td>
-                    <p>@article.Author.FirstName @article.Author.LastName</p></td>
-                <td><p>@article.Author.Email</p></td>
-                <td>@Html.ActionLink("Read the full text", "ReadArticle", "Home", new { id = @article.Id }, null)</td>
-            </tr>
+                <tr>
+                    <td>
+                        <p>@article.Title</p></td>
+                    <td>
+                        <p>@article.Author.FirstName @article.Author.LastName</p></td>
+                    <td>
+                        <p>@article.Author.Email</p></td>
+                    <td>@Html.ActionLink("Read the full text", "ReadArticle", "Home", new {id = @article.Id}, null)</td>
+                </tr>
             }
-        </table>
-       </div>
+
+    </table>
+</div>
+    
 </body>
 </html>

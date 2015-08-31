@@ -79,9 +79,9 @@ namespace FLS.LocalWiki.Models
             get { return m_userRepository.ConnectionString; }
         }
 
-        public int FillPage()
+        public int FillPage(int currentPage, int pageBy)
         {
-            return m_articleRepository.LoadPage(CurrentPage, PageBy);            
+            return m_articleRepository.LoadPage(currentPage, pageBy);
         }
 
         public Article FindArticleById(int articleId)

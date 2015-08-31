@@ -47,6 +47,7 @@
     <Compile Include="DbRepositories\DbAuthorRepository.cs" />
     <Compile Include="DbRepositories\DbHelper.cs" />
     <Compile Include="DbRepositories\DbUserRepository.cs" />
+    <Compile Include="PagingInfo.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\Author.cs" />
