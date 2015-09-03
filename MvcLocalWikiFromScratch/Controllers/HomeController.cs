@@ -3,6 +3,7 @@ using System.Security.Policy;
 using FLS.LocalWiki.WebApplication.Models;
 using System.Web.Configuration;
 using System.Web.Mvc;
+using System.Web.Routing;
 using FLS.LocalWiki.Initializing;
 using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Entities;
@@ -13,10 +14,10 @@ namespace FLS.LocalWiki.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: /Home/
-
         private readonly IFacade m_facade = SingleContainer.Instance.GetFacade(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         private HomeViewModel m_homeViewModel;
+
+        // GET: /by{pageBy}p{currentPage}
 
         public ActionResult Index(int pageBy = 2, int currentPage = 1) //, string sortBy = null
         {
@@ -52,7 +53,7 @@ namespace FLS.LocalWiki.WebApplication.Controllers
             m_homeViewModel.ItemsforPagingBy.Find(item => (item.Value == pageBy.ToString())).Selected = true;
             return View(m_homeViewModel);
         }
-
+        
         // GET: /Home/ReadArticle/@article.Id
 
         [HttpGet]

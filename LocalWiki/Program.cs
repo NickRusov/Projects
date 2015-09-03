@@ -16,9 +16,9 @@ namespace FLS.LocalWiki.ConsoleApplicaion
             AppDomain.CurrentDomain.SetData("DataDirectory", (Path.GetFullPath(appDataPath)));//
 
             var facade = SingleContainer.Instance.GetFacade(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            var r = DbHelper.GetArticlesFromDb(1, 2, facade.ArticleConnectionString);
-            foreach (DataRow row in r.Rows)
-                Console.WriteLine((string)(row["title"]));
+            //var r = DbHelper.GetArticlesFromDb(1, 2, facade.ArticleConnectionString);
+            //foreach (DataRow row in r.Rows)
+            //    Console.WriteLine((string)(row["title"]));
             Console.WriteLine(DbHelper.GetTotalInTable("articles", facade.ArticleConnectionString));
         }
     }

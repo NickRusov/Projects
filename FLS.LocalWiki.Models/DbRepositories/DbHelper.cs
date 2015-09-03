@@ -7,24 +7,24 @@ namespace FLS.LocalWiki.Models.Repositories
 {
     public static class DbHelper
     {
-        public static DataTable GetArticlesFromDb(int currentPage, int pageBy, string connectionString)
-        {
-            var dataTable = new DataTable();            
-            using (var adapter =
-                    new SqlDataAdapter(@"SELECT article.articleId, article.title, u.firstname, u.lastname, author.email 
-	                    FROM dbo.articles article
-	                    JOIN dbo.users u
-                        ON u.Id = article.authorId
-                        JOIN dbo.authors author
-                        ON u.Id = author.userId
-                        ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY", connectionString))
-            {
-                adapter.SelectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
-                adapter.SelectCommand.Parameters.AddWithValue("pageBy", pageBy);
-                adapter.Fill(dataTable);                
-            }
-            return dataTable;
-        }
+//        public static DataTable GetArticlesFromDb(int currentPage, int pageBy, string connectionString)
+//        {
+//            var dataTable = new DataTable();            
+//            using (var adapter =
+//                    new SqlDataAdapter(@"SELECT article.articleId, article.title, u.firstname, u.lastname, author.email 
+//	                    FROM dbo.articles article
+//	                    JOIN dbo.users u
+//                        ON u.Id = article.authorId
+//                        JOIN dbo.authors author
+//                        ON u.Id = author.userId
+//                        ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY", connectionString))
+//            {
+//                adapter.SelectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
+//                adapter.SelectCommand.Parameters.AddWithValue("pageBy", pageBy);
+//                adapter.Fill(dataTable);                
+//            }
+//            return dataTable;
+//        }
 
         public static DataSet GetArticle(int articleId, string connectionString)
         {
@@ -66,6 +66,17 @@ namespace FLS.LocalWiki.Models.Repositories
                 total = (int)dataTable.Rows[0][0];
             }
             return total;
+        }
+
+        public static DataTable ExecuteQuery(SqlCommand selectCommand, string connectionString)
+        {
+            var dataTable = new DataTable();
+            using (var adapter = new SqlDataAdapter(selectCommand))
+            {
+                selectCommand.Connection = new SqlConnection(connectionString);
+                adapter.Fill(dataTable);
+            }
+            return dataTable;
         }
 
         public static int ExecuteCommand(SqlCommand command, string connectionString)

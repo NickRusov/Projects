@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System;
+using System.Data.SqlClient;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 
@@ -72,10 +73,10 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public bool AddComment(NewComment newComment)
         {
-            const string insertQueryString = 
+            const string insertCommandString = 
                 @"INSERT INTO dbo.comments (userId, articleId, text)
                     VALUES (@userId, @articleId, @text);";
-            var insertCommand = new System.Data.SqlClient.SqlCommand(insertQueryString);
+            var insertCommand = new System.Data.SqlClient.SqlCommand(insertCommandString);
             insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
             insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
             insertCommand.Parameters.AddWithValue("@text", newComment.Comment);
@@ -124,7 +125,18 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public int LoadPage(int currentPage, int pageBy) 
         {
-            var table = DbHelper.GetArticlesFromDb(currentPage, pageBy, ConnectionString).Rows;
+            var selectCommand = new SqlCommand(
+                        @"SELECT article.articleId, article.title, u.firstname, u.lastname, author.email 
+	                    FROM dbo.articles article
+	                    JOIN dbo.users u
+                        ON u.Id = article.authorId
+                        JOIN dbo.authors author
+                        ON u.Id = author.userId
+                        ORDER BY title OFFSET @rows ROWS FETCH NEXT @pageBy ROWS ONLY");
+            selectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
+            selectCommand.Parameters.AddWithValue("pageBy", pageBy);
+            var table = DbHelper.ExecuteQuery(selectCommand, ConnectionString).Rows;
+            //var table = DbHelper.GetArticlesFromDb(currentPage, pageBy, ConnectionString).Rows;
             foreach (DataRow row in table)
             {
                 this.AddArticle(new Article(new Author((string)row["firstname"], (string)row["lastname"], 0, 0, (string)row["email"]), (string)(row["title"]), null, (int)(row["articleId"])));
