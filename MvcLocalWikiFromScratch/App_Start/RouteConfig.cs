@@ -33,7 +33,7 @@ namespace FLS.LocalWiki.WebApplication
 
             routes.MapRoute(
                 name: "Initial",
-                url: "",
+                url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
                 );
             //routes.MapRoute(
