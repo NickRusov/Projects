@@ -2,7 +2,7 @@
 
 namespace FLS.LocalWiki.Models.Entities
 {
-    public class Comment : ProEntity
+    public class Comment : UniqueEntity
     {
        public Comment(string text, User reviewer, int id)
         {

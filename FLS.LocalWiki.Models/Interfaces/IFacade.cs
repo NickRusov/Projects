@@ -10,24 +10,6 @@ namespace FLS.LocalWiki.Models.Interfaces
             get; 
         }
 
-        int CurrentPage
-        {
-            get;
-            set;
-        }
-
-        int PageBy
-        {
-            get;
-            set;
-        }
-
-        int TotalPages
-        {
-            get;
-            set;
-        }
-
         string AdminConnectionString { get; }
 
         string ArticleConnectionString { get; }

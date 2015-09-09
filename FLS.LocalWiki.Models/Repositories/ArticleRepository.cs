@@ -7,7 +7,7 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class DbArticleRepository : IArticleRepository
+    public class ArticleRepository : IArticleRepository
     {
         private const string m_articleTableName = "articles";
         private const string m_commentsTableName = "comments";
@@ -21,7 +21,7 @@ namespace FLS.LocalWiki.Models.Repositories
             get { return m_connectionString; }
         }
 
-        public DbArticleRepository(string connectionString)
+        public ArticleRepository(string connectionString)
         {
             m_connectionString = connectionString;
             m_allArticles = new List<Article>();

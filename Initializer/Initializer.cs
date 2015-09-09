@@ -13,11 +13,11 @@ namespace FLS.LocalWiki.Initializing
         private static readonly SingleContainer s_instance = new SingleContainer();
         private static readonly Container s_container = new Container(x =>
                     {
-                    x.For<IArticleRepository>().Use<DbArticleRepository>();
-                    x.For<IAdminRepository>().Use<DbAdminRepository>();
-                    x.For<IAuthorRepository>().Use<DbAuthorRepository>();
-                    x.For<IUserRepository>().Use<DbUserRepository>();
-                    x.For<IFacade>().Use<DbFacade>();
+                    x.For<IArticleRepository>().Use<ArticleRepository>();
+                    x.For<IAdminRepository>().Use<AdminRepository>();
+                    x.For<IAuthorRepository>().Use<AuthorRepository>();
+                    x.For<IUserRepository>().Use<UserRepository>();
+                    x.For<IFacade>().Use<Facade>();
                     });
         private SingleContainer() { }
 

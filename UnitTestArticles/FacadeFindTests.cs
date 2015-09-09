@@ -25,7 +25,7 @@ namespace FLS.LocalWiki.UnitTestsforModels
         {
             // arrange
             IArticleRepository article = new FakeArticleRepoistiry();
-            var facade = new DbFacade(article, null, null, null);
+            var facade = new Facade(article, null, null, null);
 
             // act
             var foundId = facade.FindArticlesByTitle("C# classes")[0].Id;
@@ -50,7 +50,7 @@ namespace FLS.LocalWiki.UnitTestsforModels
             mockIArticleRepository.Expects.One.Method(_ => _.GetAllArticles()).WillReturn(listToReturn);
 
 
-            var facade = new DbFacade(mockIArticleRepository.MockObject, null, null, null);
+            var facade = new Facade(mockIArticleRepository.MockObject, null, null, null);
             Assert.AreEqual("a", facade.FindArticlesByTitle("C# classes")[0].Author.FirstName);
         }
 
@@ -68,7 +68,7 @@ namespace FLS.LocalWiki.UnitTestsforModels
 
             // act
             mockIAuthorRepository.Expects.One.Method(_ => _.GetAllAuthors()).WillReturn(listToReturn);
-            var facade = new DbFacade(null, mockIAuthorRepository.MockObject, null, null);
+            var facade = new Facade(null, mockIAuthorRepository.MockObject, null, null);
             var foundFirstname = facade.FindAuthorsByLastname("Rusov")[0].FirstName;
             // assert
             Assert.AreEqual("a", foundFirstname);

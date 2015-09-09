@@ -64,6 +64,7 @@
     <Compile Include="FacadeFindTests.cs" />
     <Compile Include="ReadArticleTests.cs" />
     <Compile Include="ReadCommentsTests.cs" />
+    <Compile Include="FacadeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.BusinessLogic.csproj">

@@ -2,7 +2,7 @@
 
 namespace FLS.LocalWiki.Models.Entities
 {
-    public class User : ProEntity
+    public class User : UniqueEntity
     {
         public User(string firstname, string lastname, short age, int id)
         {

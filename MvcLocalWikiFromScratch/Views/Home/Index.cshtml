@@ -2,34 +2,23 @@
 @model  FLS.LocalWiki.WebApplication.Models.HomeViewModel
 
 @{
-    Layout = null;
+    Layout = //null;//
+        "~/Views/Home/_LayoutIndex.cshtml";
 }
-@*<link href="@Url.Content("/Content/PagedList.css")" rel="stylesheet" type="text/css" />*@
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Local Wiki</title>
-</head>
-<body>
+        Page size:
 
-<div>
-    Page size:
-
-
-    @*using (Html.BeginForm("Index","Home", FormMethod.Get))*@
-    @using (Html.BeginRouteForm("Initial", FormMethod.Post))
-    {
-        @Html.DropDownList("pageBy", Model.ItemsforPagingBy, new {onchange = "this.form.submit();"})
-    }
-
-    <div style="text-align: left;">
-
-        @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+        @using (Html.BeginRouteForm("Initial", FormMethod.Post))
         {
-            if (i != Model.PageInfo.CurrentPage)
+            @Html.DropDownList("pageBy", Model.ItemsforPagingBy, new { onchange = "this.form.submit();" })
+        }
+
+        <div style="text-align: left;">
+
+            @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
             {
+                if (i != Model.PageInfo.CurrentPage)
+                {
                 @Html.ActionLink(i + " page| ", "Index", "Home", new { pageBy = Model.PageInfo.PageBy, currentPage = i }, null)
             }
             else
@@ -37,36 +26,39 @@
                 @Html.Label(i + " page| ")
             }
         }
-    </div>
+        </div>
 
-    <h3>Page:<br>
-        #@Model.PageInfo.CurrentPage of @Model.PageInfo.TotalPages<br>
-    </h3>
+        <h3>Page:<br>
+            #@Model.PageInfo.CurrentPage of @Model.PageInfo.TotalPages<br>
+        </h3>
 
-    <table>
-        <tr><td>
-                <p>Title</p></td>
-            <td>
-                <p>Author</p></td>
-            <td>
-                <p>E-mail</p></td>
-            <td></td>
-        </tr>
-        @foreach (Article article in Model.Facade.AllArticles)
-        {
+        <table>
             <tr>
                 <td>
-                    <p>@article.Title</p></td>
+                    <p>Title</p>
+                </td>
                 <td>
-                    <p>@article.Author.FirstName @article.Author.LastName</p></td>
+                    <p>Author</p>
+                </td>
                 <td>
-                    <p>@article.Author.Email</p></td>
-                <td>@Html.ActionLink("Read the full text", "ReadArticle", "Home", new {id = @article.Id}, null)</td>
+                    <p>E-mail</p>
+                </td>
+                <td></td>
             </tr>
+            @foreach (Article article in Model.Facade.AllArticles)
+            {
+                <tr>
+                    <td>
+                        <p>@article.Title</p>
+                    </td>
+                    <td>
+                        <p>@article.Author.FirstName @article.Author.LastName</p>
+                    </td>
+                    <td>
+                        <p>@article.Author.Email</p>
+                    </td>
+                    <td>@Html.ActionLink("Read the full text", "ReadArticle", "Home", new { id = @article.Id }, null)</td>
+                </tr>
         }
 
-    </table>
-</div>
-
-</body>
-</html>
+        </table>

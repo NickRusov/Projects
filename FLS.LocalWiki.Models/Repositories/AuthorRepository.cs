@@ -4,10 +4,10 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class DbAdminRepository : IAdminRepository
+    public class AuthorRepository : IAuthorRepository
     {
-        private const string m_adminsTableName = "admins";
-        private List<Admin> m_allAdmins;
+        private const string m_authorsTableName = "authors";
+        private List<Author> m_allAuthors;
 
         private readonly string m_connectionString;
 
@@ -15,25 +15,25 @@ namespace FLS.LocalWiki.Models.Repositories
             get { return m_connectionString; }
         }
 
-        public DbAdminRepository(string connectionString)
+        public AuthorRepository(string connectionString)
         {
             m_connectionString = connectionString;
-            m_allAdmins = new List<Admin>();
-        }
-        
-        public List<Admin> GetAllAdmins()
-        {
-            return m_allAdmins;
+            m_allAuthors = new List<Author>();
         }
 
-        public void AddAdmin(Admin admin)
+        public List<Author> GetAllAuthors()
         {
-            m_allAdmins.Add(admin);
+            return m_allAuthors; 
+        }
+
+        public void AddAuthor(Author author)
+        {
+            m_allAuthors.Add(author);
         }        
 
         public int Count()
         {
-            return m_allAdmins.Count;
+            return m_allAuthors.Count;
         }
     }
 }

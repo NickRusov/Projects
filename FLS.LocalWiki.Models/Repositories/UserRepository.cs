@@ -4,7 +4,7 @@ using FLS.LocalWiki.Models.Interfaces;
 
 namespace FLS.LocalWiki.Models.Repositories
 {
-    public class DbUserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private const string m_usersTableName = "users";
         private List<User> m_allUsers;
@@ -15,7 +15,7 @@ namespace FLS.LocalWiki.Models.Repositories
             get { return m_connectionString; }
         }
 
-        public DbUserRepository(string connectionString)
+        public UserRepository(string connectionString)
         {
             m_connectionString = connectionString;
             m_allUsers = new List<User>();

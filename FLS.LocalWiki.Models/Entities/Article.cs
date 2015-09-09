@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FLS.LocalWiki.Models.Entities
 {
-    public class Article : ProEntity
+    public class Article : UniqueEntity
     {
         public Article(Author author, string title, string text, int id)
         {

@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbFacade.cs" />
+    <Compile Include="Facade.cs" />
     <Compile Include="DbRepositories\DbAdminRepository.cs" />
     <Compile Include="DbRepositories\DbArticleRepository.cs" />
     <Compile Include="DbRepositories\DbAuthorRepository.cs" />

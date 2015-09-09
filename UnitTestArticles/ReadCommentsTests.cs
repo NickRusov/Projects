@@ -13,7 +13,7 @@ namespace FLS.LocalWiki.UnitTestsforModels
         {
             // arrange
             IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new DbFacade(articleRepository, null, null, null);
+            var facade = new Facade(articleRepository, null, null, null);
 
             // act
             var comments = facade.FindArticleById(1).Comments;
@@ -46,7 +46,7 @@ Cool!
         {
             // arrange
             IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new DbFacade(articleRepository, null, null, null);
+            var facade = new Facade(articleRepository, null, null, null);
 
             // act
             var comments = facade.FindArticleById(1).Comments;
@@ -60,7 +60,7 @@ Cool!
         {
             // arrange
             IArticleRepository articleRepository = new FakeArticleRepoistiry();
-            var facade = new DbFacade(articleRepository, null, null, null);
+            var facade = new Facade(articleRepository, null, null, null);
 
             // act
             var comments = facade.FindArticlesByTitle("C#");
