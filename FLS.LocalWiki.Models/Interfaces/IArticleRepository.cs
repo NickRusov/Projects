@@ -7,7 +7,7 @@ namespace FLS.LocalWiki.Models.Interfaces
     {
         string ConnectionString { get; }
 
-        List<Article> GetAllArticles();
+        IEnumerable<Article> GetAllArticles();
 
         Article GetArticle(int id);
 

@@ -55,16 +55,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FakeRepositories\FakeUserRepository.cs" />
-    <Compile Include="FakeRepositories\FakeAdminRepository.cs" />
-    <Compile Include="FakeRepositories\FakeArticleRepoistiry.cs" />
-    <Compile Include="FakeRepositories\FakeAuthorRepository.cs" />
-    <Compile Include="GetAverageRatingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FacadeFindTests.cs" />
-    <Compile Include="ReadArticleTests.cs" />
-    <Compile Include="ReadCommentsTests.cs" />
-    <Compile Include="FacadeTest.cs" />
+    <Compile Include="FacadeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FLS.LocalWiki.Models\FLS.LocalWiki.BusinessLogic.csproj">

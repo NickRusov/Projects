@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Facade.cs" />
-    <Compile Include="DbRepositories\DbAdminRepository.cs" />
-    <Compile Include="DbRepositories\DbArticleRepository.cs" />
-    <Compile Include="DbRepositories\DbAuthorRepository.cs" />
-    <Compile Include="DbRepositories\DbHelper.cs" />
-    <Compile Include="DbRepositories\DbUserRepository.cs" />
+    <Compile Include="Repositories\AdminRepository.cs" />
+    <Compile Include="Repositories\ArticleRepository.cs" />
+    <Compile Include="Repositories\AuthorRepository.cs" />
+    <Compile Include="Repositories\DbHelper.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="PagingInfo.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Article.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Interfaces\IAuthorRepository.cs" />
     <Compile Include="Interfaces\IFacade.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Entities\ProEntity.cs" />
+    <Compile Include="Entities\UniqueEntity.cs" />
     <Compile Include="Entities\Rating.cs" />
     <Compile Include="NewComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

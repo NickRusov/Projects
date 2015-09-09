@@ -27,7 +27,7 @@ namespace FLS.LocalWiki.Models.Repositories
             m_allArticles = new List<Article>();
         }
 
-        public List<Article> GetAllArticles()
+        public IEnumerable<Article> GetAllArticles()
         {
             return m_allArticles;
         }
@@ -76,7 +76,7 @@ namespace FLS.LocalWiki.Models.Repositories
             const string insertCommandString = 
                 @"INSERT INTO dbo.comments (userId, articleId, text)
                     VALUES (@userId, @articleId, @text);";
-            var insertCommand = new System.Data.SqlClient.SqlCommand(insertCommandString);
+            var insertCommand = new SqlCommand(insertCommandString);
             insertCommand.Parameters.AddWithValue("@userId", newComment.UserId);
             insertCommand.Parameters.AddWithValue("@articleId", newComment.ArticleId);
             insertCommand.Parameters.AddWithValue("@text", newComment.Comment);

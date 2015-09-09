@@ -75,7 +75,7 @@ namespace FLS.LocalWiki.Models
 
         public List<Article> FindArticlesByTitle(string title)
         {
-            return m_articleRepository.GetAllArticles().FindAll(article => article.Title == title);
+            return m_articleRepository.GetAllArticles().ToList().FindAll(article => article.Title == title);
         }
 
         public Author FindAuthorById(int authorId)
