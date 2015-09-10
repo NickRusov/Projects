@@ -13,10 +13,10 @@ namespace FLS.LocalWiki.Initializing
         private static readonly SingleContainer s_instance = new SingleContainer();
         private static readonly Container s_container = new Container(x =>
                     {
-                    x.For<IArticleRepository>().Use<ArticleRepository>();
-                    x.For<IAdminRepository>().Use<AdminRepository>();
-                    x.For<IAuthorRepository>().Use<AuthorRepository>();
-                    x.For<IUserRepository>().Use<UserRepository>();
+                        x.For<IArticleRepository>().Use<ArticleRepository>();
+                        x.For<IAdminRepository>().Use<AdminRepository>();
+                        x.For<IAuthorRepository>().Use<AuthorRepository>();
+                        x.For<IUserRepository>().Use<UserRepository>();
                     x.For<IFacade>().Use<Facade>();
                     });
         private SingleContainer() { }
@@ -39,18 +39,14 @@ namespace FLS.LocalWiki.Initializing
 
         public IFacade GetFacade(string connectionString)
         {
-            var userRepository = Instance.Container.With<string>(connectionString).GetInstance<IUserRepository>();
-            var authorRepository = Instance.Container.With<string>(connectionString).GetInstance<IAuthorRepository>();
-            var adminRepository = Instance.Container.With<string>(connectionString).GetInstance<IAdminRepository>();
-            var articleRepository = Instance.Container.With<string>(connectionString).GetInstance<IArticleRepository>();
             var facade = Instance.Container.
-               With<IArticleRepository>(articleRepository).
-               With<IAuthorRepository>(authorRepository).
-               With<IAdminRepository>(adminRepository).
-               With<IUserRepository>(userRepository).
+               With<IArticleRepository>(new ArticleRepository(connectionString)).
+               With<IAuthorRepository>(new AuthorRepository(connectionString)).
+               With<IAdminRepository>(new AdminRepository(connectionString)).
+               With<IUserRepository>(new UserRepository(connectionString)).
                GetInstance<IFacade>();
             return facade;
-        }   
+        }
     }
       
    }
