@@ -9,7 +9,9 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         IEnumerable<Article> GetAllArticles();
 
-        Article GetArticle(int id);
+        Article GetArticle(int articleId);
+
+        Reviews GetReviews(int articleId);
 
         bool AddComment(NewComment newComment);
 

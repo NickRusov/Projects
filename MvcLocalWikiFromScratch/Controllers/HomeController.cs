@@ -9,6 +9,7 @@ using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models.Interfaces;
 using FLS.LocalWiki.Models.Repositories;
+using FLS.LocalWiki.WebApplication.Models.Partial;
 
 namespace FLS.LocalWiki.WebApplication.Controllers
 {

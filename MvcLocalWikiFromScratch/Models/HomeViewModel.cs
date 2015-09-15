@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Interfaces;
+using FLS.LocalWiki.WebApplication.Models.Partial;
 
 namespace FLS.LocalWiki.WebApplication.Models
 {

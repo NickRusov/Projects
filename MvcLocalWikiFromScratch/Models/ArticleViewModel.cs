@@ -19,23 +19,23 @@ namespace FLS.LocalWiki.WebApplication.Models
             set;
         }
 
-        public List<Comment> Comments
-        {
-            get;
-            set;
-        }
+        //public List<Comment> Comments
+        //{
+        //    get;
+        //    set;
+        //}
 
-        public List<Rating> Ratings
-        {
-            get;
-            set;
-        }
+        //public List<Rating> Ratings
+        //{
+        //    get;
+        //    set;
+        //}
 
         public ArticleViewModel()
         {
             NewComment = new NewComment();
-            Comments = new List<Comment>();
-            Ratings = new List<Rating>();
+            //Comments = new List<Comment>();
+            //Ratings = new List<Rating>();
         }
     }
 }

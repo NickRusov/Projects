@@ -1,0 +1,24 @@
+﻿@model FLS.LocalWiki.Models.Reviews
+
+<table>
+     @foreach (var comment in Model.Comments)
+          {
+              <tr>
+                  <td>
+                      <p>@comment</p>
+                  </td>
+              </tr>
+          }
+</table>
+
+<table>
+     @foreach (var rating in Model.Ratings)
+          {
+              <tr>
+                  <td>
+                      <p>@rating</p>
+                  </td>
+              </tr>
+          }
+</table>
+

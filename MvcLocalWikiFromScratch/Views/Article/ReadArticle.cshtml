@@ -4,40 +4,18 @@
 @using FLS.LocalWiki.WebApplication.Models
 
 @model ArticleViewModel
+
 @{
-    Layout = null;
+    Layout = "~/Views/_InitialLayout.cshtml";
 }
-
-<html @*xmlns="http://www.w3.org/1999/xhtml"*@ >
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Reading Articles</title>
-
-</head>
 
 <body>
         <p>@Model.Article.Title</p>
         <p>@Model.Article.Author.FirstName @Model.Article.Author.LastName</p>
         <p>@Model.Article.Text</p>
         <p>Average rating: @Model.Article.AverageRating</p>
-        <table> @foreach (var comment in Model.Article.Comments)
-                {
-                    <tr>
-                        <td>
-                            <p>@comment</p>
-                        </td>
-                    </tr>
-                }
-        </table>
-    <table> @foreach (var rating in Model.Article.Ratings)
-            {
-                <tr>
-                    <td>
-                        <p>@rating</p>
-                    </td>
-                </tr>
-            }
-    </table>
+
+        @{ Html.RenderAction("LoadReviews", "Article", new { articleId = Model.Article.Id });}
     
 <script src="@Url.Content("~/Scripts/jquery-2.1.4.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
@@ -74,4 +52,3 @@
          }
     </div>
 </body>
-</html>

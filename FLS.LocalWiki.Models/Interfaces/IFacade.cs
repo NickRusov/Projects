@@ -22,6 +22,8 @@ namespace FLS.LocalWiki.Models.Interfaces
 
         Article FindArticleById(int articleId);
 
+        Reviews GetReviews(int articleId);
+
         bool AddComment(NewComment newComment);
 
         List<Article> FindArticlesByTitle(string title);

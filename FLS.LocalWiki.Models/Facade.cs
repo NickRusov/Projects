@@ -70,6 +70,12 @@ namespace FLS.LocalWiki.Models
 
         }
 
+        public Reviews GetReviews(int articleId)
+        {
+            return m_articleRepository.GetReviews(articleId);
+        }
+
+
 
 
 

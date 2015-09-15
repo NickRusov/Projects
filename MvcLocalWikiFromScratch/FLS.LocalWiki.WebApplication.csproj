@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Models\ArticleViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\Partial\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +133,9 @@
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Views\Article\Reviews.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -143,7 +147,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <Content Include="Views\Home\_LayoutIndex.cshtml" />
+    <Content Include="Views\_InitialLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -167,9 +171,6 @@
       <Project>{41994fe1-68c5-46e1-9dd9-919fc3cd186e}</Project>
       <Name>FLS.LocalWiki.Initializing</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Article\Comments.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

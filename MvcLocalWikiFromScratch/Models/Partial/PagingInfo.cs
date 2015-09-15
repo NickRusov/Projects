@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FLS.LocalWiki.Models
+﻿namespace FLS.LocalWiki.WebApplication.Models.Partial
 {
     public class PagingInfo
     {

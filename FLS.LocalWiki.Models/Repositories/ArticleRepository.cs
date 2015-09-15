@@ -34,41 +34,62 @@ namespace FLS.LocalWiki.Models.Repositories
 
         public Article GetArticle(int id)
         {
-            var dataset = DbHelper.GetArticle(id, ConnectionString);
-            var articleRow = dataset.Tables[0].Rows[0];
+            var selectCommand = new SqlCommand(
+                        @"SELECT article.title, article.text,article.authorId, u.firstname, u.lastname, u.age, author.email 
+	                    FROM dbo.articles article
+	                    JOIN dbo.users u
+                        ON u.Id = article.authorId
+                        JOIN dbo.authors author
+                        ON u.Id = author.userId
+                        WHERE articleId = @articleId");
+            selectCommand.Parameters.AddWithValue("articleId", id);
+            var dataTable = DbHelper.ExecuteQuery(selectCommand, m_connectionString);//GetArticle(id, ConnectionString);
+            var articleRow = dataTable.Rows[0];
             var article = new Article(new Author((string)articleRow["firstname"],
                             (string)articleRow["lastname"],
                             (short)articleRow["age"],
                             (int)articleRow["authorId"],
                             (string)articleRow["email"]),
                     (string)articleRow["title"], (string)articleRow["text"], id);
-            foreach (DataRow row in dataset.Tables[1].Rows)
+            return article;
+        }
+
+        public Reviews GetReviews(int articleId)
+        {
+            var selectCommand = new SqlCommand(
+                @"SELECT c.*, r.mark, u.firstname, u.lastname, u.age
+                  FROM [dbo].[comments] c
+                  LEFT OUTER JOIN [dbo].[ratings] r
+                  ON c.commentId = r.commentId
+                  JOIN [dbo].[users] u
+                  ON c.userId = u.Id
+                  WHERE articleId = @articleId");
+            selectCommand.Parameters.AddWithValue("articleId", articleId);
+            var dataTable = DbHelper.ExecuteQuery(selectCommand, m_connectionString);
+            var reviews = new Reviews();
+            Comment comment;
+            foreach (DataRow row in dataTable.Rows)
             {
-                if (row["mark"] == DBNull.Value)
-                {
-                    article.AddComment(new Comment(
+                comment = new Comment(
                         (string)row["text"],
                         new User(
                             (string)row["firstname"],
                             (string)row["lastname"],
                             (short)row["age"],
                             (int)row["userId"]),
-                        (int)row["commentId"]));
+                        (int)row["commentId"]);
+
+                if (row["mark"] == DBNull.Value)
+                {
+                    reviews.Comments.Add(comment);
                 }
                 else
                 {
-                    article.AddRating(new Rating(
-                        (string)row["text"],
-                        new User(
-                            (string)row["firstname"],
-                            (string)row["lastname"],
-                            (short)row["age"],
-                            (int)row["userId"]),
-                        (byte)row["mark"],
-                        (int)row["commentId"]));
+                    reviews.Ratings.Add(new Rating(comment, (byte)row["mark"]));
                 }
             }
-            return article;
+
+            return reviews;
         }
 
         public bool AddComment(NewComment newComment)
@@ -84,45 +105,6 @@ namespace FLS.LocalWiki.Models.Repositories
 
         }
 
-        //public  GetArticleComments(int articleId)
-        //{
-        //    var dataset = DbHelper.GetArticle(articleId);
-        //    var articleRow = dataset.Tables[0].Rows[0];
-        //    var article = new Article(new Author((string)articleRow["firstname"],
-        //                    (string)articleRow["lastname"],
-        //                    (short)articleRow["age"],
-        //                    (int)articleRow["authorId"],
-        //                    (string)articleRow["email"]),
-        //            (string)articleRow["title"], (string)articleRow["text"], id);
-        //    foreach (DataRow row in dataset.Tables[1].Rows)
-        //    {
-        //        if (row["mark"] == DBNull.Value)
-        //        {
-        //            article.AddComment(new Comment(
-        //                (string)row["text"],
-        //                new User(
-        //                    (string)row["firstname"],
-        //                    (string)row["lastname"],
-        //                    (short)row["age"],
-        //                    (int)row["userId"]),
-        //                (int)row["commentId"]));
-        //        }
-        //        else
-        //        {
-        //            article.AddRating(new Rating(
-        //                (string)row["text"],
-        //                new User(
-        //                    (string)row["firstname"],
-        //                    (string)row["lastname"],
-        //                    (short)row["age"],
-        //                    (int)row["userId"]),
-        //                (byte)row["mark"],
-        //                (int)row["commentId"]));
-        //        }
-        //    }
-        //    return article;
-        //}
-
         public int LoadPage(int currentPage, int pageBy) 
         {
             var selectCommand = new SqlCommand(
@@ -136,7 +118,6 @@ namespace FLS.LocalWiki.Models.Repositories
             selectCommand.Parameters.AddWithValue("rows", (currentPage - 1) * pageBy);
             selectCommand.Parameters.AddWithValue("pageBy", pageBy);
             var table = DbHelper.ExecuteQuery(selectCommand, ConnectionString).Rows;
-            //var table = DbHelper.GetArticlesFromDb(currentPage, pageBy, ConnectionString).Rows;
             foreach (DataRow row in table)
             {
                 this.AddArticle(new Article(new Author((string)row["firstname"], (string)row["lastname"], 0, 0, (string)row["email"]), (string)(row["title"]), null, (int)(row["articleId"])));
