@@ -1,12 +1,10 @@
-﻿
-@using System.Web.Mvc.Ajax;
-@using FLS.LocalWiki.Models.Entities
+﻿@using System.Web.Mvc.Ajax;
 @using FLS.LocalWiki.WebApplication.Models
 
 @model ArticleViewModel
 
 @{
-    Layout = "~/Views/_InitialLayout.cshtml";
+    Layout = "~/Views/Shared/_InitialLayout.cshtml";
 }
 
 <body>
@@ -15,25 +13,18 @@
         <p>@Model.Article.Text</p>
         <p>Average rating: @Model.Article.AverageRating</p>
 
-        @{ Html.RenderAction("LoadReviews", "Article", new { articleId = Model.Article.Id });}
-    
+
+
+
 <script src="@Url.Content("~/Scripts/jquery-2.1.4.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 
    
-    @using (Html.BeginForm("AddComment", "Article", FormMethod.Post))
+    @using (Ajax.BeginForm("AddComment", "Article", new AjaxOptions { UpdateTargetId = "reviewList", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
     {
-    @* //new AjaxOptions { UpdateTargetId = "commentList" }))*@
-
             <div>
                 @Html.Hidden("articleId", Model.Article.Id)
                 @Html.Editor("comment")
-
-                @*@Html.Editor("articleId")*@
-                @*@Html.EditorFor(m => m.NewComment.Comment)
-                @Html.HiddenFor(m => m.Article.Id)
-                @Html.HiddenFor(m => m.NewComment.UserId)*@
             </div>
         
             <div>
@@ -41,14 +32,8 @@
             </div>
     }
 
-    @*<script src="@Url.Content("~/App_Code/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>*@
-        
-    @*@Html.Partial("~/Views/Article/Comments.cshtml", new PartialComments(Model.Id));
-        @Html.Action("AddComment", "Article", Model.Id);*@
-    <div id='commentList'>
-        @{
-            //Html.RenderAction("AddComment","Article");
-            //Html.RenderPartial("~/Views/Article/Comments.cshtml", new NewComment(1,Model.Id,"initial comment"));
-         }
-    </div>
+<div id="reviewList">
+    @{ Html.RenderAction("LoadReviews", "Article", new {articleId = Model.Article.Id}); }
+</div>
+
 </body>

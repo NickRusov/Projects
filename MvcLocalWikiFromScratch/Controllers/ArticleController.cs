@@ -4,7 +4,6 @@ using FLS.LocalWiki.Initializing;
 using FLS.LocalWiki.Models.Entities;
 using FLS.LocalWiki.Models;
 using FLS.LocalWiki.Models.Interfaces;
-using FLS.LocalWiki.WebApplication.Models;
 
 namespace FLS.LocalWiki.WebApplication.Controllers
 {
@@ -13,17 +12,13 @@ namespace FLS.LocalWiki.WebApplication.Controllers
         private IFacade m_facade = SingleContainer.Instance.GetFacade(WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         [HttpPost]
-        public ActionResult AddComment(/*int userId,*/ int articleId, string comment)
+        public PartialViewResult AddComment(/*int userId,*/ int articleId, string comment)
         {
             m_facade.AddComment(new NewComment(1, articleId, comment));
-            var articleViewModel = new ArticleViewModel
-            {
-                Article = m_facade.FindArticleById(articleId)
-            };
-            return View("ReadArticle", articleViewModel);
+            return LoadReviews(articleId);
         }
 
-        public ActionResult LoadReviews(int articleId)
+        public PartialViewResult LoadReviews(int articleId)
         {
             return PartialView("Reviews", m_facade.GetReviews(articleId));
         }
